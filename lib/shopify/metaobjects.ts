@@ -118,7 +118,7 @@ export async function getRetailPartners(): Promise<RetailPartnerMetaobject[]> {
     {
       id: 'partner-amazon',
       name: 'Amazon India',
-      logoUrl: '/placeholders/Amazon.png',
+      logoUrl: '/placeholders/amazon.png',
       destinationUrl: 'https://amzn.in/d/aUEboVn',
       isOfficial: false,
       isFeatured: true,

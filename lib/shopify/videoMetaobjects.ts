@@ -83,7 +83,7 @@ export async function getVideoStories(): Promise<VideoStoryMetaobject[]> {
       productHandle: 'advanced-de-tan-sunscreen-gel',
       productTitle: 'Advanced De-Tan Sunscreen Gel SPF 50+',
       productPrice: '₹890',
-      productImage: '/placeholders/Banner2background.png',
+      productImage: '/placeholders/banner2background.png',
       isFeatured: false
     },
     {

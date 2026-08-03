@@ -23,7 +23,7 @@ const FALLBACK_PRODUCTS = [
     description: 'Non-greasy, zero white-cast formula enriched with green tea and sandalwood.',
     price: '₹890',
     compareAtPrice: '₹1,200',
-    image: '/placeholders/Banner2background.png',
+    image: '/placeholders/banner2background.png',
     badge: 'CLINICALLY TESTED'
   },
   {

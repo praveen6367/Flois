@@ -35,7 +35,7 @@ const HERO_SLIDES: SlideData[] = [
     headlineHighlight2: 'Brightness',
     headlineEnd: '& Defense',
     description: 'SPF 50+ PA++++. No white cast. Sweat resistant. Formulated for Indian skin.',
-    bgImage: '/placeholders/Banner2background.png',
+    bgImage: '/placeholders/banner2background.png',
     mobileBgImage: '/placeholders/mobilebackground2.png',
     isLightTheme: true,
     giftTitle: 'Botanical Sun Pouch',
