@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MenuItem } from '@/types/menu';
+import { normalizeShopifyUrl } from '@/lib/shopify/menus';
 
 const DEFAULT_MENU: MenuItem[] = [
   { id: 'home', title: 'Home', url: '/', type: 'HTTP' },
@@ -16,16 +17,10 @@ const DEFAULT_MENU: MenuItem[] = [
 
 export function DesktopNavigation({ menu = DEFAULT_MENU }: { menu?: MenuItem[] }) {
   const pathname = usePathname();
-  // Normalize any /blogs/* Shopify URLs → /blog
-  const normalizeUrl = (url: string | undefined) => {
-    if (!url) return '#';
-    if (url.startsWith('/blogs/') || url === '/blogs') return '/blog';
-    return url;
-  };
 
   const displayMenu = (menu && menu.length > 0 ? menu : DEFAULT_MENU).map((item) => ({
     ...item,
-    url: normalizeUrl(item.url)
+    url: normalizeShopifyUrl(item.url)
   }));
 
   return (

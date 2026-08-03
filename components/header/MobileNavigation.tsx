@@ -19,13 +19,7 @@ import { MenuItem } from '@/types/menu';
 import { ShopifyImage } from '@/types/shopify';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
-
-// ─── Normalise Shopify /blogs/* URLs → /blog ──────────────────────────────────
-function normaliseUrl(url: string | undefined): string {
-  if (!url) return '#';
-  if (url.startsWith('/blogs/') || url === '/blogs') return '/blog';
-  return url;
-}
+import { normalizeShopifyUrl } from '@/lib/shopify/menus';
 
 // ─── Fallback menu items (all linked correctly) ────────────────────────────────
 const FALLBACK_MENU: MenuItem[] = [
@@ -94,7 +88,7 @@ export function MobileNavigation({
 
   const displayMenu = (menu.length > 0 ? menu : FALLBACK_MENU).map((item) => ({
     ...item,
-    url: normaliseUrl(item.url),
+    url: normalizeShopifyUrl(item.url),
   }));
 
   const logoSrc = logoImage?.url || '/mainlogo.png';
