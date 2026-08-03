@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MenuItem } from '@/types/menu';
-import { normalizeShopifyUrl } from '@/lib/shopify/menus';
+import { normalizeShopifyUrl } from '@/utils/url';
 
 const DEFAULT_MENU: MenuItem[] = [
   { id: 'home', title: 'Home', url: '/', type: 'HTTP' },

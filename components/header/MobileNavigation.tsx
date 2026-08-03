@@ -19,7 +19,7 @@ import { MenuItem } from '@/types/menu';
 import { ShopifyImage } from '@/types/shopify';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
-import { normalizeShopifyUrl } from '@/lib/shopify/menus';
+import { normalizeShopifyUrl } from '@/utils/url';
 
 // ─── Fallback menu items (all linked correctly) ────────────────────────────────
 const FALLBACK_MENU: MenuItem[] = [

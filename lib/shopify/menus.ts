@@ -2,48 +2,9 @@ import { shopifyFetch } from './fetch';
 import { SHOPIFY_CACHE_TAGS } from './cache';
 import { Menu, MenuItem } from '@/types/menu';
 import { GET_MENU_QUERY } from '@/graphql/menu/get-menu';
+import { normalizeShopifyUrl } from '@/utils/url';
 
-/**
- * Normalizes any Shopify URL (e.g. "https://7deq26-9s.myshopify.com/", "https://7deq26-9s.myshopify.com/blogs/news")
- * into a clean internal Next.js relative route (e.g. "/", "/blog", "/collections/all").
- */
-export function normalizeShopifyUrl(url: string | undefined): string {
-  if (!url) return '/';
-  
-  let relativePath = url.trim();
-  
-  // Convert full domain URLs (http:// or https://) into pathnames
-  if (relativePath.startsWith('http://') || relativePath.startsWith('https://')) {
-    try {
-      const parsed = new URL(relativePath);
-      relativePath = parsed.pathname + parsed.search + parsed.hash;
-    } catch {
-      // Fallback if parsing fails
-    }
-  }
-
-  // Remove trailing slashes (except root "/")
-  if (relativePath.length > 1 && relativePath.endsWith('/')) {
-    relativePath = relativePath.slice(0, -1);
-  }
-
-  // Root or empty paths
-  if (!relativePath || relativePath === '' || relativePath === '/') {
-    return '/';
-  }
-
-  // Normalize Shopify blogs paths -> /blog
-  if (relativePath === '/blogs' || relativePath.startsWith('/blogs/')) {
-    return '/blog';
-  }
-
-  // Normalize Shopify default catalog paths -> /collections/all
-  if (relativePath === '/catalog' || relativePath === '/catalogue' || relativePath === '/collections') {
-    return '/collections/all';
-  }
-
-  return relativePath;
-}
+export { normalizeShopifyUrl };
 
 function cleanMenuItem(item: MenuItem): MenuItem {
   return {
