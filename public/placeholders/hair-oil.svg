@@ -1,0 +1,11 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#FAF9F5"/>
+  <circle cx="100" cy="100" r="85" fill="#F3F1EA" stroke="#E8E6DF" stroke-width="2"/>
+  <!-- Hair Oil Drop Icon -->
+  <path d="M100 50C100 50 135 90 135 122C135 141.33 119.33 157 100 157C80.67 157 65 141.33 65 122C65 90 100 50 100 50Z" fill="#EAE3D2" opacity="0.6"/>
+  <path d="M100 50C100 50 135 90 135 122C135 141.33 119.33 157 100 157C80.67 157 65 141.33 65 122C65 90 100 50 100 50Z" stroke="#4B644C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Inner Sparkle & Herb Leaf -->
+  <path d="M100 80V135" stroke="#4B644C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M100 98C114 90 124 93 124 93" stroke="#4B644C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M100 115C86 107 76 110 76 110" stroke="#4B644C" stroke-width="2" stroke-linecap="round"/>
+</svg>

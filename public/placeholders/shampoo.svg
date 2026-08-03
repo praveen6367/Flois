@@ -1,0 +1,10 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#FAF9F5"/>
+  <circle cx="100" cy="100" r="85" fill="#F3F1EA" stroke="#E8E6DF" stroke-width="2"/>
+  <!-- Botanical Shampoo Bottle Icon -->
+  <rect x="75" y="75" width="50" height="75" rx="10" fill="#EAE3D2" stroke="#4B644C" stroke-width="2.5"/>
+  <rect x="85" y="55" width="30" height="20" rx="4" fill="#4B644C"/>
+  <rect x="80" y="50" width="40" height="6" rx="2" fill="#4B644C"/>
+  <!-- Leaf emblem on bottle -->
+  <path d="M100 92C100 92 112 105 112 115C112 122 106 128 100 128C94 128 88 122 88 115C88 105 100 92 100 92Z" fill="#4B644C"/>
+</svg>

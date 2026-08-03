@@ -1,0 +1,7 @@
+<svg width="140" height="36" viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16 4C16 4 22 12 22 19C22 22.3137 19.3137 25 16 25C12.6863 25 10 22.3137 10 19C10 12 16 4 16 4Z" stroke="#4B644C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 10V24" stroke="#4B644C" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M16 16C18.5 14.5 20.5 15 20.5 15" stroke="#4B644C" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M16 19C13.5 17.5 11.5 18 11.5 18" stroke="#4B644C" stroke-width="1.25" stroke-linecap="round"/>
+  <text x="36" y="25" font-family="Georgia, serif" font-size="22" font-weight="normal" fill="#121412" letter-spacing="-0.02em">FLOIS</text>
+</svg>

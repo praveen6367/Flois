@@ -1,0 +1,41 @@
+# ─── Dependencies ────────────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ─── Build outputs ───────────────────────────────────────────────────────────
+.next/
+out/
+build/
+dist/
+
+# ─── Environment variables ───────────────────────────────────────────────────
+# NEVER commit secrets — add them in Vercel's environment settings instead
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+# .env.example is safe to commit — it documents required variables
+
+# ─── OS / editor junk ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+
+# ─── Vercel ──────────────────────────────────────────────────────────────────
+.vercel
+
+# ─── TypeScript ──────────────────────────────────────────────────────────────
+*.tsbuildinfo
+next-env.d.ts
+
+# ─── Testing ─────────────────────────────────────────────────────────────────
+/coverage
+
+# ─── Misc ────────────────────────────────────────────────────────────────────
+*.swp
+*.swo
+.idea/
+.vscode/settings.json

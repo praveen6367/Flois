@@ -1,0 +1,94 @@
+@import "./tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Resets & Global Luxury Aesthetics */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--flois-font-sans);
+  background-color: var(--flois-bg-primary);
+  color: var(--flois-text-primary);
+  line-height: var(--flois-leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--flois-bg-primary);
+  color: var(--flois-text-primary);
+}
+
+::selection {
+  background-color: var(--flois-olive-500);
+  color: var(--flois-text-inverse);
+}
+
+/* Accessibility Focus Ring */
+:focus-visible {
+  outline: 2px solid var(--flois-border-focus);
+  outline-offset: 3px;
+}
+
+/* Typography Utility Classes */
+.font-serif {
+  font-family: var(--flois-font-serif);
+}
+
+.font-sans {
+  font-family: var(--flois-font-sans);
+}
+
+/* Glassmorphism Utility */
+.glass-panel {
+  background: var(--flois-glass-bg);
+  backdrop-filter: var(--flois-glass-blur);
+  -webkit-backdrop-filter: var(--flois-glass-blur);
+  border: 1px solid var(--flois-glass-border);
+}
+
+/* Animated Brand Color Gradient for Luxury Headlines */
+@keyframes brandGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-brand-gradient {
+  background-size: 200% auto;
+  animation: brandGradient 6s ease infinite;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Marquee ticker — used by AnnouncementBar on mobile */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}

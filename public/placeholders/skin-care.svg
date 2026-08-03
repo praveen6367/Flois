@@ -1,0 +1,8 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#FAF9F5"/>
+  <circle cx="100" cy="100" r="85" fill="#F3F1EA" stroke="#E8E6DF" stroke-width="2"/>
+  <!-- Skin Care Serum Dropper & Flower Petal -->
+  <path d="M100 55L100 145" stroke="#4B644C" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="100" cy="55" r="14" fill="#4B644C"/>
+  <path d="M100 85C118 85 130 97 130 115C130 133 118 145 100 145C82 145 70 133 70 115C70 97 82 85 100 85Z" fill="#EAE3D2" stroke="#4B644C" stroke-width="2.5"/>
+</svg>

@@ -1,0 +1,14 @@
+export { ImageGallery } from './ImageGallery';
+export { PurchasePanel } from './PurchasePanel';
+export { ProductHero } from './ProductHero';
+export { StickyMobileCTA } from './StickyMobileCTA';
+export { EditorialStory } from './EditorialStory';
+export { Benefits } from './Benefits';
+export { IngredientExplorer } from './IngredientExplorer';
+export { ClinicalResultsPDP } from './ClinicalResultsPDP';
+export { HowToUse } from './HowToUse';
+export { TextureShowcase } from './TextureShowcase';
+export { ComparisonTable } from './ComparisonTable';
+export { ProductReviews } from './ProductReviews';
+export { ProductFAQs } from './ProductFAQs';
+export { RelatedProductsPDP } from './RelatedProductsPDP';

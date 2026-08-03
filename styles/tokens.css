@@ -1,0 +1,157 @@
+/**
+ * FLOIS LUXURY DESIGN SYSTEM - CSS CUSTOM PROPERTIES
+ * Aesthetic Direction: High-End Botanical Clinical Luxury (Apple + Aesop + Typology + Augustinus Bader)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ==========================================================================
+     1. COLOR SYSTEM
+     ========================================================================== */
+
+  /* FLOIS Olive Brand Scale (Extracted Core Olive: #4B644C) */
+  --flois-olive-50:  #F4F6F4;
+  --flois-olive-100: #E3E8E3;
+  --flois-olive-200: #C5D1C5;
+  --flois-olive-300: #9DAF9E;
+  --flois-olive-400: #748B76;
+  --flois-olive-500: #4B644C; /* Primary FLOIS Brand Green */
+  --flois-olive-600: #3D523E;
+  --flois-olive-700: #304031;
+  --flois-olive-800: #222E23;
+  --flois-olive-900: #141C15; /* Deep Botanical Charcoal */
+
+  /* Neutral Palette (Warm Luxury Grays & Blacks) */
+  --flois-bg-primary:    #FFFFFF; /* Pure White */
+  --flois-bg-secondary:  #FAF9F5; /* Warm Alabaster White */
+  --flois-bg-tertiary:   #F3F1EA; /* Linen Warm Stone */
+  --flois-bg-surface:    #FFFFFF;
+  --flois-bg-elevated:   #FAFAF8;
+
+  --flois-text-primary:   #121412; /* Rich Obsidian Black */
+  --flois-text-secondary: #4A4E4A; /* Soft Slate Gray */
+  --flois-text-muted:     #787E78; /* Subtle Muted Gray */
+  --flois-text-disabled:  #A4AAA4;
+  --flois-text-inverse:   #FFFFFF;
+
+  --flois-border-subtle:  #E8E6DF; /* Soft Warm Divider */
+  --flois-border-medium:  #D4D0C5;
+  --flois-border-strong:  #121412;
+  --flois-border-focus:   #4B644C;
+
+  /* Luxury Accent Palette */
+  --flois-accent-sand:       #EAE3D2;
+  --flois-accent-stone:      #D8D3C5;
+  --flois-accent-beige:      #F5F0E6;
+  --flois-accent-botanical:  #D5E0D5;
+  --flois-accent-gold:       #C8A96E; /* Subtle Champagne Accent */
+
+  /* Functional Semantic Feedback */
+  --flois-success-bg:     #F0F7F0;
+  --flois-success-fg:     #2D5A2E;
+  --flois-warning-bg:     #FFFBEB;
+  --flois-warning-fg:     #92400E;
+  --flois-danger-bg:      #FEF2F2;
+  --flois-danger-fg:      #991B1B;
+  --flois-info-bg:        #F0F6FF;
+  --flois-info-fg:        #1E40AF;
+
+  /* ==========================================================================
+     2. TYPOGRAPHY SYSTEM
+     ========================================================================== */
+
+  /* Font Families */
+  --flois-font-serif: "Instrument Serif", Georgia, serif;
+  --flois-font-sans:  "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Font Sizes */
+  --flois-size-hero:    4.5rem;   /* 72px */
+  --flois-size-h1:      3.25rem;  /* 52px */
+  --flois-size-h2:      2.5rem;   /* 40px */
+  --flois-size-h3:      1.875rem; /* 30px */
+  --flois-size-h4:      1.375rem; /* 22px */
+  --flois-size-body-lg: 1.125rem; /* 18px */
+  --flois-size-body:    0.938rem; /* 15px */
+  --flois-size-caption: 0.813rem; /* 13px */
+  --flois-size-btn:     0.813rem; /* 13px */
+  --flois-size-label:   0.75rem;  /* 12px */
+  --flois-size-badge:   0.688rem; /* 11px */
+  --flois-size-overline:0.625rem; /* 10px */
+
+  /* Line Heights */
+  --flois-leading-tight:  1.05;
+  --flois-leading-heading: 1.15;
+  --flois-leading-snug:    1.3;
+  --flois-leading-body:    1.6;
+  --flois-leading-relaxed: 1.75;
+
+  /* Letter Spacing */
+  --flois-tracking-tight:   -0.03em;
+  --flois-tracking-normal:  -0.01em;
+  --flois-tracking-wide:    0.05em;
+  --flois-tracking-wider:   0.1em;
+  --flois-tracking-widest:  0.2em; /* Editorial Overline Spacing */
+
+  /* ==========================================================================
+     3. SPACING & SPATIAL GRID (8px Scale)
+     ========================================================================== */
+
+  --flois-space-0-5: 0.25rem; /* 4px */
+  --flois-space-1:   0.5rem;  /* 8px */
+  --flois-space-2:   1.0rem;  /* 16px */
+  --flois-space-3:   1.5rem;  /* 24px */
+  --flois-space-4:   2.0rem;  /* 32px */
+  --flois-space-5:   2.5rem;  /* 40px */
+  --flois-space-6:   3.0rem;  /* 48px */
+  --flois-space-8:   4.0rem;  /* 64px */
+  --flois-space-10:  5.0rem;  /* 80px */
+  --flois-space-12:  6.0rem;  /* 96px */
+  --flois-space-16:  8.0rem;  /* 128px */
+  --flois-space-20:  10.0rem; /* 160px */
+
+  /* Container Widths */
+  --flois-container-sm:   640px;
+  --flois-container-md:   960px;
+  --flois-container-lg:   1280px;
+  --flois-container-xl:   1440px;
+  --flois-container-max:  1600px;
+
+  /* ==========================================================================
+     4. BORDER RADIUS
+     ========================================================================== */
+
+  --flois-radius-xs:   2px;
+  --flois-radius-sm:   4px;
+  --flois-radius-md:   8px;
+  --flois-radius-lg:   12px;
+  --flois-radius-xl:   16px;
+  --flois-radius-full: 9999px;
+
+  /* ==========================================================================
+     5. ELEVATION & SHADOWS (Ambient Depth)
+     ========================================================================== */
+
+  --flois-shadow-subtle: 0 2px 10px rgba(18, 20, 18, 0.03);
+  --flois-shadow-card:   0 8px 30px rgba(18, 20, 18, 0.04);
+  --flois-shadow-hover:  0 16px 40px rgba(18, 20, 18, 0.08);
+  --flois-shadow-drawer: -10px 0 50px rgba(18, 20, 18, 0.12);
+  --flois-shadow-modal:  0 25px 60px rgba(18, 20, 18, 0.18);
+
+  --flois-glass-bg:      rgba(255, 255, 255, 0.82);
+  --flois-glass-border:  rgba(232, 230, 223, 0.6);
+  --flois-glass-blur:    blur(16px);
+
+  /* ==========================================================================
+     6. MOTION & ANIMATION TIMINGS
+     ========================================================================== */
+
+  --flois-ease-out:   cubic-bezier(0.16, 1, 0.3, 1);     /* Smooth Luxury Easing */
+  --flois-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --flois-ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  --flois-duration-fast:   150ms;
+  --flois-duration-normal: 300ms;
+  --flois-duration-slow:   600ms;
+  --flois-duration-page:   900ms;
+}

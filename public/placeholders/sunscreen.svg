@@ -1,0 +1,9 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#FAF9F5"/>
+  <circle cx="100" cy="100" r="85" fill="#F3F1EA" stroke="#E8E6DF" stroke-width="2"/>
+  <!-- Sun Rays & Botanical Defense Shield -->
+  <circle cx="100" cy="100" r="28" fill="#EAE3D2" stroke="#4B644C" stroke-width="2.5"/>
+  <path d="M100 56V65M100 135V144M56 100H65M135 100H144M69 69L76 76M124 124L131 131M69 131L76 124M124 76L131 69" stroke="#4B644C" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Leaf inside sun -->
+  <path d="M100 88C100 88 108 97 108 103C108 107 104 111 100 111C96 111 92 107 92 103C92 97 100 88 100 88Z" fill="#4B644C"/>
+</svg>
