@@ -7,40 +7,53 @@
 
 :root {
   /* ==========================================================================
-     1. COLOR SYSTEM
+     1. COLOR SYSTEM (ASTRA + FLOIS DESIGN SYSTEM)
      ========================================================================== */
 
-  /* FLOIS Olive Brand Scale (Extracted Core Olive: #4B644C) */
-  --flois-olive-50:  #F4F6F4;
-  --flois-olive-100: #E3E8E3;
-  --flois-olive-200: #C5D1C5;
-  --flois-olive-300: #9DAF9E;
-  --flois-olive-400: #748B76;
-  --flois-olive-500: #4B644C; /* Primary FLOIS Brand Green */
-  --flois-olive-600: #3D523E;
-  --flois-olive-700: #304031;
-  --flois-olive-800: #222E23;
-  --flois-olive-900: #141C15; /* Deep Botanical Charcoal */
+  /* Astra Global Theme Custom Properties */
+  --ast-global-color-0: #8C9B3E; /* Primary / Accent (Vibrant Olive Green) */
+  --ast-global-color-1: #6A9739; /* Secondary Accent (Leaf Green) */
+  --ast-global-color-2: #111111; /* Headings / Dark Text */
+  --ast-global-color-3: #333333; /* Body Text */
+  --ast-global-color-4: #F8F6F3; /* Light Section BG (Cream) */
+  --ast-global-color-5: #FFFFFF; /* Base BG (White) */
+  --ast-global-color-6: #001524; /* Deep Accent (Dark Navy, sparingly) */
+  --ast-global-color-7: #F8F6F3; /* Alt Light BG */
+  --ast-global-color-8: #000000; /* Footer / Contrast BG */
 
-  /* Neutral Palette (Warm Luxury Grays & Blacks) */
-  --flois-bg-primary:    #FFFFFF; /* Pure White */
-  --flois-bg-secondary:  #FAF9F5; /* Warm Alabaster White */
-  --flois-bg-tertiary:   #F3F1EA; /* Linen Warm Stone */
-  --flois-bg-surface:    #FFFFFF;
+  /* FLOIS Olive Brand Scale */
+  --flois-olive-50:  #F7F8EE;
+  --flois-olive-100: #EFF1D9;
+  --flois-olive-200: #E0E4B3;
+  --flois-olive-300: #CBD285;
+  --flois-olive-400: var(--ast-global-color-1); /* #6A9739 Leaf Green */
+  --flois-olive-500: var(--ast-global-color-0); /* #8C9B3E Primary Olive Green */
+  --flois-olive-600: #7A8834;
+  --flois-olive-700: #657229;
+  --flois-olive-800: #4B551C;
+  --flois-olive-900: #2F360E;
+
+  /* Neutral Palette (Light Theme Preserved) */
+  --flois-bg-primary:    var(--ast-global-color-5); /* #FFFFFF Pure White */
+  --flois-bg-secondary:  var(--ast-global-color-4); /* #F8F6F3 Warm Cream */
+  --flois-bg-tertiary:   var(--ast-global-color-7); /* #F8F6F3 Alt Light BG */
+  --flois-bg-surface:    var(--ast-global-color-5);
   --flois-bg-elevated:   #FAFAF8;
 
-  --flois-text-primary:   #121412; /* Rich Obsidian Black */
-  --flois-text-secondary: #4A4E4A; /* Soft Slate Gray */
-  --flois-text-muted:     #787E78; /* Subtle Muted Gray */
-  --flois-text-disabled:  #A4AAA4;
+  --flois-text-primary:   var(--ast-global-color-2); /* #111111 Headings/Dark Text */
+  --flois-text-secondary: var(--ast-global-color-3); /* #333333 Body Text */
+  --flois-text-muted:     #666666;
+  --flois-text-disabled:  #999999;
   --flois-text-inverse:   #FFFFFF;
 
   --flois-border-subtle:  #E8E6DF; /* Soft Warm Divider */
   --flois-border-medium:  #D4D0C5;
-  --flois-border-strong:  #121412;
-  --flois-border-focus:   #4B644C;
+  --flois-border-strong:  var(--ast-global-color-2);
+  --flois-border-focus:   var(--ast-global-color-0);
 
   /* Luxury Accent Palette */
+  --flois-accent-navy:       var(--ast-global-color-6); /* #001524 Dark Navy */
+  --flois-accent-leaf:       var(--ast-global-color-1); /* #6A9739 Leaf Green */
   --flois-accent-sand:       #EAE3D2;
   --flois-accent-stone:      #D8D3C5;
   --flois-accent-beige:      #F5F0E6;

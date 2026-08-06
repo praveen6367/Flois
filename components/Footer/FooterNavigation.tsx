@@ -5,42 +5,42 @@ import Link from 'next/link';
 
 export function FooterNavigation() {
   return (
-    <div className="w-full py-12 border-b border-[#304031]/60">
+    <div className="w-full py-12 border-b border-[#E8E6DF]">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 text-left">
         
         {/* Column 1: Quick Links (Matching Header) */}
         <div className="space-y-4">
-          <h4 className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#C2CE94]">
+          <h4 className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#8C9B3E]">
             QUICK LINKS
           </h4>
           <ul className="space-y-2.5 text-sm">
             <li>
-              <Link href="/" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/collections/all" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/collections/all" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Shop
               </Link>
             </li>
             <li>
-              <Link href="/blog" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/blog" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Journal
               </Link>
             </li>
             <li>
-              <Link href="/pages/track-order" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/pages/track-order" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Track Order
               </Link>
             </li>
             <li>
-              <Link href="/pages/about" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/pages/about" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Our Story
               </Link>
             </li>
             <li>
-              <Link href="/pages/contact" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/pages/contact" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Contact
               </Link>
             </li>
@@ -49,32 +49,32 @@ export function FooterNavigation() {
 
         {/* Column 2: Important Policies */}
         <div className="space-y-4">
-          <h4 className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#C2CE94]">
+          <h4 className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#8C9B3E]">
             POLICIES & INFO
           </h4>
           <ul className="space-y-2.5 text-sm">
             <li>
-              <Link href="/pages/about" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/pages/about" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 About
               </Link>
             </li>
             <li>
-              <Link href="/pages/contact" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/pages/contact" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Contact
               </Link>
             </li>
             <li>
-              <Link href="/policies/terms-of-service" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/policies/terms-of-service" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Terms & Conditions
               </Link>
             </li>
             <li>
-              <Link href="/policies/privacy-policy" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/policies/privacy-policy" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link href="/policies/refund-policy" className="text-[#EAE3D2]/80 hover:text-[#FAF9F5] transition-colors">
+              <Link href="/policies/refund-policy" className="text-[#333333] hover:text-[#8C9B3E] transition-colors">
                 Refund and Returns Policy
               </Link>
             </li>
@@ -83,10 +83,10 @@ export function FooterNavigation() {
 
         {/* Column 3: Social Media Connections (Insta, FB, LinkedIn, X, YouTube) */}
         <div className="space-y-4">
-          <h4 className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#C2CE94]">
+          <h4 className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#8C9B3E]">
             FOLLOW US
           </h4>
-          <p className="text-xs text-[#EAE3D2]/70 font-light leading-relaxed">
+          <p className="text-xs text-[#666666] font-light leading-relaxed">
             Follow FLOIS on social media for daily botanical wellness inspiration and ritual guides.
           </p>
 
@@ -96,7 +96,7 @@ export function FooterNavigation() {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/15 text-[#EAE3D2] hover:bg-[#4B644C] hover:text-white hover:border-[#4B644C] transition-all shadow-sm"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#111111] hover:bg-[#8C9B3E] hover:text-white hover:border-[#8C9B3E] transition-all shadow-xs"
               aria-label="Instagram"
             >
               <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -109,7 +109,7 @@ export function FooterNavigation() {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/15 text-[#EAE3D2] hover:bg-[#4B644C] hover:text-white hover:border-[#4B644C] transition-all shadow-sm"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#111111] hover:bg-[#8C9B3E] hover:text-white hover:border-[#8C9B3E] transition-all shadow-xs"
               aria-label="Facebook"
             >
               <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -122,7 +122,7 @@ export function FooterNavigation() {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/15 text-[#EAE3D2] hover:bg-[#4B644C] hover:text-white hover:border-[#4B644C] transition-all shadow-sm"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#111111] hover:bg-[#8C9B3E] hover:text-white hover:border-[#8C9B3E] transition-all shadow-xs"
               aria-label="LinkedIn"
             >
               <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -135,7 +135,7 @@ export function FooterNavigation() {
               href="https://x.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/15 text-[#EAE3D2] hover:bg-[#4B644C] hover:text-white hover:border-[#4B644C] transition-all shadow-sm"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#111111] hover:bg-[#8C9B3E] hover:text-white hover:border-[#8C9B3E] transition-all shadow-xs"
               aria-label="X / Twitter"
             >
               <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -148,7 +148,7 @@ export function FooterNavigation() {
               href="https://youtube.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/15 text-[#EAE3D2] hover:bg-[#4B644C] hover:text-white hover:border-[#4B644C] transition-all shadow-sm"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#111111] hover:bg-[#8C9B3E] hover:text-white hover:border-[#8C9B3E] transition-all shadow-xs"
               aria-label="YouTube"
             >
               <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">

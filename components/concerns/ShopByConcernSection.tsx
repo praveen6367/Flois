@@ -46,19 +46,19 @@ export function ShopByConcernSection() {
         {/* Standardized FLOIS Design System Section Header */}
         <div className="max-w-[750px] mx-auto text-center space-y-4 mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2.5">
-            <span className="h-[1px] w-6 bg-[#4B644C]" />
-            <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#4B644C]">
+            <span className="h-[1px] w-6 bg-[#ACB041]" />
+            <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#ACB041]">
               TARGETED BOTANICAL CARE
             </span>
-            <Sparkles className="h-3.5 w-3.5 text-[#4B644C]" />
-            <span className="h-[1px] w-6 bg-[#4B644C]" />
+            <Sparkles className="h-3.5 w-3.5 text-[#ACB041]" />
+            <span className="h-[1px] w-6 bg-[#ACB041]" />
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-[#121412]">
+          <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-[#111111]">
             Shop By Concern
           </h2>
 
-          <p className="text-base sm:text-lg font-sans text-[#4A4E4A] leading-relaxed max-w-xl mx-auto font-light">
+          <p className="text-base sm:text-lg font-sans text-[#333333] leading-relaxed max-w-xl mx-auto font-light">
             Select your primary scalp or skin goal to discover targeted Ayurvedic cold-pressed formulations.
           </p>
         </div>
@@ -75,7 +75,7 @@ export function ShopByConcernSection() {
             >
               <Link href={item.handle} className="group block text-center space-y-4">
                 {/* Image Container with Olive Accent Border */}
-                <div className="relative w-full aspect-[4/3.5] rounded-2xl overflow-hidden bg-[#FAF9F5] border-2 border-[#859844]/60 group-hover:border-[#4B644C] group-hover:shadow-xl transition-all duration-500">
+                <div className="relative w-full aspect-[4/3.5] rounded-2xl overflow-hidden bg-[#F8F6F3] border-2 border-[#ACB041]/60 group-hover:border-[#ACB041] group-hover:shadow-xl transition-all duration-500">
                   <Image
                     src={item.imageSrc}
                     alt={`Shop FLOIS products for ${item.title}`}
@@ -84,17 +84,17 @@ export function ShopByConcernSection() {
                     className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                   />
                   {/* Subtle Hover Action Overlay */}
-                  <div className="absolute top-3.5 right-3.5 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur-md text-[#121412] opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md">
-                    <ArrowUpRight className="h-4 w-4 text-[#4B644C]" />
+                  <div className="absolute top-3.5 right-3.5 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur-md text-[#111111] opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md">
+                    <ArrowUpRight className="h-4 w-4 text-[#ACB041]" />
                   </div>
                 </div>
 
                 {/* Concern Title & Subtitle */}
                 <div className="space-y-1 pt-1">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#121412] group-hover:text-[#4B644C] transition-colors">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111] group-hover:text-[#ACB041] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs font-sans text-[#787E78] font-normal tracking-wide">
+                  <p className="text-xs font-sans text-[#666666] font-normal tracking-wide">
                     {item.subtitle}
                   </p>
                 </div>

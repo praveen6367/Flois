@@ -16,14 +16,14 @@ const CATEGORIES = [
     title: 'All Rituals',
     handle: 'all',
     icon: Sparkles,
-    color: '#4B644C',
+    color: '#ACB041',
   },
   {
     id: 'hair-growth',
     title: 'Hair Growth Oils',
     handle: 'hair-growth-oils',
     icon: Shield,
-    color: '#2D5A2E',
+    color: '#6A9739',
   },
   {
     id: 'sun-protection',
@@ -37,7 +37,7 @@ const CATEGORIES = [
     title: 'Neem Accessories',
     handle: 'accessories',
     icon: Feather,
-    color: '#4B644C',
+    color: '#ACB041',
   },
 ];
 
@@ -49,10 +49,10 @@ export function CollectionNav({ activeHandle = 'all', totalProductCount = 3 }: C
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 text-center space-y-8">
         
         <div className="space-y-1">
-          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#4B644C] block">
+          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#ACB041] block">
             SHOP BY RITUAL &amp; CONCERN
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#121412]">
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111]">
             Targeted Botanical Care
           </h2>
         </div>
@@ -73,8 +73,8 @@ export function CollectionNav({ activeHandle = 'all', totalProductCount = 3 }: C
                 <div
                   className={`h-16 w-16 sm:h-20 sm:w-20 rounded-full flex items-center justify-center transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#4B644C] text-white shadow-lg ring-4 ring-[#4B644C]/20'
-                      : 'bg-[#F5F3EC] text-[#4B644C] border border-[#E8E6DF] group-hover:bg-[#4B644C] group-hover:text-white group-hover:shadow-md'
+                      ? 'bg-[#ACB041] text-[#111111] shadow-lg ring-4 ring-[#ACB041]/20 font-semibold'
+                      : 'bg-[#F8F6F3] text-[#ACB041] border border-[#E8E6DF] group-hover:bg-[#ACB041] group-hover:text-[#111111] group-hover:shadow-md'
                   }`}
                 >
                   <Icon className="h-7 w-7 sm:h-8 sm:w-8 stroke-[1.5]" />
@@ -83,7 +83,7 @@ export function CollectionNav({ activeHandle = 'all', totalProductCount = 3 }: C
                 <div className="text-center space-y-0.5">
                   <span
                     className={`text-xs sm:text-sm font-sans font-medium transition-colors ${
-                      isActive ? 'text-[#4B644C] font-semibold' : 'text-[#121412] group-hover:text-[#4B644C]'
+                      isActive ? 'text-[#ACB041] font-semibold' : 'text-[#111111] group-hover:text-[#ACB041]'
                     }`}
                   >
                     {cat.title}
@@ -91,7 +91,7 @@ export function CollectionNav({ activeHandle = 'all', totalProductCount = 3 }: C
                   {isActive && (
                     <motion.div
                       layoutId="activeUnderline"
-                      className="h-[1.5px] w-6 bg-[#4B644C] mx-auto rounded-full"
+                      className="h-[1.5px] w-6 bg-[#ACB041] mx-auto rounded-full"
                     />
                   )}
                 </div>

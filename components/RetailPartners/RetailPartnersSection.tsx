@@ -50,19 +50,19 @@ export function RetailPartnersSection({
         <div className="max-w-[700px] mx-auto text-center space-y-3.5 mb-14 sm:mb-16">
           {/* Editorial Eyebrow */}
           <div className="inline-flex items-center gap-2.5">
-            <ShieldCheck className="h-4 w-4 text-[#4B644C]" />
-            <span className="text-xs font-sans font-semibold uppercase tracking-widest text-[#4B644C]">
+            <ShieldCheck className="h-4 w-4 text-[#ACB041]" />
+            <span className="text-xs font-sans font-semibold uppercase tracking-widest text-[#ACB041]">
               {eyebrow}
             </span>
           </div>
 
           {/* Heading */}
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight text-[#121412]">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-tight text-[#111111]">
             {title}
           </h2>
 
           {/* Supporting Copy */}
-          <p className="text-sm sm:text-base font-sans text-[#4A4E4A] leading-relaxed font-light max-w-xl mx-auto">
+          <p className="text-sm sm:text-base font-sans text-[#333333] leading-relaxed font-light max-w-xl mx-auto">
             {subtitle}
           </p>
         </div>

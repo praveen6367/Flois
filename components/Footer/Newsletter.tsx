@@ -28,7 +28,7 @@ export function Newsletter() {
         transition={{ duration: 0.5 }}
         className="space-y-3"
       >
-        <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#C2CE94]">
+        <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#8C9B3E]">
           JOIN THE BOTANICAL COMMUNITY
         </span>
 
@@ -45,7 +45,7 @@ export function Newsletter() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="inline-flex items-center gap-2 rounded-full bg-[#4B644C]/30 border border-[#C2CE94]/50 px-6 py-3 text-sm text-[#C2CE94] font-medium"
+          className="inline-flex items-center gap-2 rounded-full bg-[#8C9B3E]/20 border border-[#8C9B3E]/50 px-6 py-3 text-sm text-[#8C9B3E] font-medium"
         >
           <CheckCircle2 className="h-5 w-5" />
           <span>Welcome to the FLOIS Community! Check your inbox soon.</span>
@@ -61,13 +61,13 @@ export function Newsletter() {
               placeholder="Enter your email address"
               required
               suppressHydrationWarning
-              className="w-full rounded-full bg-white/5 border border-white/15 text-sm text-[#FAF9F5] placeholder-[#EAE3D2]/50 backdrop-blur-md focus:outline-none focus:border-[#C2CE94] transition-all shadow-inner pl-12 pr-32 py-4"
+              className="w-full rounded-full bg-white/5 border border-white/15 text-sm text-[#FAF9F5] placeholder-[#EAE3D2]/50 backdrop-blur-md focus:outline-none focus:border-[#8C9B3E] transition-all shadow-inner pl-12 pr-32 py-4"
             />
             <button
               type="submit"
               disabled={isLoading}
               suppressHydrationWarning
-              className="absolute right-1.5 inline-flex items-center gap-1.5 rounded-full bg-[#4B644C] hover:bg-[#C2CE94] text-white hover:text-[#141C15] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-md focus:outline-none disabled:opacity-50"
+              className="absolute right-1.5 inline-flex items-center gap-1.5 rounded-full bg-[#8C9B3E] hover:bg-[#7A8834] text-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-md focus:outline-none disabled:opacity-50"
             >
               <span>{isLoading ? 'Joining...' : 'JOIN'}</span>
               <ArrowRight className="h-3.5 w-3.5" />

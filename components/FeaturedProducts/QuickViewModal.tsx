@@ -68,7 +68,7 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 sm:p-8">
           {/* Product Gallery Column */}
           <div className="space-y-4">
-            <div className="relative aspect-square w-full rounded-xl bg-[#FAF9F5] overflow-hidden p-6 flex items-center justify-center border border-[#E8E6DF]">
+            <div className="relative aspect-square w-full rounded-xl bg-[#F8F6F3] overflow-hidden p-6 flex items-center justify-center border border-[#E8E6DF]">
               <Image
                 src={images[activeImageIndex]?.url || product.featuredImage?.url || '/placeholders/botanical-placeholder.svg'}
                 alt={images[activeImageIndex]?.altText || product.title}
@@ -85,8 +85,8 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
                   <button
                     key={img.url + idx}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`relative h-16 w-16 rounded-lg overflow-hidden border transition-all shrink-0 bg-[#FAF9F5] ${
-                      activeImageIndex === idx ? 'border-[#4B644C] ring-2 ring-[#4B644C]/30' : 'border-[#E8E6DF] opacity-70 hover:opacity-100'
+                    className={`relative h-16 w-16 rounded-lg overflow-hidden border transition-all shrink-0 bg-[#F8F6F3] ${
+                      activeImageIndex === idx ? 'border-[#ACB041] ring-2 ring-[#ACB041]/30' : 'border-[#E8E6DF] opacity-70 hover:opacity-100'
                     }`}
                   >
                     <Image src={img.url} alt={img.altText || `Thumbnail ${idx}`} fill sizes="64px" className="object-contain p-1" />
@@ -101,12 +101,12 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <ProductBadge tags={product.tags} productTitle={product.title} />
-                <span className="text-xs uppercase tracking-widest text-[#4B644C] font-semibold">
+                <span className="text-xs uppercase tracking-widest text-[#ACB041] font-semibold">
                   {product.productType || 'Botanical Formula'}
                 </span>
               </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#121412] font-normal leading-tight">
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#111111] font-normal leading-tight">
                 {product.title}
               </h2>
 
@@ -117,14 +117,14 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
                 size="lg"
               />
 
-              <p className="text-xs sm:text-sm text-[#4A4E4A] font-sans leading-relaxed line-clamp-3">
+              <p className="text-xs sm:text-sm text-[#333333] font-sans leading-relaxed line-clamp-3">
                 {product.description || 'Cold-pressed Ayurvedic botanical formulation handcrafted in small batches for clinical scalp and skin longevity.'}
               </p>
 
               {/* Variant Selector */}
               {variants.length > 1 && (
                 <div className="space-y-2 pt-2">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-[#121412]">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-[#111111]">
                     Select Variant:
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -134,8 +134,8 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
                         onClick={() => setSelectedVariant(variant)}
                         className={`rounded border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all ${
                           currentVariant?.id === variant.id
-                            ? 'border-[#4B644C] bg-[#4B644C] text-white shadow-sm'
-                            : 'border-[#E8E6DF] bg-white text-[#121412] hover:border-[#4B644C]'
+                            ? 'border-[#ACB041] bg-[#ACB041] text-[#111111] shadow-sm font-bold'
+                            : 'border-[#E8E6DF] bg-white text-[#111111] hover:border-[#ACB041]'
                         }`}
                       >
                         {variant.title}
@@ -146,7 +146,7 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
               )}
 
               {/* Trust Callout */}
-              <div className="flex items-center gap-2 text-xs text-[#4B644C] bg-[#F4F6F4] p-3 rounded-lg border border-[#E3E8E3]">
+              <div className="flex items-center gap-2 text-xs text-[#6A9739] bg-[#F7F8EE] p-3 rounded-lg border border-[#E0E4B3]">
                 <ShieldCheck className="h-4 w-4 shrink-0 stroke-[2]" />
                 <span className="font-medium">100% Authentic Botanical Science • Complimentary Shipping &gt; ₹999</span>
               </div>
@@ -157,21 +157,21 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
               <button
                 onClick={handleAddToCart}
                 disabled={isAdding || !isAvailable}
-                className="w-full flex items-center justify-center gap-2.5 rounded bg-[#4B644C] hover:bg-[#3D523E] text-white px-8 py-4 text-xs font-semibold uppercase tracking-widest transition-all shadow-md hover:shadow-lg disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2.5 rounded bg-[#8C9B3E] hover:bg-[#7A8834] text-white px-8 py-4 text-xs font-semibold uppercase tracking-widest transition-all shadow-md hover:shadow-lg disabled:opacity-50"
               >
                 {isAdding ? (
                   <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin text-white" />
                     <span>Adding to Bag...</span>
                   </>
                 ) : isAdded ? (
                   <>
-                    <Check className="h-4 w-4 stroke-[2.5]" />
+                    <Check className="h-4 w-4 text-white stroke-[2.5]" />
                     <span>Added to Bag</span>
                   </>
                 ) : (
                   <>
-                    <ShoppingBag className="h-4 w-4" />
+                    <ShoppingBag className="h-4 w-4 text-white" />
                     <span>Add to Bag</span>
                   </>
                 )}
@@ -180,7 +180,7 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
               <Link
                 href={`/products/${product.handle}`}
                 onClick={onClose}
-                className="w-full inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#4B644C] hover:text-[#304031] py-1 transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#ACB041] hover:text-[#939735] py-1 transition-colors"
               >
                 <span>View Full Product Details</span>
                 <ArrowRight className="h-3.5 w-3.5" />

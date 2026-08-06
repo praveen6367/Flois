@@ -40,8 +40,8 @@ export function Header({ menu, announcements, logoImage }: HeaderProps) {
       <div
         className={`relative w-full py-3.5 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#141C15]/95 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.45)] border-b border-[#304031]'
-            : 'bg-[#141C15] border-b border-[#304031]/60'
+            ? 'bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.06)] border-b border-[#E8E6DF]'
+            : 'bg-white border-b border-[#E8E6DF]'
         }`}
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 flex items-center justify-between">

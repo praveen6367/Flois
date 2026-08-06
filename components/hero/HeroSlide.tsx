@@ -68,7 +68,7 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
   const isLight = Boolean(slide.isLightTheme);
 
   const renderIcon = (name: string) => {
-    const iconColor = isLight ? 'text-[#4B644C]' : 'text-[#C2CE94]';
+    const iconColor = isLight ? 'text-[#8C9B3E]' : 'text-[#CBD285]';
     const cls = `h-3.5 w-3.5 sm:h-4 sm:w-4 ${iconColor}`;
     switch (name) {
       case 'leaf': return <Leaf className={cls} />;
@@ -91,8 +91,8 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
   ];
 
   const gradientTextClass = isLight
-    ? 'bg-gradient-to-r from-[#121412] via-[#4B644C] to-[#859844] bg-clip-text text-transparent font-normal'
-    : 'bg-gradient-to-r from-[#FAF9F5] via-[#C2CE94] to-[#A3B177] bg-clip-text text-transparent font-normal';
+    ? 'bg-gradient-to-r from-[#111111] via-[#8C9B3E] to-[#6A9739] bg-clip-text text-transparent font-normal'
+    : 'bg-gradient-to-r from-[#FAF9F5] via-[#CBD285] to-[#8C9B3E] bg-clip-text text-transparent font-normal';
 
   const mobileBg = slide.mobileBgImage || slide.bgImage;
 
@@ -128,17 +128,17 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
           >
             {/* Eyebrow */}
             <motion.div variants={itemVariants} className="flex items-center justify-center gap-2">
-              <span className="h-px w-5 bg-[#4B644C]" />
-              <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.22em] text-[#4B644C]">
+              <span className="h-px w-5 bg-[#8C9B3E]" />
+              <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.22em] text-[#8C9B3E]">
                 {slide.categoryTitle}
               </span>
-              <span className="h-px w-5 bg-[#4B644C]" />
+              <span className="h-px w-5 bg-[#8C9B3E]" />
             </motion.div>
 
             {/* Headline — larger */}
             <motion.h1
               variants={itemVariants}
-              className="font-serif text-[2.05rem] leading-[1.08] tracking-tight text-[#121412]"
+              className="font-serif text-[2.05rem] leading-[1.08] tracking-tight text-[#111111]"
             >
               <span className={gradientTextClass}>{slide.headlineHighlight1}</span>
               <span className="font-serif font-light opacity-80"> {slide.headlineMiddle} </span>
@@ -150,7 +150,7 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
             {slide.description && (
               <motion.p
                 variants={itemVariants}
-                className="text-[12px] font-sans font-light text-[#3A3E3A] leading-relaxed px-2"
+                className="text-[12px] font-sans font-light text-[#333333] leading-relaxed px-2"
               >
                 {slide.description}
               </motion.p>
@@ -172,7 +172,7 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
             <motion.div variants={itemVariants}>
               <Link
                 href={slide.shopLink}
-                className="inline-flex items-center gap-2 rounded bg-[#4B644C] hover:bg-[#3D523E] text-white px-7 py-3 text-[11px] font-semibold uppercase tracking-widest transition-all duration-300 shadow-lg"
+                className="inline-flex items-center gap-2 rounded bg-[#8C9B3E] hover:bg-[#7A8834] text-white px-7 py-3 text-[11px] font-semibold uppercase tracking-widest transition-all duration-300 shadow-lg"
               >
                 <span>{slide.ctaText}</span>
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -181,8 +181,8 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
 
             {slide.giftTitle && (
               <motion.div variants={itemVariants} className="flex items-center gap-1.5">
-                <Gift className="h-3 w-3 text-[#4B644C] shrink-0" />
-                <span className="font-serif italic text-[11px] text-[#121412]/75">
+                <Gift className="h-3 w-3 text-[#8C9B3E] shrink-0" />
+                <span className="font-serif italic text-[11px] text-[#111111]/75">
                   Complimentary {slide.giftTitle} with order
                 </span>
               </motion.div>
@@ -198,7 +198,7 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
       ============================================= */}
       <div
         className={`hidden sm:block relative w-full h-full ${
-          isLight ? 'bg-[#FAF9F5]' : 'bg-[#0D140E]'
+          isLight ? 'bg-[#F8F6F3]' : 'bg-[#0D140E]'
         }`}
       >
         {/* Background Image */}
@@ -215,7 +215,7 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
         <div
           className={`absolute inset-0 z-10 ${
             isLight
-              ? 'bg-gradient-to-r from-[#FAF9F5]/92 via-[#FAF9F5]/55 to-transparent'
+              ? 'bg-gradient-to-r from-[#F8F6F3]/92 via-[#F8F6F3]/55 to-transparent'
               : 'bg-gradient-to-r from-[#0D140E]/88 via-[#0D140E]/45 to-transparent'
           }`}
         />
@@ -232,16 +232,16 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
             {/* Overline Category Title */}
             <motion.div variants={itemVariants} className="space-y-1">
               <div className="inline-flex items-center gap-2">
-                <span className={`h-[1px] w-6 ${isLight ? 'bg-[#4B644C]' : 'bg-[#A3B177]'}`} />
+                <span className={`h-[1px] w-6 ${isLight ? 'bg-[#8C9B3E]' : 'bg-[#A3B177]'}`} />
                 <h3
                   className={`font-serif text-lg sm:text-xl lg:text-2xl tracking-wide font-normal ${
-                    isLight ? 'text-[#4B644C]' : 'text-[#C2CE94]'
+                    isLight ? 'text-[#8C9B3E]' : 'text-[#CBD285]'
                   }`}
                 >
                   {slide.categoryTitle}
                 </h3>
-                <span className={`text-xs ${isLight ? 'text-[#4B644C]' : 'text-[#C2CE94]'}`}>❦</span>
-                <span className={`h-[1px] w-6 ${isLight ? 'bg-[#4B644C]' : 'bg-[#A3B177]'}`} />
+                <span className={`text-xs ${isLight ? 'text-[#8C9B3E]' : 'text-[#CBD285]'}`}>❦</span>
+                <span className={`h-[1px] w-6 ${isLight ? 'bg-[#8C9B3E]' : 'bg-[#A3B177]'}`} />
               </div>
             </motion.div>
 
@@ -249,7 +249,7 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
             <motion.div variants={itemVariants} className="space-y-1">
               <h1
                 className={`font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-tight drop-shadow-sm ${
-                  isLight ? 'text-[#121412]' : 'text-white'
+                  isLight ? 'text-[#111111]' : 'text-white'
                 }`}
               >
                 <span className={gradientTextClass}>{slide.headlineHighlight1}</span>
@@ -267,15 +267,15 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
                     <div
                       className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm ${
                         isLight
-                          ? 'border-[#E8E6DF] bg-white group-hover:border-[#4B644C] group-hover:scale-105 group-hover:bg-[#4B644C]/10'
-                          : 'border-[#C2CE94]/40 bg-[#0D140E]/50 backdrop-blur-md group-hover:border-[#C2CE94] group-hover:scale-105 group-hover:bg-[#C2CE94]/15'
+                          ? 'border-[#E8E6DF] bg-white group-hover:border-[#8C9B3E] group-hover:scale-105 group-hover:bg-[#8C9B3E]/10'
+                          : 'border-[#CBD285]/40 bg-[#0D140E]/50 backdrop-blur-md group-hover:border-[#CBD285] group-hover:scale-105 group-hover:bg-[#CBD285]/15'
                       }`}
                     >
                       {renderIcon(feat.iconName)}
                     </div>
                     <span
                       className={`text-[10px] sm:text-[11px] font-sans font-medium tracking-tight ${
-                        isLight ? 'text-[#121412]' : 'text-[#EAE3D2]'
+                        isLight ? 'text-[#111111]' : 'text-[#EAE3D2]'
                       }`}
                     >
                       {feat.label}
@@ -285,7 +285,7 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
                   {idx < Math.min(defaultTrustFeatures.length, 4) - 1 && (
                     <span
                       className={`h-5 w-[1px] shrink-0 ${
-                        isLight ? 'bg-[#121412]/15' : 'bg-[#C2CE94]/25'
+                        isLight ? 'bg-[#111111]/15' : 'bg-[#CBD285]/25'
                       }`}
                     />
                   )}
@@ -297,7 +297,7 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
             <motion.div variants={itemVariants} className="pt-2 space-y-2.5">
               <Link
                 href={slide.shopLink}
-                className="inline-flex items-center gap-3 rounded bg-[#4B644C] hover:bg-[#3D523E] text-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.01] shrink-0"
+                className="inline-flex items-center gap-3 rounded bg-[#8C9B3E] hover:bg-[#7A8834] text-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.01] shrink-0"
               >
                 <span>{slide.ctaText}</span>
                 <ArrowRight className="h-4 w-4" />

@@ -14,10 +14,10 @@ export function RecentlyViewed({ fallbackProducts }: RecentlyViewedProps) {
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 text-left space-y-8">
         
         <div className="space-y-1">
-          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#4B644C] block">
+          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#ACB041] block">
             RECOMMENDED FOR YOU
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#121412]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#111111]">
             Complete Your Daily Ritual
           </h2>
         </div>

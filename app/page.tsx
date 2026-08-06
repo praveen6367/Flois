@@ -12,6 +12,7 @@ import { RetailPartnersSection } from '@/components/RetailPartners';
 import { ClinicalResultsSection } from '@/components/ClinicalResults';
 import { CinematicFullVideoSection } from '@/components/video/CinematicFullVideoSection';
 import { VideoStoriesSection } from '@/components/VideoStories';
+import { ReelStoriesSection } from '@/components/video/ReelStoriesSection';
 import { ShopByConcernSection } from '@/components/concerns/ShopByConcernSection';
 import { CustomerReviewsSection } from '@/components/testimonials/CustomerReviewsSection';
 import { Footer } from '@/components/Footer';
@@ -142,10 +143,13 @@ export default async function HomePage() {
       {/* Section 9: Shop By Concern Showcase */}
       <ShopByConcernSection />
 
-      {/* Section 10: Customer Reviews Showcase */}
+      {/* Section 10: Autoplay Community Video Reels Carousel */}
+      <ReelStoriesSection />
+
+      {/* Section 11: Customer Reviews Showcase */}
       <CustomerReviewsSection />
 
-      {/* Section 11: Final Luxury Editorial Footer */}
+      {/* Section 12: Final Luxury Editorial Footer */}
       <Footer />
     </div>
   );

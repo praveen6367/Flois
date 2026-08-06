@@ -81,21 +81,21 @@ export function SearchDrawer({ isOpen, onClose }: SearchDrawerProps) {
               {/* Top Search Input & Close Bar */}
               <div className="relative flex items-center justify-between border-b border-[#E8E6DF] pb-6">
                 <div className="flex flex-1 items-center gap-4">
-                  <Search className="h-6 w-6 text-[#787E78]" />
+                  <Search className="h-6 w-6 text-[#666666]" />
                   <input
                     ref={inputRef}
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search formulations, ingredients, concerns..."
-                    className="w-full bg-transparent text-xl sm:text-2xl font-serif text-[#121412] placeholder-[#787E78] focus:outline-none"
+                    className="w-full bg-transparent text-xl sm:text-2xl font-serif text-[#111111] placeholder-[#666666] focus:outline-none"
                   />
-                  {isSearching && <Loader2 className="h-5 w-5 animate-spin text-[#4B644C]" />}
+                  {isSearching && <Loader2 className="h-5 w-5 animate-spin text-[#ACB041]" />}
                 </div>
 
                 <button
                   onClick={onClose}
-                  className="ml-4 p-2 text-[#121412] hover:text-[#4B644C] transition-colors focus:outline-none"
+                  className="ml-4 p-2 text-[#111111] hover:text-[#ACB041] transition-colors focus:outline-none"
                   aria-label="Close Search"
                 >
                   <X className="h-6 w-6" />
@@ -108,7 +108,7 @@ export function SearchDrawer({ isOpen, onClose }: SearchDrawerProps) {
                   // Trending & Popular Default State
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <h4 className="text-xs font-semibold uppercase tracking-widest text-[#787E78] mb-4">
+                      <h4 className="text-xs font-semibold uppercase tracking-widest text-[#666666] mb-4">
                         Trending Searches
                       </h4>
                       <div className="flex flex-wrap gap-2">
@@ -116,7 +116,7 @@ export function SearchDrawer({ isOpen, onClose }: SearchDrawerProps) {
                           <button
                             key={term}
                             onClick={() => setQuery(term)}
-                            className="rounded-full bg-[#FAF9F5] border border-[#E8E6DF] hover:border-[#4B644C] hover:text-[#4B644C] px-4 py-2 text-xs font-medium text-[#121412] transition-colors"
+                            className="rounded-full bg-[#F8F6F3] border border-[#E8E6DF] hover:border-[#ACB041] hover:text-[#ACB041] px-4 py-2 text-xs font-medium text-[#111111] transition-colors"
                           >
                             {term}
                           </button>
@@ -125,18 +125,18 @@ export function SearchDrawer({ isOpen, onClose }: SearchDrawerProps) {
                     </div>
 
                     <div>
-                      <h4 className="text-xs font-semibold uppercase tracking-widest text-[#787E78] mb-4">
+                      <h4 className="text-xs font-semibold uppercase tracking-widest text-[#666666] mb-4">
                         Popular Collections
                       </h4>
                       <ul className="space-y-2.5 text-sm">
                         <li>
-                          <Link href="/collections/hair-care" onClick={onClose} className="inline-flex items-center gap-2 text-[#121412] hover:text-[#4B644C] transition-colors">
+                          <Link href="/collections/hair-care" onClick={onClose} className="inline-flex items-center gap-2 text-[#111111] hover:text-[#ACB041] transition-colors">
                             <span>Hair Care Formulations</span>
                             <ArrowRight className="h-3.5 w-3.5 opacity-60" />
                           </Link>
                         </li>
                         <li>
-                          <Link href="/collections/sun-care" onClick={onClose} className="inline-flex items-center gap-2 text-[#121412] hover:text-[#4B644C] transition-colors">
+                          <Link href="/collections/sun-care" onClick={onClose} className="inline-flex items-center gap-2 text-[#111111] hover:text-[#ACB041] transition-colors">
                             <span>Advanced Sunscreen & UV Repair</span>
                             <ArrowRight className="h-3.5 w-3.5 opacity-60" />
                           </Link>
@@ -148,7 +148,7 @@ export function SearchDrawer({ isOpen, onClose }: SearchDrawerProps) {
                   // Live Shopify Search Results
                   <div>
                     <div className="flex items-center justify-between mb-6">
-                      <h4 className="text-xs font-semibold uppercase tracking-widest text-[#787E78]">
+                      <h4 className="text-xs font-semibold uppercase tracking-widest text-[#666666]">
                         Search Results ({results?.totalResults || 0})
                       </h4>
                     </div>
@@ -160,7 +160,7 @@ export function SearchDrawer({ isOpen, onClose }: SearchDrawerProps) {
                             key={product.id}
                             href={`/products/${product.handle}`}
                             onClick={onClose}
-                            className="group block rounded-lg border border-[#E8E6DF] bg-[#FAF9F5] p-4 transition-all hover:border-[#4B644C]"
+                            className="group block rounded-lg border border-[#E8E6DF] bg-[#F8F6F3] p-4 transition-all hover:border-[#ACB041]"
                           >
                             {product.featuredImage?.url && (
                               <div className="relative aspect-square overflow-hidden rounded mb-3 bg-white">
@@ -173,10 +173,10 @@ export function SearchDrawer({ isOpen, onClose }: SearchDrawerProps) {
                                 />
                               </div>
                             )}
-                            <h5 className="font-serif text-base text-[#121412] group-hover:text-[#4B644C] transition-colors mb-1">
+                            <h5 className="font-serif text-base text-[#111111] group-hover:text-[#ACB041] transition-colors mb-1">
                               {product.title}
                             </h5>
-                            <p className="text-xs font-semibold text-[#4B644C]">
+                            <p className="text-xs font-semibold text-[#ACB041]">
                               {product.priceRange?.minVariantPrice?.currencyCode} {product.priceRange?.minVariantPrice?.amount}
                             </p>
                           </Link>
@@ -184,7 +184,7 @@ export function SearchDrawer({ isOpen, onClose }: SearchDrawerProps) {
                       </div>
                     ) : (
                       !isSearching && (
-                        <p className="text-sm text-[#787E78] italic">
+                        <p className="text-sm text-[#666666] italic">
                           No formulations found matching "{query}". Try searching for "Hair" or "Sunscreen".
                         </p>
                       )

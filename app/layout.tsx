@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import { CartProvider } from '@/context/CartContext';
 import { WishlistProvider } from '@/context/WishlistContext';
+import { WishlistDrawer } from '@/components/wishlist/WishlistDrawer';
+
+import { AuthProvider } from '@/context/AuthContext';
 
 export const metadata: Metadata = {
   title: 'FLOIS | Luxury Ayurvedic Personal Care & Wellness',
@@ -16,11 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className="bg-[#FFFFFF] text-[#121412] antialiased">
-        <CartProvider>
-          <WishlistProvider>
-            {children}
-          </WishlistProvider>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <WishlistProvider>
+              {children}
+              <WishlistDrawer />
+            </WishlistProvider>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

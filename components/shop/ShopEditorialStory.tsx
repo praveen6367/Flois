@@ -21,7 +21,7 @@ export function ShopEditorialStory() {
             transition={{ duration: 0.8, ease: cubicEase }}
             className="lg:col-span-5 relative"
           >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-[#E8E6DF] shadow-xl bg-[#FAF9F5]">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-[#E8E6DF] shadow-xl bg-[#F8F6F3]">
               <Image
                 src="/images/story/our_story_botanicals.png"
                 alt="FLOIS raw botanical ingredients"
@@ -34,16 +34,16 @@ export function ShopEditorialStory() {
 
           {/* Right Column: Editorial Narrative (7 Cols) */}
           <div className="lg:col-span-7 space-y-6">
-            <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#4B644C] block">
+            <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#ACB041] block">
               COLLECTION PHILOSOPHY
             </span>
 
-            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#121412] leading-[1.08] tracking-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#111111] leading-[1.08] tracking-tight">
               Pure Extractions.<br />
-              <em className="italic text-[#4B644C]">Zero Compromise.</em>
+              <em className="italic text-[#ACB041]">Zero Compromise.</em>
             </h2>
 
-            <div className="space-y-4 text-base sm:text-lg font-sans text-[#4A4E4A] font-light leading-relaxed max-w-xl">
+            <div className="space-y-4 text-base sm:text-lg font-sans text-[#333333] font-light leading-relaxed max-w-xl">
               <p>
                 Every FLOIS formulation begins with whole, raw botanicals harvested at peak potency. We slow-infuse whole roots, leaves, and seeds into unrefined cold-pressed oils inside traditional copper vessels.
               </p>
@@ -52,13 +52,13 @@ export function ShopEditorialStory() {
               </p>
             </div>
 
-            <div className="pt-6 border-t border-[#E8E6DF] flex items-center gap-8 text-xs font-sans text-[#787E78]">
+            <div className="pt-6 border-t border-[#E8E6DF] flex items-center gap-8 text-xs font-sans text-[#666666]">
               <div>
-                <strong className="text-[#121412] block">100% Vegan</strong>
+                <strong className="text-[#111111] block">100% Vegan</strong>
                 <span>Plant-based extractions</span>
               </div>
               <div>
-                <strong className="text-[#121412] block">Dermatologist Tested</strong>
+                <strong className="text-[#111111] block">Dermatologist Tested</strong>
                 <span>Clinically verified safety</span>
               </div>
             </div>

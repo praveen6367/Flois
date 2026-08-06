@@ -52,7 +52,7 @@ export function AnnouncementBar({ items = DEFAULT_ANNOUNCEMENTS }: AnnouncementB
     .join('     ✦     ');
 
   return (
-    <aside className="relative z-50 w-full bg-[#1A241B] border-b border-[#304031] text-xs font-sans text-[#FAF9F5] py-2 px-4">
+    <aside className="relative z-50 w-full bg-[#7A8834] border-b border-[#657229] text-xs font-sans text-white py-2.5 px-4 shadow-sm">
 
       {/* ─── MOBILE: continuous marquee ticker ─────────────────────── */}
       <div className="flex md:hidden items-center gap-2 overflow-hidden">
@@ -60,20 +60,20 @@ export function AnnouncementBar({ items = DEFAULT_ANNOUNCEMENTS }: AnnouncementB
         <button
           suppressHydrationWarning
           onClick={() => setIsVisible(false)}
-          className="shrink-0 opacity-70 hover:opacity-100 transition-opacity focus:outline-none"
+          className="shrink-0 opacity-80 hover:opacity-100 transition-opacity focus:outline-none"
           aria-label="Dismiss"
         >
-          <X className="h-3.5 w-3.5 text-[#EAE3D2]" />
+          <X className="h-3.5 w-3.5 text-white" />
         </button>
 
         {/* Marquee track */}
         <div className="flex-1 overflow-hidden">
           <div className="flex w-max animate-marquee whitespace-nowrap">
             {/* Duplicate for seamless loop */}
-            <span className="pr-16 text-[11px] font-medium text-[#FAF9F5] tracking-wide">
+            <span className="pr-16 text-[11px] font-semibold text-white tracking-wide uppercase">
               {marqueeText}
             </span>
-            <span className="pr-16 text-[11px] font-medium text-[#FAF9F5] tracking-wide" aria-hidden>
+            <span className="pr-16 text-[11px] font-semibold text-white tracking-wide uppercase" aria-hidden>
               {marqueeText}
             </span>
           </div>
@@ -84,9 +84,9 @@ export function AnnouncementBar({ items = DEFAULT_ANNOUNCEMENTS }: AnnouncementB
       <div className="hidden md:flex max-w-[1440px] mx-auto items-center justify-between gap-4">
 
         {/* Left Badge */}
-        <div className="flex items-center gap-1.5 text-[#C2CE94]">
-          <Sparkles className="h-3.5 w-3.5" />
-          <span className="text-[11px] font-semibold uppercase tracking-wider">FLOIS BOTANICAL CARE</span>
+        <div className="flex items-center gap-1.5 text-white">
+          <Sparkles className="h-3.5 w-3.5 text-white" />
+          <span className="text-[11px] font-bold uppercase tracking-wider">FLOIS BOTANICAL CARE</span>
         </div>
 
         {/* Center Rotating Text */}
@@ -98,11 +98,11 @@ export function AnnouncementBar({ items = DEFAULT_ANNOUNCEMENTS }: AnnouncementB
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-2 font-medium text-[#FAF9F5]"
+              className="flex items-center gap-2 font-semibold uppercase text-xs text-white tracking-wider"
             >
               <span>{current.text}</span>
               {current.code && (
-                <span className="inline-flex items-center gap-1 rounded bg-[#222E23] px-1.5 py-0.5 text-[10px] font-semibold tracking-widest text-[#EAE3D2] border border-[#4B644C]">
+                <span className="inline-flex items-center gap-1 rounded bg-black/20 px-2 py-0.5 text-[10px] font-bold tracking-widest text-white border border-white/30">
                   CODE: {current.code}
                 </span>
               )}
@@ -116,17 +116,17 @@ export function AnnouncementBar({ items = DEFAULT_ANNOUNCEMENTS }: AnnouncementB
             <button
               suppressHydrationWarning
               onClick={() => handleCopyCode(current.code!)}
-              className="relative flex items-center gap-1 rounded bg-[#4B644C] hover:bg-[#3D523E] px-2 py-0.5 text-[10px] font-medium tracking-wider uppercase text-white transition-colors focus:outline-none"
+              className="relative flex items-center gap-1 rounded bg-black/25 hover:bg-black/40 px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase text-white transition-colors focus:outline-none border border-white/20"
               title="Copy Coupon Code"
             >
               {copied ? (
                 <>
-                  <Check className="h-3 w-3 text-[#34d399]" />
-                  <span className="text-[#34d399]">Copied</span>
+                  <Check className="h-3 w-3 text-white" />
+                  <span className="text-white">Copied</span>
                 </>
               ) : (
                 <>
-                  <Copy className="h-3 w-3 opacity-90" />
+                  <Copy className="h-3 w-3 text-white" />
                   <span>Copy</span>
                 </>
               )}
@@ -136,10 +136,10 @@ export function AnnouncementBar({ items = DEFAULT_ANNOUNCEMENTS }: AnnouncementB
           <button
             suppressHydrationWarning
             onClick={() => setIsVisible(false)}
-            className="p-0.5 opacity-70 hover:opacity-100 transition-opacity focus:outline-none"
+            className="p-0.5 opacity-80 hover:opacity-100 transition-opacity focus:outline-none"
             aria-label="Dismiss Announcement Bar"
           >
-            <X className="h-3.5 w-3.5 text-[#EAE3D2]" />
+            <X className="h-3.5 w-3.5 text-white" />
           </button>
         </div>
 

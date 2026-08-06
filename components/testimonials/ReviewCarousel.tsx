@@ -84,10 +84,10 @@ export function ReviewCarousel() {
     <div
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative w-full max-w-[1280px] mx-auto rounded-3xl bg-[#FAF9F5] border border-[#E8E6DF] p-6 sm:p-10 lg:p-14 shadow-xl overflow-hidden"
+      className="relative w-full max-w-[1280px] mx-auto rounded-3xl bg-[#F8F6F3] border border-[#E8E6DF] p-6 sm:p-10 lg:p-14 shadow-xl overflow-hidden"
     >
       {/* Background Decorative Quote Mark */}
-      <Quote className="absolute -top-6 -right-6 h-64 w-64 text-[#4B644C]/5 pointer-events-none" />
+      <Quote className="absolute -top-6 -right-6 h-64 w-64 text-[#ACB041]/10 pointer-events-none" />
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -112,8 +112,8 @@ export function ReviewCarousel() {
             )}
 
             {/* Overlaid Verified Tag */}
-            <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-[#141C15]/85 backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#FAF9F5] shadow-lg border border-white/10">
-              <CheckCircle2 className="h-3.5 w-3.5 text-[#C2CE94]" />
+            <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-[#111111]/85 backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#FFFFFF] shadow-lg border border-white/10">
+              <CheckCircle2 className="h-3.5 w-3.5 text-[#ACB041]" />
               <span>Verified Customer Transformation</span>
             </div>
           </div>
@@ -127,32 +127,32 @@ export function ReviewCarousel() {
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-4 w-4 fill-[#C8A96E] text-[#C8A96E]" />
                 ))}
-                <span className="text-xs font-sans font-semibold text-[#121412] ml-1.5">
+                <span className="text-xs font-sans font-semibold text-[#111111] ml-1.5">
                   5.0 / 5.0 Rating
                 </span>
               </div>
 
-              <span className="text-xs font-sans font-semibold uppercase tracking-wider text-[#4B644C] bg-[#F4F6F4] px-3 py-1 rounded-full border border-[#C5D1C5]">
+              <span className="text-xs font-sans font-semibold uppercase tracking-wider text-[#6A9739] bg-[#F7F8EE] px-3 py-1 rounded-full border border-[#E0E4B3]">
                 {current.productName}
               </span>
             </div>
 
             {/* Big Editorial Quote Headline */}
             <div className="space-y-3">
-              <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#121412] font-normal leading-[1.2]">
+              <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#111111] font-normal leading-[1.2]">
                 "{current.title}"
               </h3>
-              <p className="font-sans text-base sm:text-lg text-[#4A4E4A] font-light leading-relaxed">
+              <p className="font-sans text-base sm:text-lg text-[#333333] font-light leading-relaxed">
                 {current.body}
               </p>
             </div>
 
             {/* Author Attribution */}
             <div className="pt-2">
-              <h4 className="font-serif text-xl text-[#121412] font-normal">
+              <h4 className="font-serif text-xl text-[#111111] font-normal">
                 {current.author}
               </h4>
-              <p className="text-xs font-sans text-[#787E78]">
+              <p className="text-xs font-sans text-[#666666]">
                 Reviewed in India on {current.date}
               </p>
             </div>
@@ -162,7 +162,7 @@ export function ReviewCarousel() {
               
               {/* Slide Counter & Dots */}
               <div className="flex items-center gap-3">
-                <span className="text-xs font-mono font-semibold text-[#121412]">
+                <span className="text-xs font-mono font-semibold text-[#111111]">
                   0{currentIndex + 1} / 0{REVIEWS.length}
                 </span>
 
@@ -173,7 +173,7 @@ export function ReviewCarousel() {
                       key={idx}
                       onClick={() => setCurrentIndex(idx)}
                       className={`h-2 rounded-full transition-all duration-300 ${
-                        idx === currentIndex ? 'w-8 bg-[#4B644C]' : 'w-2 bg-[#D4D0C5] hover:bg-[#787E78]'
+                        idx === currentIndex ? 'w-8 bg-[#ACB041]' : 'w-2 bg-[#D4D0C5] hover:bg-[#666666]'
                       }`}
                       aria-label={`Go to review slide ${idx + 1}`}
                     />
@@ -186,7 +186,7 @@ export function ReviewCarousel() {
                 <button
                   suppressHydrationWarning
                   onClick={handlePrev}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#121412] hover:bg-[#141C15] hover:text-white transition-all shadow-sm focus:outline-none"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#111111] hover:bg-[#ACB041] hover:text-[#111111] transition-all shadow-sm focus:outline-none"
                   aria-label="Previous Review"
                 >
                   <ChevronLeft className="h-4 w-4" />
@@ -194,7 +194,7 @@ export function ReviewCarousel() {
                 <button
                   suppressHydrationWarning
                   onClick={handleNext}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#121412] hover:bg-[#141C15] hover:text-white transition-all shadow-sm focus:outline-none"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#111111] hover:bg-[#ACB041] hover:text-[#111111] transition-all shadow-sm focus:outline-none"
                   aria-label="Next Review"
                 >
                   <ChevronRight className="h-4 w-4" />

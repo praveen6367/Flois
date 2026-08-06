@@ -21,7 +21,7 @@ export function ProductLink({
   onCloseModal
 }: ProductLinkProps) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-[#E8E6DF] bg-[#FAF9F5] p-3.5 shadow-sm">
+    <div className="flex items-center justify-between gap-4 rounded-xl border border-[#E8E6DF] bg-[#F8F6F3] p-3.5 shadow-sm">
       {/* Product Image Thumbnail */}
       <div className="relative h-16 w-16 rounded-lg overflow-hidden bg-white border border-[#E8E6DF] shrink-0 p-1">
         <Image
@@ -35,13 +35,13 @@ export function ProductLink({
 
       {/* Product Information */}
       <div className="flex-1 space-y-0.5 text-left min-w-0">
-        <span className="text-[10px] font-sans font-semibold uppercase tracking-wider text-[#4B644C] block">
+        <span className="text-[10px] font-sans font-semibold uppercase tracking-wider text-[#ACB041] block">
           Featured Formula
         </span>
-        <h4 className="font-serif text-sm font-normal text-[#121412] truncate">
+        <h4 className="font-serif text-sm font-normal text-[#111111] truncate">
           {productTitle}
         </h4>
-        <span className="text-xs font-sans font-semibold text-[#121412] block">
+        <span className="text-xs font-sans font-semibold text-[#111111] block">
           {productPrice}
         </span>
       </div>
@@ -50,7 +50,7 @@ export function ProductLink({
       <Link
         href={`/products/${productHandle}`}
         onClick={onCloseModal}
-        className="inline-flex items-center gap-1.5 rounded bg-[#4B644C] hover:bg-[#3D523E] text-white px-3.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-all shadow-sm shrink-0"
+        className="inline-flex items-center gap-1.5 rounded bg-[#ACB041] hover:bg-[#939735] text-[#111111] px-3.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-all shadow-sm shrink-0"
       >
         <span>View</span>
         <ArrowRight className="h-3.5 w-3.5" />

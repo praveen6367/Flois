@@ -44,17 +44,17 @@ export function SmartProductGrid({ products }: SmartProductGridProps) {
   };
 
   return (
-    <section id="products" className="relative w-full bg-[#FAF9F5] py-16 sm:py-24 border-b border-[#E8E6DF]">
+    <section id="products" className="relative w-full bg-[#F8F6F3] py-16 sm:py-24 border-b border-[#E8E6DF]">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16">
         
         {/* Header Bar with Intelligent Filter Controls */}
         <div className="flex items-center justify-between flex-wrap gap-4 pb-8 mb-10 border-b border-[#E8E6DF] text-left">
           
           <div className="space-y-0.5">
-            <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#4B644C] block">
+            <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#ACB041] block">
               APOTHECARY SELECTION
             </span>
-            <p className="text-sm font-sans text-[#121412] font-medium">
+            <p className="text-sm font-sans text-[#111111] font-medium">
               Showing all {totalCount} botanical rituals
             </p>
           </div>
@@ -62,11 +62,11 @@ export function SmartProductGrid({ products }: SmartProductGridProps) {
           {/* Dynamic Sorting — Only exposed when > 8 products */}
           {showSort && (
             <div className="flex items-center gap-3">
-              <span className="text-xs font-sans text-[#787E78]">Sort by:</span>
+              <span className="text-xs font-sans text-[#666666]">Sort by:</span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 rounded-full bg-white border border-[#E8E6DF] text-xs font-sans text-[#121412] focus:outline-none focus:border-[#4B644C]"
+                className="px-4 py-2 rounded-full bg-white border border-[#E8E6DF] text-xs font-sans text-[#111111] focus:outline-none focus:border-[#ACB041]"
               >
                 <option value="FEATURED">Featured</option>
                 <option value="NEWEST">Newest Arrivals</option>
@@ -112,13 +112,13 @@ export function SmartProductGrid({ products }: SmartProductGridProps) {
                 <button
                   suppressHydrationWarning
                   onClick={() => setSelectedProduct(null)}
-                  className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full bg-[#FAF9F5] flex items-center justify-center text-[#121412] hover:bg-[#4B644C] hover:text-white transition-colors"
+                  className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full bg-[#F8F6F3] flex items-center justify-center text-[#111111] hover:bg-[#ACB041] hover:text-[#111111] transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
 
                 {/* Product Image */}
-                <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#FAF9F5]">
+                <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#F8F6F3]">
                   <img
                     src={selectedProduct.images?.nodes?.[0]?.url || '/products/rootherb_product.png'}
                     alt={selectedProduct.title}
@@ -129,10 +129,10 @@ export function SmartProductGrid({ products }: SmartProductGridProps) {
                 {/* Product Details */}
                 <div className="flex flex-col justify-between space-y-4">
                   <div className="space-y-2">
-                    <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#4B644C]">
+                    <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#ACB041]">
                       FLOIS BOTANICAL CARE
                     </span>
-                    <h3 className="font-serif text-3xl font-normal text-[#121412]">
+                    <h3 className="font-serif text-3xl font-normal text-[#111111]">
                       {selectedProduct.title}
                     </h3>
                     <div className="flex items-center gap-2">
@@ -141,18 +141,18 @@ export function SmartProductGrid({ products }: SmartProductGridProps) {
                           <Star key={i} className="h-3.5 w-3.5 fill-[#C8A96E] text-[#C8A96E]" />
                         ))}
                       </div>
-                      <span className="text-xs font-sans font-semibold text-[#121412]">4.9</span>
+                      <span className="text-xs font-sans font-semibold text-[#111111]">4.9</span>
                     </div>
 
-                    <p className="text-xs sm:text-sm font-sans text-[#4A4E4A] font-light leading-relaxed pt-2">
+                    <p className="text-xs sm:text-sm font-sans text-[#333333] font-light leading-relaxed pt-2">
                       {selectedProduct.description || '100% pure cold-pressed Ayurvedic formula crafted for scalp nourishment and hair vitality.'}
                     </p>
                   </div>
 
                   <div className="space-y-4 pt-4 border-t border-[#E8E6DF]">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-sans text-[#787E78]">Price:</span>
-                      <span className="font-serif text-2xl font-normal text-[#121412]">
+                      <span className="text-xs font-sans text-[#666666]">Price:</span>
+                      <span className="font-serif text-2xl font-normal text-[#111111]">
                         ₹{parseFloat(selectedProduct.priceRange?.minVariantPrice?.amount || '999').toLocaleString('en-IN')}
                       </span>
                     </div>
@@ -164,7 +164,7 @@ export function SmartProductGrid({ products }: SmartProductGridProps) {
                       className={`w-full py-4 rounded-xl text-xs font-sans uppercase tracking-[0.2em] font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg ${
                         modalAdded
                           ? 'bg-[#2D5A2E] text-white'
-                          : 'bg-[#141C15] text-white hover:bg-[#4B644C]'
+                          : 'bg-[#ACB041] text-[#111111] hover:bg-[#939735]'
                       }`}
                     >
                       {modalAdded ? (

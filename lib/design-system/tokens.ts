@@ -4,28 +4,42 @@
  */
 
 export const FLOIS_COLORS = {
-  // Core Brand Olive Scale (Base: #4B644C)
+  // Astra Theme Global Colors Mapped to Brand Dictionary
+  astra: {
+    color0: '#8C9B3E', // Primary / Accent (Vibrant Olive Green)
+    color1: '#6A9739', // Secondary Accent (Leaf Green)
+    color2: '#111111', // Headings / Dark Text
+    color3: '#333333', // Body Text
+    color4: '#F8F6F3', // Light Section BG (Cream)
+    color5: '#FFFFFF', // Base BG (White)
+    color6: '#001524', // Deep Accent (Dark Navy)
+    color7: '#F8F6F3', // Alt Light BG
+    color8: '#000000', // Footer / Contrast BG
+  },
+  // Core Brand Olive Scale (Base Primary Olive: #8C9B3E, Leaf Green: #6A9739)
   olive: {
-    50:  '#F4F6F4',
-    100: '#E3E8E3',
-    200: '#C5D1C5',
-    300: '#9DAF9E',
-    400: '#748B76',
-    500: '#4B644C', // Primary FLOIS Olive
-    600: '#3D523E',
-    700: '#304031',
-    800: '#222E23',
-    900: '#141C15', // Deep Forest Black
+    50:  '#F7F8EE',
+    100: '#EFF1D9',
+    200: '#E0E4B3',
+    300: '#CBD285',
+    400: '#6A9739', // Secondary Accent Leaf Green (--ast-global-color-1)
+    500: '#8C9B3E', // Primary Olive Green (--ast-global-color-0)
+    600: '#7A8834',
+    700: '#657229',
+    800: '#4B551C',
+    900: '#2F360E',
   },
   // Warm Luxury Neutrals
   neutral: {
-    white: '#FFFFFF',
-    alabaster: '#FAF9F5',
-    linen: '#F3F1EA',
+    white: '#FFFFFF',     // --ast-global-color-5
+    alabaster: '#F8F6F3', // --ast-global-color-4 / --ast-global-color-7
+    linen: '#F8F6F3',
     sand: '#EAE3D2',
     stone: '#D8D3C5',
-    slate: '#4A4E4A',
-    charcoal: '#121412',
+    slate: '#333333',    // --ast-global-color-3
+    charcoal: '#111111', // --ast-global-color-2
+    navy: '#001524',     // --ast-global-color-6
+    black: '#000000',    // --ast-global-color-8
   },
   // Semantic Feedback Colors
   semantic: {
@@ -38,8 +52,8 @@ export const FLOIS_COLORS = {
   border: {
     subtle: '#E8E6DF',
     medium: '#D4D0C5',
-    strong: '#121412',
-    focus:  '#4B644C',
+    strong: '#111111',
+    focus:  '#ACB041',
   }
 } as const;
 

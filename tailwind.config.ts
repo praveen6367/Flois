@@ -15,6 +15,7 @@ const config: Config = {
         flois: FLOIS_COLORS.olive,
         neutral: FLOIS_COLORS.neutral,
         border: FLOIS_COLORS.border,
+        astra: FLOIS_COLORS.astra,
       },
       fontFamily: {
         serif: ['var(--flois-font-serif)', 'Georgia', 'serif'],

@@ -33,7 +33,7 @@ export function DesktopNavigation({ menu = DEFAULT_MENU }: { menu?: MenuItem[] }
             <Link
               href={item.url || '#'}
               className={`inline-flex items-center text-[12px] font-semibold uppercase tracking-wider transition-colors py-0.5 focus:outline-none ${
-                isActive ? 'text-[#C2CE94]' : 'text-[#FAF9F5] hover:text-[#C2CE94]'
+                isActive ? 'text-[#8C9B3E]' : 'text-[#111111] hover:text-[#8C9B3E]'
               }`}
             >
               <span>{item.title}</span>
@@ -41,7 +41,7 @@ export function DesktopNavigation({ menu = DEFAULT_MENU }: { menu?: MenuItem[] }
 
             {/* Subtle Active / Hover Underline Bar */}
             <span
-              className={`absolute bottom-1 left-0 h-[1.5px] bg-[#C2CE94] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`absolute bottom-1 left-0 h-[1.5px] bg-[#8C9B3E] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isActive ? 'w-full' : 'w-0 group-hover:w-full'
               }`}
             />

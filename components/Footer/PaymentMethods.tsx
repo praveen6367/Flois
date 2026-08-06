@@ -15,8 +15,8 @@ const PAYMENT_METHODS = [
 
 export function PaymentMethods() {
   return (
-    <div className="w-full py-8 border-b border-[#304031]/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-      <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#C2CE94]">
+    <div className="w-full py-8 border-b border-[#E8E6DF] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#8C9B3E]">
         ACCEPTED PAYMENT METHODS
       </span>
 
@@ -24,7 +24,7 @@ export function PaymentMethods() {
         {PAYMENT_METHODS.map((method, idx) => (
           <span
             key={idx}
-            className="inline-flex items-center justify-center rounded bg-white/5 border border-white/10 px-3 py-1.5 text-[10px] font-mono font-bold tracking-wider text-[#EAE3D2]/80 hover:text-white hover:border-[#C2CE94] hover:bg-[#4B644C]/30 transition-all cursor-default shadow-sm"
+            className="inline-flex items-center justify-center rounded bg-white border border-[#E8E6DF] px-3 py-1.5 text-[10px] font-mono font-bold tracking-wider text-[#333333] hover:text-[#111111] hover:border-[#8C9B3E] hover:bg-[#F2F4E6] transition-all cursor-default shadow-2xs"
           >
             {method}
           </span>

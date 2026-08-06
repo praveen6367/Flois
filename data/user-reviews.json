@@ -1,0 +1,16 @@
+[
+  {
+    "id": "user-rev-1785968249557",
+    "author": "Ankita Sharma",
+    "email": "ankita@example.com",
+    "location": "Mumbai",
+    "rating": 5,
+    "body": "The RootHerb oil is phenomenal! Hair fall stopped in 10 days.",
+    "productName": "RootHerb Botanical Hair Growth Oil",
+    "productHandle": "rootherb-hair-growth-oil",
+    "date": "06 Aug 2026",
+    "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+    "helpfulCount": 0,
+    "isUserSubmitted": true
+  }
+]

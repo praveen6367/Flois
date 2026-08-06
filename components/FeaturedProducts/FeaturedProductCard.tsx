@@ -37,10 +37,10 @@ export function FeaturedProductCard({
   const rhythmStyles = [
     // Card 1: Standard warm white canvas
     'bg-white border-[#E8E6DF]',
-    // Card 2: Subtle warm olive/alabaster tint background
-    'bg-[#F6F4ED] border-[#E2DDD0]',
+    // Card 2: Subtle warm cream tint background
+    'bg-[#F8F6F3] border-[#E8E6DF]',
     // Card 3: Soft subtle gradient glow background
-    'bg-gradient-to-b from-[#FAF9F5] to-white border-[#E8E6DF]'
+    'bg-gradient-to-b from-[#F8F6F3] to-white border-[#E8E6DF]'
   ];
 
   const cardStyle = rhythmStyles[index % rhythmStyles.length];
@@ -90,17 +90,17 @@ export function FeaturedProductCard({
         className="block space-y-2 pt-3 text-left focus:outline-none"
       >
         {/* Category Label */}
-        <span className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#4B644C] block">
+        <span className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#ACB041] block">
           {product.productType || 'Botanical Formula'}
         </span>
 
         {/* Product Title */}
-        <h3 className="font-serif text-xl sm:text-2xl text-[#121412] font-normal leading-snug truncate group-hover:text-[#4B644C] transition-colors duration-300">
+        <h3 className="font-serif text-xl sm:text-2xl text-[#111111] font-normal leading-snug truncate group-hover:text-[#ACB041] transition-colors duration-300">
           {product.title}
         </h3>
 
         {/* Short Description */}
-        <p className="text-xs text-[#4A4E4A] font-sans leading-relaxed line-clamp-1 min-h-[1.25rem]">
+        <p className="text-xs text-[#333333] font-sans leading-relaxed line-clamp-1 min-h-[1.25rem]">
           {product.description || 'Clinical Ayurvedic formulation handcrafted in small batches.'}
         </p>
 

@@ -52,7 +52,7 @@ export function QuickAdd({ product, onOpenVariants, className = '' }: QuickAddPr
       <button
         suppressHydrationWarning
         disabled
-        className={`w-full flex items-center justify-center gap-2 rounded bg-[#FAF9F5] border border-[#E8E6DF] px-6 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#787E78] cursor-not-allowed ${className}`}
+        className={`w-full flex items-center justify-center gap-2 rounded bg-[#F8F6F3] border border-[#E8E6DF] px-6 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#666666] cursor-not-allowed ${className}`}
       >
         <span>Sold Out</span>
       </button>
@@ -65,7 +65,7 @@ export function QuickAdd({ product, onOpenVariants, className = '' }: QuickAddPr
       type="button"
       onClick={handleAddToCart}
       disabled={isAdding}
-      className={`w-full flex items-center justify-center gap-2.5 rounded bg-[#4B644C] hover:bg-[#3D523E] text-white px-6 py-3.5 text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] focus:outline-none ${className}`}
+      className={`w-full flex items-center justify-center gap-2.5 rounded bg-[#8C9B3E] hover:bg-[#7A8834] text-white px-6 py-3.5 text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] focus:outline-none ${className}`}
     >
       {isAdding ? (
         <>
@@ -80,11 +80,11 @@ export function QuickAdd({ product, onOpenVariants, className = '' }: QuickAddPr
       ) : hasMultipleVariants ? (
         <>
           <span>Select Options</span>
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="h-4 w-4 text-white" />
         </>
       ) : (
         <>
-          <ShoppingBag className="h-4 w-4" />
+          <ShoppingBag className="h-4 w-4 text-white" />
           <span>Add to Cart</span>
         </>
       )}

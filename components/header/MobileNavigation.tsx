@@ -19,6 +19,7 @@ import { MenuItem } from '@/types/menu';
 import { ShopifyImage } from '@/types/shopify';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
+import { useAuth } from '@/context/AuthContext';
 import { normalizeShopifyUrl } from '@/utils/url';
 
 // ─── Fallback menu items (all linked correctly) ────────────────────────────────
@@ -70,6 +71,8 @@ export function MobileNavigation({
   const [mounted, setMounted] = useState(false);
   const { totalQuantity, openCart } = useCart();
   const { wishlistCount, openWishlist } = useWishlist();
+  const { customer, accessToken } = useAuth();
+  const isLoggedIn = Boolean(accessToken && customer);
 
   // Must be mounted in the browser before we can portal
   useEffect(() => { setMounted(true); }, []);
@@ -165,12 +168,12 @@ export function MobileNavigation({
                     className="group flex items-center justify-between px-3 py-3.5 rounded-xl hover:bg-white/6 transition-colors"
                   >
                     <span
-                      className="font-serif text-[1.1rem] font-normal text-[#FAF9F5] group-hover:text-[#C2CE94] transition-colors"
+                      className="font-serif text-[1.1rem] font-normal text-[#FAF9F5] group-hover:text-[#ACB041] transition-colors"
                       style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
                     >
                       {item.title}
                     </span>
-                    <ChevronRight className="h-4 w-4 text-[#4B644C] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                    <ChevronRight className="h-4 w-4 text-[#ACB041] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                   </Link>
                 ))}
               </nav>
@@ -181,8 +184,8 @@ export function MobileNavigation({
               {/* ── Featured Products mini-shelf ─────────────────────── */}
               <div className="px-5 pt-5 pb-4">
                 <div className="flex items-center gap-2 mb-4">
-                  <Leaf className="h-3.5 w-3.5 text-[#4B644C]" />
-                  <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.22em] text-[#4B644C]">
+                  <Leaf className="h-3.5 w-3.5 text-[#ACB041]" />
+                  <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.22em] text-[#ACB041]">
                     Botanical Formulas
                   </span>
                 </div>
@@ -193,7 +196,7 @@ export function MobileNavigation({
                       key={p.href}
                       href={p.href}
                       onClick={close}
-                      className="group flex items-center gap-3.5 rounded-xl bg-white/5 border border-white/8 p-3 hover:border-[#4B644C]/50 hover:bg-white/8 transition-all"
+                      className="group flex items-center gap-3.5 rounded-xl bg-white/5 border border-white/8 p-3 hover:border-[#ACB041]/50 hover:bg-white/8 transition-all"
                     >
                       {/* Product thumbnail */}
                       <div className="relative h-12 w-12 shrink-0 rounded-lg overflow-hidden bg-[#1A221A]">
@@ -212,12 +215,12 @@ export function MobileNavigation({
                         <p className="text-[13px] font-sans font-medium text-[#EAE3D2] group-hover:text-white truncate transition-colors leading-tight">
                           {p.title}
                         </p>
-                        <p className="text-[12px] font-sans text-[#4B644C] font-semibold mt-0.5">
+                        <p className="text-[12px] font-sans text-[#ACB041] font-semibold mt-0.5">
                           {p.price}
                         </p>
                       </div>
 
-                      <ArrowRight className="h-3.5 w-3.5 text-[#4B644C] shrink-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                      <ArrowRight className="h-3.5 w-3.5 text-[#ACB041] shrink-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                     </Link>
                   ))}
                 </div>
@@ -237,7 +240,7 @@ export function MobileNavigation({
                       key={link.href}
                       href={link.href}
                       onClick={close}
-                      className="text-[11px] font-sans text-[#7A8C7A] hover:text-[#C2CE94] transition-colors py-1"
+                      className="text-[11px] font-sans text-[#7A8C7A] hover:text-[#ACB041] transition-colors py-1"
                     >
                       {link.label}
                     </Link>
@@ -256,7 +259,7 @@ export function MobileNavigation({
                 <div className="relative">
                   <Heart className="h-5 w-5 text-[#EAE3D2]" strokeWidth={1.5} />
                   {wishlistCount > 0 && (
-                    <span className="absolute -top-1.5 -right-1.5 h-4 w-4 rounded-full bg-[#4B644C] text-[9px] font-bold text-white flex items-center justify-center">
+                    <span className="absolute -top-1.5 -right-1.5 h-4 w-4 rounded-full bg-[#ACB041] text-[9px] font-bold text-[#111111] flex items-center justify-center">
                       {wishlistCount}
                     </span>
                   )}
@@ -272,7 +275,7 @@ export function MobileNavigation({
                 <div className="relative">
                   <ShoppingBag className="h-5 w-5 text-[#EAE3D2]" strokeWidth={1.5} />
                   {totalQuantity > 0 && (
-                    <span className="absolute -top-1.5 -right-1.5 h-4 w-4 rounded-full bg-[#4B644C] text-[9px] font-bold text-white flex items-center justify-center">
+                    <span className="absolute -top-1.5 -right-1.5 h-4 w-4 rounded-full bg-[#ACB041] text-[9px] font-bold text-[#111111] flex items-center justify-center">
                       {totalQuantity}
                     </span>
                   )}
@@ -283,10 +286,17 @@ export function MobileNavigation({
               <button
                 suppressHydrationWarning
                 onClick={() => { close(); onOpenAccount(); }}
-                className="flex flex-col items-center gap-1 py-2 rounded-xl hover:bg-white/6 transition-colors"
+                className="flex flex-col items-center gap-1 py-2 rounded-xl hover:bg-white/6 transition-colors relative"
               >
-                <User className="h-5 w-5 text-[#EAE3D2]" strokeWidth={1.5} />
-                <span className="text-[10px] font-sans text-[#7A8C7A]">Account</span>
+                <div className="relative">
+                  <User className="h-5 w-5 text-[#EAE3D2]" strokeWidth={1.5} />
+                  {isLoggedIn && (
+                    <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-[#6BE675] shadow-[0_0_6px_#6BE675]" />
+                  )}
+                </div>
+                <span className="text-[10px] font-sans text-[#7A8C7A]">
+                  {isLoggedIn ? (customer?.firstName || 'Account') : 'Account'}
+                </span>
               </button>
             </div>
 
@@ -302,7 +312,7 @@ export function MobileNavigation({
       <button
         suppressHydrationWarning
         onClick={() => setIsOpen(true)}
-        className="p-2 text-[#FAF9F5] hover:text-[#C2CE94] transition-colors focus:outline-none"
+        className="p-2 text-[#111111] hover:text-[#8C9B3E] transition-colors focus:outline-none"
         aria-label="Open Mobile Menu"
         aria-expanded={isOpen}
       >
