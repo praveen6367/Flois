@@ -42,7 +42,6 @@ export function ArticleHero({ article }: ArticleHeroProps) {
         {/* Title */}
         <h1
           className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#121412] leading-[1.06] tracking-tight mb-6"
-          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
           {article.title}
         </h1>

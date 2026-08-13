@@ -52,15 +52,15 @@ export function AnnouncementBar({ items = DEFAULT_ANNOUNCEMENTS }: AnnouncementB
     .join('     ✦     ');
 
   return (
-    <aside className="relative z-50 w-full bg-[#7A8834] border-b border-[#657229] text-xs font-sans text-white py-2.5 px-4 shadow-sm">
+    <aside className="relative z-50 w-full bg-[#7A8834] border-b border-[#657229] text-xs font-sans text-white py-2 px-3 sm:py-2.5 sm:px-4 shadow-sm">
 
       {/* ─── MOBILE: continuous marquee ticker ─────────────────────── */}
-      <div className="flex md:hidden items-center gap-2 overflow-hidden">
+      <div className="flex md:hidden items-center gap-2.5 overflow-hidden">
         {/* Dismiss button — left on mobile */}
         <button
           suppressHydrationWarning
           onClick={() => setIsVisible(false)}
-          className="shrink-0 opacity-80 hover:opacity-100 transition-opacity focus:outline-none"
+          className="shrink-0 p-0.5 opacity-80 hover:opacity-100 transition-opacity focus:outline-none"
           aria-label="Dismiss"
         >
           <X className="h-3.5 w-3.5 text-white" />

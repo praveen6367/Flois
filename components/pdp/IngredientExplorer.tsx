@@ -21,7 +21,8 @@ interface Ingredient {
   imageSrc: string;
 }
 
-const INGREDIENTS: Ingredient[] = [
+// ─── Hair Growth Oil Ingredients ──────────────────────────────────────────────
+const HAIR_OIL_INGREDIENTS: Ingredient[] = [
   {
     id: 'bhringraj',
     name: 'Bhringraj (False Daisy)',
@@ -84,7 +85,158 @@ const INGREDIENTS: Ingredient[] = [
   }
 ];
 
-export function IngredientExplorer() {
+// ─── Sunscreen Ingredients ────────────────────────────────────────────────────
+const SUNSCREEN_INGREDIENTS: Ingredient[] = [
+  {
+    id: 'rice-water',
+    name: 'Fermented Rice Water',
+    sanskritName: 'Tandulodaka — Ancient Brightener',
+    category: 'Brightening & Hydration',
+    summary: 'Skin Tone Brightener',
+    editorialQuote: 'Used for centuries in East Asian beauty rituals, fermented rice water is rich in inositol and ferulic acid that visibly brighten skin and fortify the moisture barrier.',
+    ayurvedicWisdom: 'A classical Panchakarma ingredient prized for its ability to soften skin, reduce inflammation, and restore natural luminosity to dull complexion.',
+    clinicalScience: 'Inositol penetrates the skin epidermis, reducing trans-epidermal water loss by 23% while visibly brightening sun-pigmented areas.',
+    origin: 'South Indian Rice Farms',
+    extraction: 'Fermented Cold Extract',
+    richIn: 'Inositol & Ferulic Acid',
+    role: 'Skin Brightening',
+    imageSrc: '/products/herb_rice_water.png'
+  },
+  {
+    id: 'sea-buckthorn',
+    name: 'Sea Buckthorn Berry',
+    sanskritName: 'Amla-Saar — Antioxidant Shield',
+    category: 'UV & Free Radical Defense',
+    summary: 'Powerful Antioxidant Barrier',
+    editorialQuote: "One of nature's richest sources of Omega-7 fatty acids and carotenoids, sea buckthorn creates a protective antioxidant shield that neutralizes UV-induced free radicals on contact.",
+    ayurvedicWisdom: 'Traditionally used to heal burns and sun-damaged skin, sea buckthorn replenishes skin lipids destroyed by UV radiation.',
+    clinicalScience: 'Clinical studies show carotenoid concentration reduces UV-induced erythema by 36% and significantly decreases post-sun inflammation markers.',
+    origin: 'Himalayan High Altitude',
+    extraction: 'Cold Pressed CO2 Extract',
+    richIn: 'Omega-7 & Carotenoids',
+    role: 'UV Defense',
+    imageSrc: '/products/herb_sea_buckthorn.png'
+  },
+  {
+    id: 'kojic-acid',
+    name: 'Kojic Acid (Natural)',
+    sanskritName: 'Tamra-Har — Pigment Corrector',
+    category: 'De-Pigmentation',
+    summary: 'Clinically Proven De-Tanning',
+    editorialQuote: 'Derived from Japanese fermented mushrooms, natural kojic acid inhibits melanin production at the enzyme level — delivering visibly even skin tone without harsh bleaching agents.',
+    ayurvedicWisdom: 'Acts on excess pitta-driven melanin production, clearing accumulated sun damage and restoring natural skin clarity gently over time.',
+    clinicalScience: 'Inhibits tyrosinase activity by up to 67%, reducing melanin synthesis in UV-exposed zones while being safe for daily use on sensitive skin.',
+    origin: 'Japanese Koji Fermentation',
+    extraction: 'Biotechnology Fermentation',
+    richIn: 'Kojic Acid 2%',
+    role: 'De-Pigmentation',
+    imageSrc: '/products/herb_kojic_acid.png'
+  },
+  {
+    id: 'niacinamide',
+    name: 'Niacinamide (Vitamin B3)',
+    sanskritName: 'Nikotinamide — Skin Fortifier',
+    category: 'Barrier Repair & Pore Control',
+    summary: 'Pore Minimizer & Tone Evener',
+    editorialQuote: 'The gold-standard vitamin for visible pore reduction, niacinamide restores the skin barrier, controls excess sebum, and fades dark spots left by sun exposure.',
+    ayurvedicWisdom: 'Functions as a potent Vata-balancer — rehydrating and strengthening the epidermal barrier at a cellular level.',
+    clinicalScience: 'Reduces transepidermal water loss by 24%, minimizes pore appearance by 16%, and reduces post-inflammatory hyperpigmentation in 8 weeks.',
+    origin: 'Bio-Fermentation Grade',
+    extraction: 'Pharmaceutical Grade B3',
+    richIn: 'Niacinamide 5%',
+    role: 'Barrier Fortifier',
+    imageSrc: '/products/herb_niacinamide.png'
+  }
+];
+
+// ─── Neem Wood Comb Ingredients ───────────────────────────────────────────────
+const NEEM_COMB_INGREDIENTS: Ingredient[] = [
+  {
+    id: 'neem-wood',
+    name: 'Pure Medicinal Neem Wood',
+    sanskritName: 'Nimba Kashtha — Sacred Healer',
+    category: 'Anti-Microbial Wood',
+    summary: 'Naturally Anti-Fungal',
+    editorialQuote: 'Sourced from mature medicinal neem trees, this handcrafted wood naturally carries nimbidin and azadirachtin bioactives that eliminate scalp fungus every time you comb.',
+    ayurvedicWisdom: 'Vedic texts prescribe daily combing with neem wood as a Dinacharya ritual to purify scalp energy, balance doshas, and maintain lustrous hair.',
+    clinicalScience: 'Natural neem bioactives in the wood are antimicrobial at contact, reducing Malassezia furfur (dandruff fungus) colonies with each use.',
+    origin: 'South Indian Neem Groves',
+    extraction: 'Hand-Carved & Kiln Dried',
+    richIn: 'Nimbidin Bioactives',
+    role: 'Scalp Anti-Fungal',
+    imageSrc: '/products/herb_neem.png'
+  },
+  {
+    id: 'bhringraj-comb',
+    name: 'Bhringraj — Keshraj Herb',
+    sanskritName: 'Keshraj — King of Hair Herbs',
+    category: 'Root Circulation Boost',
+    summary: 'Stimulates Follicle Blood Flow',
+    editorialQuote: "When the neem comb's wide teeth massage the scalp, the oil absorbed between sessions gets activated through increased micro-circulation to each follicle.",
+    ayurvedicWisdom: "Bhringraj is the classic Ayurvedic companion to neem — together they fortify the scalp against both inflammation and fungal overgrowth.",
+    clinicalScience: 'Scalp massage increases follicle nutrient delivery by up to 38%, amplifying the effect of Bhringraj wedelolactone compounds.',
+    origin: 'Keralan Organic Farms',
+    extraction: 'Cold Pressed & Infused',
+    richIn: 'Wedelolactone',
+    role: 'Follicle Activation',
+    imageSrc: '/products/herb_bhringraj.png'
+  },
+  {
+    id: 'amla-comb',
+    name: 'Amla — Vitamin C Fortifier',
+    sanskritName: 'Amritphal — Hair Melanin Guard',
+    category: 'Anti-Grey & Strengthening',
+    summary: 'Preserves Natural Hair Color',
+    editorialQuote: 'The natural ionic exchange between neem wood teeth and amla-conditioned hair creates an anti-static, melanin-protective effect that keeps hair smooth and dark.',
+    ayurvedicWisdom: 'Daily combing with neem while hair is treated with amla creates a Rasayana cycle that prevents premature greying at the root.',
+    clinicalScience: "Amla's gallic acid inhibits scalp oxidative stress by 77%, the primary driver of melanocyte damage leading to premature grey hair.",
+    origin: 'Central Organic Groves',
+    extraction: 'Cold Pressed Elixir',
+    richIn: 'Gallic Acid & Vit-C',
+    role: 'Melanin Protection',
+    imageSrc: '/products/herb_amla.png'
+  },
+  {
+    id: 'rosemary-comb',
+    name: 'Rosemary — Circulation Activator',
+    sanskritName: 'Rusmari — Scalp Energizer',
+    category: 'Micro-Circulation',
+    summary: 'Scalp Blood Flow Booster',
+    editorialQuote: 'Combing with neem activates carnosic acid in rosemary-treated scalp zones through mechanical stimulation, dramatically improving micro-vascular circulation.',
+    ayurvedicWisdom: "Rosemary's warming quality amplifies the neem comb's scalp stimulation, generating beneficial heat that opens follicular pores.",
+    clinicalScience: "Scalp massage tools increase rosemary oil absorption depth by 2.4× compared to topical application alone, enhancing its clinical circulation benefits.",
+    origin: 'Himalayan Foothills',
+    extraction: 'Steam Distilled',
+    richIn: 'Carnosic Acid',
+    role: 'Micro-Circulation',
+    imageSrc: '/products/herb_rosemary.png'
+  }
+];
+
+function getIngredients(productHandle: string): Ingredient[] {
+  const h = productHandle.toLowerCase();
+  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf') || h.includes('de-tan')) {
+    return SUNSCREEN_INGREDIENTS;
+  }
+  if (h.includes('neem') || h.includes('comb')) {
+    return NEEM_COMB_INGREDIENTS;
+  }
+  return HAIR_OIL_INGREDIENTS;
+}
+
+function getSectionTitle(productHandle: string): string {
+  const h = productHandle.toLowerCase();
+  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf')) return 'Key Active Ingredients';
+  if (h.includes('neem') || h.includes('comb')) return 'The Neem Advantage';
+  return 'Key Botanical Ingredients';
+}
+
+interface IngredientExplorerProps {
+  productHandle?: string;
+}
+
+export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' }: IngredientExplorerProps) {
+  const INGREDIENTS = getIngredients(productHandle);
   const [selectedId, setSelectedId] = useState(INGREDIENTS[0].id);
 
   const activeIngredient = INGREDIENTS.find((item) => item.id === selectedId) || INGREDIENTS[0];
@@ -123,7 +275,7 @@ export function IngredientExplorer() {
           </div>
 
           <h2 className="font-serif text-4xl sm:text-6xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-[#121412]">
-            Key Botanical Ingredients
+            {getSectionTitle(productHandle)}
           </h2>
         </div>
 
@@ -200,7 +352,7 @@ export function IngredientExplorer() {
             })}
           </div>
 
-          {/* ── RIGHT SHOWCASE: High-Fashion Botanical Story (No Cards, Pure Editorial) ──── */}
+          {/* ── RIGHT SHOWCASE: High-Fashion Botanical Story ──── */}
           <div
             id={`panel-${activeIngredient.id}`}
             role="tabpanel"
@@ -229,7 +381,7 @@ export function IngredientExplorer() {
                   />
                 </div>
 
-                {/* 2. HUGE INSTRUMENT SERIF TYPOGRAPHY & EDITORIAL ESSAY */}
+                {/* 2. SERIF TYPOGRAPHY & EDITORIAL ESSAY */}
                 <div className="space-y-4 max-w-3xl">
                   <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#4B644C] block">
                     {activeIngredient.sanskritName}
@@ -244,7 +396,7 @@ export function IngredientExplorer() {
                   </p>
                 </div>
 
-                {/* 3. TWO CLEAN COLUMNS (AYURVEDIC WISDOM vs CLINICAL SCIENCE) — NO CARDS */}
+                {/* 3. TWO CLEAN COLUMNS (AYURVEDIC WISDOM vs CLINICAL SCIENCE) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 pt-2 pb-2">
                   
                   {/* Column 1: Ayurvedic Wisdom */}
@@ -257,7 +409,7 @@ export function IngredientExplorer() {
                     </p>
                   </div>
 
-                  {/* Column 2: Clinical Science (Subtle Vertical Hairline Divider) */}
+                  {/* Column 2: Clinical Science */}
                   <div className="space-y-2 md:border-l md:border-[#E8E6DF] md:pl-8">
                     <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#4B644C] block">
                       Clinical Science
@@ -269,7 +421,7 @@ export function IngredientExplorer() {
 
                 </div>
 
-                {/* 4. PREMIUM HORIZONTAL SPECIFICATION ROW (Separated by Hairlines, No Boxes) */}
+                {/* 4. SPECIFICATION ROW */}
                 <div className="pt-8 border-t border-[#E8E6DF] grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
                   
                   <div className="space-y-1">

@@ -18,8 +18,9 @@ const config: Config = {
         astra: FLOIS_COLORS.astra,
       },
       fontFamily: {
-        serif: ['var(--flois-font-serif)', 'Georgia', 'serif'],
-        sans: ['var(--flois-font-sans)', '-apple-system', 'sans-serif'],
+        serif: ['var(--flois-font-serif)', 'Poppins', 'sans-serif'],
+        sans: ['var(--flois-font-sans)', 'Poppins', '-apple-system', 'sans-serif'],
+        poppins: ['var(--font-poppins)', 'Poppins', 'sans-serif'],
       },
       boxShadow: FLOIS_SHADOWS,
       borderRadius: FLOIS_RADIUS,

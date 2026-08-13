@@ -3,12 +3,15 @@ import { Metadata } from 'next';
 import { Header } from '@/components/header/Header';
 import { ShopHero } from '@/components/shop/ShopHero';
 import { SmartProductGrid } from '@/components/shop/SmartProductGrid';
+import { CollectionNavigation } from '@/components/collections/CollectionNavigation';
 import { ShopEditorialStory } from '@/components/shop/ShopEditorialStory';
 import { ShopBenefits } from '@/components/shop/ShopBenefits';
 import { Footer } from '@/components/Footer';
 import { getHeaderMenu } from '@/lib/shopify/menus';
 import { getShopBrand } from '@/lib/shopify/shop';
 import { getProducts } from '@/lib/shopify/products';
+import { getCollections } from '@/lib/shopify/collections';
+import { Collection } from '@/types/collection';
 
 export const revalidate = 300;
 
@@ -32,6 +35,22 @@ export default async function ShopAllPage() {
   const shopBrand = await getShopBrand();
   const menuItems = await getHeaderMenu('main-menu');
   const { products } = await getProducts({ first: 20 });
+
+  let collections: Collection[] = [];
+  try {
+    const res = await getCollections(25);
+    const rawCollections = res.collections || [];
+    const EXCLUDED_HANDLES = ['frontpage', 'home-page', 'uncategorized'];
+    const EXCLUDED_TITLES = ['home page', 'uncategorized'];
+
+    collections = rawCollections.filter((c) => {
+      const handleLower = c.handle.toLowerCase();
+      const titleLower = c.title.toLowerCase();
+      return !EXCLUDED_HANDLES.includes(handleLower) && !EXCLUDED_TITLES.includes(titleLower);
+    });
+  } catch (err) {
+    console.warn('[ShopAllPage] Failed to fetch Shopify collections:', err);
+  }
 
   // ItemList JSON-LD Schema
   const shopJsonLd = {
@@ -71,6 +90,9 @@ export default async function ShopAllPage() {
 
       {/* Smart Product Grid */}
       <SmartProductGrid products={products} />
+
+      {/* Dynamic Collection Navigation Scroller */}
+      <CollectionNavigation collections={collections} />
 
       {/* Editorial Collection Story */}
       <ShopEditorialStory />

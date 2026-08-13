@@ -19,7 +19,7 @@ export function Logo({ logoImage, localLogoPath = '/mainlogo.png', className = '
       className={`group flex items-center text-decoration-none focus:outline-none ${className}`}
       aria-label="FLOIS Homepage"
     >
-      <div className="relative h-9 sm:h-10 w-auto min-w-[140px] sm:min-w-[160px] flex items-center">
+      <div className="relative h-8 sm:h-10 w-auto min-w-[100px] sm:min-w-[160px] flex items-center">
         <Image
           src={imageUrl}
           alt={logoImage?.altText || 'FLOIS Brand Logo'}
@@ -27,7 +27,7 @@ export function Logo({ logoImage, localLogoPath = '/mainlogo.png', className = '
           height={logoImage?.height || 44}
           priority
           unoptimized={isSvg}
-          className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          className="h-8 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </div>
     </Link>

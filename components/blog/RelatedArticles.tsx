@@ -72,7 +72,6 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
                   </div>
                   <h3
                     className="font-serif text-lg font-normal text-[#121412] leading-snug group-hover:text-[#4B644C] transition-colors line-clamp-2 flex-1"
-                    style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
                   >
                     {article.title}
                   </h3>

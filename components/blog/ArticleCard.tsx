@@ -71,7 +71,6 @@ export function ArticleCard({ article, index = 0 }: ArticleCardProps) {
         <Link href={href}>
           <h3
             className="font-serif text-xl sm:text-2xl font-normal text-[#121412] leading-snug tracking-tight group-hover:text-[#4B644C] transition-colors duration-300 line-clamp-2"
-            style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
           >
             {article.title}
           </h3>

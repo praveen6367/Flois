@@ -30,7 +30,6 @@ export function JournalNewsletter() {
         {/* Heading */}
         <h2
           className="font-serif text-4xl sm:text-5xl font-normal text-white leading-tight mb-4"
-          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
           Stay Connected with FLOIS
         </h2>

@@ -71,6 +71,7 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: SlideData[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState<number>(1);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
 
   const displaySlides = slides && slides.length > 0 ? slides : HERO_SLIDES;
 
@@ -83,6 +84,23 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: SlideData[] }) {
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + displaySlides.length) % displaySlides.length);
   }, [displaySlides.length]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    // Swipe left -> next slide; Swipe right -> prev slide (threshold 40px)
+    if (diff > 40) {
+      nextSlide();
+    } else if (diff < -40) {
+      prevSlide();
+    }
+    setTouchStart(null);
+  };
 
   useEffect(() => {
     if (isPaused || displaySlides.length <= 1) return;
@@ -109,8 +127,12 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: SlideData[] }) {
       tabIndex={0}
       aria-label="FLOIS Hero Banner Carousel"
     >
-      {/* Slide Transition Viewport — aspect-[9/16] on mobile (exact portrait ratio), fixed height on desktop */}
-      <div className="relative w-full aspect-[9/16] sm:aspect-auto sm:h-[560px] lg:h-[622px] overflow-hidden">
+      {/* Slide Transition Viewport with Touch Swipe Gestures for Mobile */}
+      <div 
+        className="relative w-full aspect-[9/16] sm:aspect-auto sm:h-[560px] lg:h-[622px] overflow-hidden"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
             key={currentSlide.id}
@@ -127,45 +149,45 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: SlideData[] }) {
             />
           </motion.div>
         </AnimatePresence>
-      </div>
 
-      {/* Navigation Arrows — desktop only */}
-      <div className="absolute inset-y-0 left-2 sm:left-4 lg:left-6 right-2 sm:right-4 lg:right-6 z-30 hidden sm:flex items-center justify-between pointer-events-none">
-        <button
-          suppressHydrationWarning
-          onClick={prevSlide}
-          className={`pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-md border shadow-xl transition-all hover:scale-110 opacity-70 sm:opacity-0 group-hover/slider:opacity-100 focus:opacity-100 focus:outline-none ${
-            isLight
-              ? 'bg-white/80 border-[#E8E6DF] text-[#121412] hover:bg-[#141C15] hover:text-white'
-              : 'bg-[#141C15]/60 border-white/20 text-white hover:bg-[#4B644C] hover:border-[#4B644C]'
-          }`}
-          aria-label="Previous Slide"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
+        {/* Navigation Arrows — Enabled for both Mobile & Desktop */}
+        <div className="absolute inset-y-0 left-2.5 sm:left-4 lg:left-6 right-2.5 sm:right-4 lg:right-6 z-30 flex items-center justify-between pointer-events-none">
+          <button
+            suppressHydrationWarning
+            onClick={prevSlide}
+            className={`pointer-events-auto flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full backdrop-blur-md border shadow-lg transition-all active:scale-95 hover:scale-105 opacity-90 sm:opacity-0 group-hover/slider:opacity-100 focus:opacity-100 focus:outline-none ${
+              isLight
+                ? 'bg-white/85 border-[#E8E6DF] text-[#121412] hover:bg-[#141C15] hover:text-white'
+                : 'bg-[#141C15]/75 border-white/20 text-white hover:bg-[#8C9B3E] hover:border-[#8C9B3E]'
+            }`}
+            aria-label="Previous Slide"
+          >
+            <ChevronLeft className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
+          </button>
 
-        <button
-          suppressHydrationWarning
-          onClick={nextSlide}
-          className={`pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-md border shadow-lg transition-all hover:scale-110 opacity-70 sm:opacity-0 group-hover/slider:opacity-100 focus:opacity-100 focus:outline-none ${
-            isLight
-              ? 'bg-white/80 border-[#E8E6DF] text-[#121412] hover:bg-[#141C15] hover:text-white'
-              : 'bg-[#141C15]/60 border-white/20 text-white hover:bg-[#4B644C] hover:border-[#4B644C]'
-          }`}
-          aria-label="Next Slide"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
+          <button
+            suppressHydrationWarning
+            onClick={nextSlide}
+            className={`pointer-events-auto flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full backdrop-blur-md border shadow-lg transition-all active:scale-95 hover:scale-105 opacity-90 sm:opacity-0 group-hover/slider:opacity-100 focus:opacity-100 focus:outline-none ${
+              isLight
+                ? 'bg-white/85 border-[#E8E6DF] text-[#121412] hover:bg-[#141C15] hover:text-white'
+                : 'bg-[#141C15]/75 border-white/20 text-white hover:bg-[#8C9B3E] hover:border-[#8C9B3E]'
+            }`}
+            aria-label="Next Slide"
+          >
+            <ChevronRight className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
+          </button>
+        </div>
       </div>
 
       {/* Bottom Pagination Bar */}
-      <div className="absolute bottom-4 left-0 right-0 z-30 flex items-center justify-between max-w-[1440px] mx-auto px-6 sm:px-12 pointer-events-none">
+      <div className="absolute bottom-3 sm:bottom-4 left-0 right-0 z-30 flex items-center justify-between max-w-[1440px] mx-auto px-4 sm:px-12 pointer-events-none">
         {/* Slide Counter */}
         <div
-          className={`pointer-events-auto flex items-center gap-2 text-xs font-mono tracking-widest backdrop-blur-sm px-2.5 py-1 rounded ${
+          className={`pointer-events-auto flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono tracking-widest backdrop-blur-md px-2.5 py-1 rounded-full shadow-sm ${
             isLight
-              ? 'bg-white/80 text-[#121412] border border-[#E8E6DF]'
-              : 'bg-[#141C15]/40 text-[#EAE3D2]'
+              ? 'bg-white/85 text-[#121412] border border-[#E8E6DF]'
+              : 'bg-[#141C15]/60 text-[#EAE3D2] border border-white/10'
           }`}
         >
           <span className={`font-semibold ${isLight ? 'text-[#121412]' : 'text-white'}`}>
@@ -177,8 +199,8 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: SlideData[] }) {
 
         {/* Indicator Progress Dots */}
         <div
-          className={`pointer-events-auto flex items-center gap-2 backdrop-blur-sm px-3 py-1.5 rounded-full ${
-            isLight ? 'bg-white/80 border border-[#E8E6DF]' : 'bg-[#141C15]/40'
+          className={`pointer-events-auto flex items-center gap-1.5 sm:gap-2 backdrop-blur-md px-2.5 sm:px-3 py-1.5 rounded-full shadow-sm ${
+            isLight ? 'bg-white/85 border border-[#E8E6DF]' : 'bg-[#141C15]/60 border border-white/10'
           }`}
         >
           {displaySlides.map((slide, idx) => (
@@ -190,14 +212,14 @@ export function HeroSlider({ slides = HERO_SLIDES }: { slides?: SlideData[] }) {
                 setCurrentIndex(idx);
               }}
               className="relative h-1.5 rounded-full transition-all duration-300 focus:outline-none"
-              style={{ width: idx === currentIndex ? '28px' : '8px' }}
+              style={{ width: idx === currentIndex ? '24px' : '7px' }}
               aria-label={`Go to slide ${idx + 1}`}
             >
               <span
                 className={`absolute inset-0 rounded-full ${
                   idx === currentIndex
-                    ? isLight ? 'bg-[#141C15]' : 'bg-[#4B644C]'
-                    : isLight ? 'bg-[#121412]/30 hover:bg-[#121412]/60' : 'bg-white/40 hover:bg-white/70'
+                    ? isLight ? 'bg-[#8C9B3E]' : 'bg-[#CBD285]'
+                    : isLight ? 'bg-[#121412]/25 hover:bg-[#121412]/50' : 'bg-white/35 hover:bg-white/65'
                 }`}
               />
             </button>

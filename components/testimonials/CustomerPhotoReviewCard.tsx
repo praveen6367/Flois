@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { Star, ShieldCheck, ThumbsUp } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Star, ShieldCheck, ZoomIn, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export interface CustomerPhotoReview {
   id: string;
@@ -20,119 +20,230 @@ export interface CustomerPhotoReview {
 
 interface CustomerPhotoReviewCardProps {
   review: CustomerPhotoReview;
+  allReviews?: CustomerPhotoReview[];
+  reviewIndex?: number;
+  onLightboxOpen?: (index: number) => void;
 }
 
-export function CustomerPhotoReviewCard({ review }: CustomerPhotoReviewCardProps) {
-  const [helpfuls, setHelpfuls] = useState(review.helpfulCount || 14);
-  const [hasVoted, setHasVoted] = useState(false);
-  const [imgError, setImgError] = useState(false);
+/* ─── Lightbox Component ─────────────────────────────────── */
+interface LightboxProps {
+  reviews: CustomerPhotoReview[];
+  startIndex: number;
+  onClose: () => void;
+}
 
-  // Helper for author initials fallback
-  const initials = review.author
-    .split(' ')
-    .map((n) => n[0])
-    .join('')
-    .toUpperCase();
+export function ReviewLightbox({ reviews, startIndex, onClose }: LightboxProps) {
+  const [current, setCurrent] = useState(startIndex);
 
-  const handleHelpful = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!hasVoted) {
-      setHelpfuls(helpfuls + 1);
-      setHasVoted(true);
-    }
-  };
+  const prev = useCallback(() => setCurrent((c) => (c - 1 + reviews.length) % reviews.length), [reviews.length]);
+  const next = useCallback(() => setCurrent((c) => (c + 1) % reviews.length), [reviews.length]);
 
-  const avatar = review.avatarUrl || review.photoUrl || `https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80`;
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
+    window.addEventListener('keydown', handler);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handler);
+      document.body.style.overflow = '';
+    };
+  }, [onClose, prev, next]);
+
+  const r = reviews[current];
 
   return (
-    <article className="group relative flex flex-col justify-between items-center text-center p-6 sm:p-7 rounded-[28px] bg-white border border-[#E8E6DF] shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(140,155,62,0.15)] hover:border-[#8C9B3E] hover:-translate-y-1.5 transition-all duration-500 overflow-hidden h-full">
-      <div className="w-full space-y-4 flex flex-col items-center">
-        
-        {/* Top Product Category Pill */}
-        {review.productName && (
-          <div className="w-full flex items-center justify-between gap-2">
-            <span className="inline-block text-[10px] font-sans font-semibold uppercase tracking-wider text-[#8C9B3E] bg-[#F2F4E6] px-3 py-1 rounded-full border border-[#E0E4B3] truncate max-w-[240px]">
-              {review.productName}
-            </span>
-            {review.date && (
-              <span className="text-[11px] font-sans text-[#888888] shrink-0">
-                {review.date}
-              </span>
-            )}
-          </div>
-        )}
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[9999] flex items-center justify-center"
+        onClick={onClose}
+      >
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
 
-        {/* Circular Indian Human Avatar Portrait Badge */}
-        <div className="relative my-2 flex items-center justify-center">
-          <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-full overflow-hidden border-2 border-[#8C9B3E] shadow-md bg-[#F8F6F3] group-hover:scale-108 transition-all duration-500">
-            {!imgError ? (
+        {/* Content */}
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0, y: 20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.9, opacity: 0, y: 20 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 flex flex-col lg:flex-row max-w-4xl w-full mx-4 rounded-[28px] overflow-hidden shadow-2xl bg-white"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Left: Large Product Image */}
+          <div className="relative w-full lg:w-[50%] h-64 sm:h-80 lg:h-auto min-h-[300px] bg-[#F8F6F3] flex-shrink-0">
+            {r.photoUrl ? (
               <img
-                src={avatar}
-                alt={`Customer portrait of ${review.author}`}
-                onError={() => setImgError(true)}
-                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                src={r.photoUrl}
+                alt={`Product photo — ${r.productName || r.author}`}
+                className="w-full h-full object-contain p-6"
               />
             ) : (
-              <div className="w-full h-full bg-[#8C9B3E] text-white flex items-center justify-center text-lg font-bold font-sans">
-                {initials}
+              <div className="w-full h-full flex items-center justify-center">
+                <span className="font-sans text-sm text-[#AAAAAA]">No photo</span>
+              </div>
+            )}
+            {r.productName && (
+              <div className="absolute top-4 left-4">
+                <span className="inline-block text-[10px] font-sans font-semibold uppercase tracking-wider text-[#8C9B3E] bg-white/95 px-3 py-1 rounded-full border border-[#E0E4B3] shadow-sm backdrop-blur-sm">
+                  {r.productName}
+                </span>
               </div>
             )}
           </div>
-          
-          {/* Subtle Verified Buyer Pill */}
-          <div className="absolute -bottom-2.5 z-10 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-0.5 text-[9px] font-bold text-[#2D5A2E] shadow-sm border border-[#C5D1C5] whitespace-nowrap">
-            <ShieldCheck className="h-3 w-3 text-[#2D5A2E]" />
-            <span>Verified</span>
+
+          {/* Right: Review Details */}
+          <div className="flex-1 flex flex-col justify-between p-6 sm:p-8 lg:p-10">
+            <div className="space-y-4">
+              {/* Stars + Date */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-[#FBBF24] text-[#FBBF24] stroke-[1]" />
+                  ))}
+                </div>
+                {r.date && (
+                  <span className="text-[11px] font-sans text-[#888888]">{r.date}</span>
+                )}
+              </div>
+              <blockquote className="font-sans text-base sm:text-[17px] text-[#222222] leading-relaxed italic">
+                &ldquo;{r.body}&rdquo;
+              </blockquote>
+            </div>
+
+            {/* Author */}
+            <div className="pt-5 mt-4 border-t border-[#E8E6DF] flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full bg-[#8C9B3E] text-white flex items-center justify-center text-sm font-bold font-sans shrink-0">
+                {r.author.split(' ').map((n) => n[0]).join('').toUpperCase()}
+              </div>
+              <div>
+                <p className="font-sans font-bold text-sm text-[#111111]">{r.author}</p>
+                {r.location && (
+                  <p className="text-[11px] font-sans text-[#777777]">Verified Buyer · {r.location}</p>
+                )}
+              </div>
+              <div className="ml-auto inline-flex items-center gap-1 rounded-full bg-[#F0F7F0] px-2.5 py-1 text-[10px] font-bold text-[#2D5A2E] border border-[#C5D1C5]">
+                <ShieldCheck className="h-3 w-3" />
+                <span>Verified</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Quote Body Text */}
-        <div className="relative w-full px-1 py-1">
-          <p className="font-sans text-sm sm:text-[15px] text-[#222222] font-normal leading-relaxed text-center">
-            "{review.body}"
-          </p>
-        </div>
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-20 h-9 w-9 rounded-full bg-white/90 border border-[#E8E6DF] flex items-center justify-center text-[#111111] hover:bg-[#111111] hover:text-white transition-colors shadow-md backdrop-blur-sm"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </motion.div>
 
+        {/* Prev / Next */}
+        {reviews.length > 1 && (
+          <>
+            <button
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              className="absolute left-4 sm:left-8 z-20 h-11 w-11 rounded-full bg-white/20 border border-white/30 text-white flex items-center justify-center hover:bg-white/30 transition-colors backdrop-blur-sm"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              className="absolute right-4 sm:right-8 z-20 h-11 w-11 rounded-full bg-white/20 border border-white/30 text-white flex items-center justify-center hover:bg-white/30 transition-colors backdrop-blur-sm"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </>
+        )}
+
+        {/* Counter */}
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20">
+          <span className="text-white/70 text-xs font-mono">{current + 1} / {reviews.length}</span>
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+/* ─── Review Card ────────────────────────────────────────── */
+export function CustomerPhotoReviewCard({ review, allReviews, reviewIndex = 0, onLightboxOpen }: CustomerPhotoReviewCardProps) {
+  const [imgError, setImgError] = useState(false);
+
+  const hasPhoto = !!review.photoUrl && !imgError;
+
+  const handleImageClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onLightboxOpen) onLightboxOpen(reviewIndex);
+  };
+
+  return (
+    <article className="group relative flex flex-col bg-white border border-[#E8E6DF] rounded-[22px] shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_16px_48px_rgba(140,155,62,0.14)] hover:border-[#8C9B3E] hover:-translate-y-1 transition-all duration-500 overflow-hidden h-full p-5 sm:p-6">
+
+      {/* ── Top Row: Product name pill + date ── */}
+      <div className="flex items-center justify-between gap-2 mb-4">
+        {review.productName ? (
+          <span className="inline-block text-[9px] font-sans font-semibold uppercase tracking-wider text-[#8C9B3E] bg-[#F2F4E6] px-2.5 py-1 rounded-full border border-[#E0E4B3] truncate max-w-[65%]">
+            {review.productName}
+          </span>
+        ) : (
+          <span />
+        )}
+        {review.date && (
+          <span className="text-[10px] font-sans text-[#AAAAAA] shrink-0">{review.date}</span>
+        )}
       </div>
 
-      {/* Author Footer Row */}
-      <div className="pt-4 mt-3 w-full flex flex-col items-center border-t border-[#E8E6DF]/80 space-y-2">
-        {/* Author Name & Location */}
-        <div className="flex flex-col items-center space-y-0.5">
-          <h4 className="font-sans font-bold text-base text-[#111111] tracking-tight leading-tight">
-            {review.author}
-          </h4>
+      {/* ── Stars ── */}
+      <div className="flex items-center gap-0.5 mb-3">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} className="h-3.5 w-3.5 fill-[#FBBF24] text-[#FBBF24] stroke-[1]" />
+        ))}
+      </div>
+
+      {/* ── Review Body + optional small product thumbnail ── */}
+      <div className="flex gap-3 flex-1 mb-4">
+        {/* Quote text */}
+        <p className="font-sans text-[13px] sm:text-sm text-[#333333] leading-relaxed flex-1">
+          &ldquo;{review.body}&rdquo;
+        </p>
+
+        {/* Small product thumbnail — only shown when photoUrl is available */}
+        {hasPhoto && (
+          <button
+            onClick={handleImageClick}
+            title="View product photo"
+            className="flex-shrink-0 w-[68px] h-[68px] sm:w-[76px] sm:h-[76px] rounded-xl overflow-hidden border border-[#E8E6DF] bg-[#F8F6F3] hover:border-[#8C9B3E] hover:shadow-md transition-all duration-300 relative group/img"
+          >
+            <img
+              src={review.photoUrl!}
+              alt={`${review.productName || 'Product'} photo`}
+              onError={() => setImgError(true)}
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/img:scale-110"
+            />
+            {/* Zoom overlay hint */}
+            <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-colors duration-300 flex items-center justify-center rounded-xl">
+              <ZoomIn className="h-4 w-4 text-white opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 drop-shadow" />
+            </div>
+          </button>
+        )}
+      </div>
+
+      {/* ── Author footer ── */}
+      <div className="flex items-center justify-between pt-3 border-t border-[#F0EDE8] gap-2 mt-auto">
+        <div>
+          <p className="font-sans font-bold text-[13px] text-[#111111] leading-tight">{review.author}</p>
           {review.location && (
-            <span className="text-[11px] font-sans text-[#777777]">
-              Verified Buyer · {review.location}
-            </span>
+            <p className="text-[10px] font-sans text-[#888888] mt-0.5">Verified Buyer · {review.location}</p>
           )}
         </div>
-
-        {/* 5 Amber/Gold Stars & Helpful Button */}
-        <div className="w-full flex items-center justify-between pt-1">
-          <div className="flex items-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className="h-4 w-4 fill-[#FBBF24] text-[#FBBF24] stroke-[1]"
-              />
-            ))}
-          </div>
-
-          <button
-            suppressHydrationWarning
-            onClick={handleHelpful}
-            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all border ${
-              hasVoted
-                ? 'bg-[#8C9B3E] text-white border-[#8C9B3E]'
-                : 'bg-[#F8F6F3] text-[#555555] border-[#E8E6DF] hover:bg-[#8C9B3E] hover:text-white hover:border-[#8C9B3E]'
-            }`}
-          >
-            <ThumbsUp className="h-3 w-3" />
-            <span>{helpfuls}</span>
-          </button>
+        <div className="inline-flex items-center gap-1 rounded-full bg-[#F0F7F0] px-2 py-0.5 text-[9px] font-bold text-[#2D5A2E] border border-[#C5D1C5] shrink-0">
+          <ShieldCheck className="h-2.5 w-2.5" />
+          <span>Verified</span>
         </div>
       </div>
     </article>

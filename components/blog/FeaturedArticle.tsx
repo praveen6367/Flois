@@ -84,7 +84,6 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
                 {/* Title */}
                 <h2
                   className="font-serif text-3xl sm:text-4xl font-normal text-[#121412] leading-[1.1] tracking-tight group-hover:text-[#4B644C] transition-colors duration-300"
-                  style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
                 >
                   {article.title}
                 </h2>

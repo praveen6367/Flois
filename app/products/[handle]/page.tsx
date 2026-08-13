@@ -14,11 +14,16 @@ import { ComparisonTable } from '@/components/pdp/ComparisonTable';
 import { ProductReviews } from '@/components/pdp/ProductReviews';
 import { ProductFAQs } from '@/components/pdp/ProductFAQs';
 import { RelatedProductsPDP } from '@/components/pdp/RelatedProductsPDP';
+import { VideoStoriesSection } from '@/components/VideoStories';
+import { ReelStoriesSection } from '@/components/video/ReelStoriesSection';
+import { InstagramFeedSection } from '@/components/social/InstagramFeedSection';
+import { ProductStoryFloatingWidget } from '@/components/pdp/ProductStoryFloatingWidget';
 import { Footer } from '@/components/Footer';
 import { getProductByHandle } from '@/lib/shopify/products';
 import { getHeaderMenu } from '@/lib/shopify/menus';
 import { getShopBrand } from '@/lib/shopify/shop';
-import { ClinicalResultMetaobject } from '@/types/metaobject';
+import { getVideoStories } from '@/lib/shopify/videoMetaobjects';
+import { ClinicalResultMetaobject, VideoStoryMetaobject } from '@/types/metaobject';
 import { Product } from '@/types/product';
 
 export const revalidate = 60; // Revalidate dynamic product data every 60s
@@ -138,6 +143,14 @@ export default async function ProductPage({ params }: Props) {
   const menuItems = await getHeaderMenu('main-menu');
   const productImage = product.images?.nodes?.[0]?.url || '/products/rootherb_product.png';
 
+  // Fetch Doctor & Expert video reviews dynamically
+  let videoStories: VideoStoryMetaobject[] = [];
+  try {
+    videoStories = await getVideoStories();
+  } catch (e) {
+    console.warn('[ProductPage] Failed to fetch video stories:', e);
+  }
+
   // Build product-specific before/after comparison data for ClinicalResultsSection
   const h = handle.toLowerCase();
   const productClinicalResults: ClinicalResultMetaobject[] = h.includes('sunscreen') || h.includes('tan') || h.includes('spf')
@@ -220,36 +233,53 @@ export default async function ProductPage({ params }: Props) {
       <Benefits product={product} />
 
       {/* Section 4: Ingredient Explorer */}
-      <IngredientExplorer />
+      <IngredientExplorer productHandle={handle} />
 
-      {/* Section 5: Real Customer Before & After — same section as homepage */}
+      {/* Section 5: Doctor & Dermatologist Recommendations */}
+      <VideoStoriesSection
+        stories={videoStories}
+        eyebrow="DOCTOR & DERMATOLOGIST REVIEWS"
+        title="Recommended by Doctors & Experts"
+        subtitle="Watch leading dermatologists and trichologists review the clinical efficacy of FLOIS formulations."
+      />
+
+      {/* Section 6: Real Customer Before & After */}
       <ClinicalResultsSection
         results={productClinicalResults}
-        eyebrow="Real Customer Results"
+        eyebrow="Real Customer Transformations"
         title="See The Difference For Yourself"
         subtitle="Real before & after results from verified customers using this product consistently."
       />
 
-      {/* Section 6: How To Use Timeline */}
+      {/* Section 7: Vertical Customer Video Reels Carousel */}
+      <ReelStoriesSection />
+
+      {/* Section 8: How To Use Timeline */}
       <HowToUse product={product} />
 
-      {/* Section 7: Sensory Texture Showcase */}
+      {/* Section 9: Sensory Texture Showcase */}
       <TextureShowcase product={product} />
 
-      {/* Section 8: Formula Comparison Table */}
-      <ComparisonTable />
+      {/* Section 10: Formula Comparison Table */}
+      <ComparisonTable productHandle={handle} />
 
-      {/* Section 9: Verified Customer Reviews Filtered for This Product */}
+      {/* Section 11: Verified Customer Reviews Filtered for This Product */}
       <ProductReviews product={product} />
 
-      {/* Section 10: FAQs Accordion */}
-      <ProductFAQs />
+      {/* Section 12: FAQs Accordion */}
+      <ProductFAQs productHandle={handle} />
 
-      {/* Section 11: Recommended Related Products */}
+      {/* Section 13: Recommended Related Products */}
       <RelatedProductsPDP currentHandle={product.handle} />
 
-      {/* Footer */}
+      {/* Section 14: Official Instagram Community Feed Showcase */}
+      <InstagramFeedSection />
+
+      {/* Section 15: Final Luxury Editorial Footer */}
       <Footer />
+
+      {/* Floating Instagram Story / 9:16 Video Player Widget (Bottom-Left Corner) */}
+      <ProductStoryFloatingWidget productHandle={handle} />
 
       {/* Sticky Mobile Add to Cart CTA (mobile only) */}
       <StickyMobileCTA product={product} />

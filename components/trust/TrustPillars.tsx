@@ -1,61 +1,67 @@
 'use client';
 
 import React from 'react';
-import { Leaf, ShieldCheck, Droplets, Sparkles } from 'lucide-react';
+import { 
+  Leaf, 
+  ShieldCheck, 
+  Sparkles, 
+  Sprout, 
+  CheckCircle2, 
+  Droplets, 
+  Wind, 
+  Award 
+} from 'lucide-react';
 
-const TRUST_PILLARS = [
-  {
-    icon: Leaf,
-    title: '100% Plant-Based',
-    description: 'Sustainably harvested 18 cold-pressed botanical extracts'
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Dermatologist Tested',
-    description: 'Clinically verified hair & scalp efficacy trials'
-  },
-  {
-    icon: Droplets,
-    title: 'Cold-Pressed Oils',
-    description: 'Zero chemical heat extraction for nutrient preservation'
-  },
-  {
-    icon: Sparkles,
-    title: 'Cruelty-Free & Pure',
-    description: 'Ethically handcrafted in small fresh batches'
-  }
+const TRUST_ITEMS = [
+  { icon: Leaf, title: '100% Plant-Based' },
+  { icon: ShieldCheck, title: 'Dermatologist Tested' },
+  { icon: Sparkles, title: 'Cruelty-Free' },
+  { icon: Sprout, title: '100% Vegan' },
+  { icon: CheckCircle2, title: 'Chemical-Free' },
+  { icon: Droplets, title: 'Mineral Oil Free' },
+  { icon: Wind, title: 'Perfume-Free' },
+  { icon: Award, title: 'Cold-Pressed Extractions' },
 ];
 
 export function TrustPillars() {
-  return (
-    <section className="w-full bg-[#F8F6F3] border-b border-[#E8E6DF] py-10 sm:py-14 relative z-10">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {TRUST_PILLARS.map((pillar, idx) => {
-            const Icon = pillar.icon;
-            return (
-              <div
-                key={idx}
-                className="group flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-[#E8E6DF] shadow-[0_4px_20px_rgba(18,20,18,0.03)] hover:shadow-[0_10px_30px_rgba(18,20,18,0.08)] hover:border-[#ACB041] transition-all duration-300 hover:-translate-y-1"
-              >
-                {/* Icon Badge */}
-                <div className="w-11 h-11 rounded-full bg-[#F8F6F3] border border-[#EAE3D2] flex items-center justify-center shrink-0 text-[#ACB041] group-hover:bg-[#ACB041] group-hover:text-[#111111] transition-colors duration-300 shadow-sm">
-                  <Icon className="h-5 w-5 stroke-[1.75]" />
-                </div>
+  // Duplicate list 4 times to ensure seamless infinite looping track
+  const marqueeItems = [
+    ...TRUST_ITEMS, 
+    ...TRUST_ITEMS, 
+    ...TRUST_ITEMS, 
+    ...TRUST_ITEMS
+  ];
 
-                {/* Text Content */}
-                <div className="space-y-1">
-                  <h4 className="font-serif text-base sm:text-lg font-normal text-[#111111] leading-snug group-hover:text-[#ACB041] transition-colors">
-                    {pillar.title}
-                  </h4>
-                  <p className="text-xs text-[#333333] font-sans leading-relaxed">
-                    {pillar.description}
-                  </p>
+  return (
+    <section 
+      className="w-full bg-[#FAF9F5] border-y border-[#E8E6DF] py-3.5 sm:py-4 overflow-hidden relative z-10 select-none cursor-default"
+      aria-label="FLOIS Brand Trust Guarantee"
+    >
+      {/* Subtle Gradient Fade Overlays for Left & Right Edges */}
+      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#FAF9F5] to-transparent z-20 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#FAF9F5] to-transparent z-20 pointer-events-none" />
+
+      {/* Infinite Scrolling Marquee Track — Light Luxury Botanical Ticker */}
+      <div className="flex w-max items-center animate-[marquee_36s_linear_infinite] pointer-events-none">
+        {marqueeItems.map((item, idx) => {
+          const Icon = item.icon;
+          return (
+            <div key={idx} className="flex items-center gap-6 sm:gap-10 px-4 sm:px-6 shrink-0">
+              {/* Icon & Refined Title */}
+              <div className="flex items-center gap-3 sm:gap-3.5">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#EFF1D9] border border-[#CBD285]/60 flex items-center justify-center text-[#6A9739] shrink-0 shadow-sm">
+                  <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5 stroke-[2]" />
                 </div>
+                <span className="text-xs sm:text-sm font-sans font-medium text-[#111111] tracking-wide whitespace-nowrap">
+                  {item.title}
+                </span>
               </div>
-            );
-          })}
-        </div>
+
+              {/* Luxury Botanical Separator */}
+              <span className="text-[#C8A96E] text-xs select-none">✦</span>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

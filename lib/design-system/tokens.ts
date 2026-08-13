@@ -61,6 +61,7 @@ export const FLOIS_TYPOGRAPHY = {
   families: {
     serif: 'var(--flois-font-serif)',
     sans: 'var(--flois-font-sans)',
+    poppins: 'var(--font-poppins)',
   },
   scale: {
     heroDisplay: { size: '4.5rem', leading: '1.05', weight: 400, tracking: '-0.03em', family: 'serif' },

@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, CheckCircle2, X, PenTool, Loader2, ShieldCheck } from 'lucide-react';
+import { Star, CheckCircle2, X, PenTool, Loader2, ShieldCheck, ImagePlus, Trash2 } from 'lucide-react';
 import { CustomerPhotoReview } from '@/components/testimonials/CustomerPhotoReviewCard';
 
 interface WriteReviewFormProps {
@@ -23,12 +23,47 @@ export function WriteReviewForm({ productName, productHandle, onReviewSubmitted 
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Product image upload state
+  const [productImagePreview, setProductImagePreview] = useState<string | null>(null);
+  const [productImageBase64, setProductImageBase64] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const ratingLabels: Record<number, string> = {
     5: '5.0 — Excellent (Highly Recommended)',
     4: '4.0 — Very Good (Satisfied)',
     3: '3.0 — Average',
     2: '2.0 — Below Expectations',
     1: '1.0 — Poor'
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type and size (max 4MB)
+    if (!file.type.startsWith('image/')) {
+      setErrorMessage('Please upload a valid image file (JPG, PNG, WEBP).');
+      return;
+    }
+    if (file.size > 4 * 1024 * 1024) {
+      setErrorMessage('Image must be under 4MB. Please compress and try again.');
+      return;
+    }
+
+    setErrorMessage('');
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const result = ev.target?.result as string;
+      setProductImagePreview(result);
+      setProductImageBase64(result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleRemoveImage = () => {
+    setProductImagePreview(null);
+    setProductImageBase64(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -53,7 +88,8 @@ export function WriteReviewForm({ productName, productHandle, onReviewSubmitted 
           rating,
           body: bodyText.trim(),
           productName,
-          productHandle
+          productHandle,
+          photoUrl: productImageBase64 || undefined
         })
       });
 
@@ -70,6 +106,9 @@ export function WriteReviewForm({ productName, productHandle, onReviewSubmitted 
           setEmail('');
           setLocation('');
           setBodyText('');
+          setProductImagePreview(null);
+          setProductImageBase64(null);
+          if (fileInputRef.current) fileInputRef.current.value = '';
           setIsSuccess(false);
           setIsOpen(false);
         }, 2200);
@@ -240,6 +279,59 @@ export function WriteReviewForm({ productName, productHandle, onReviewSubmitted 
                       onChange={(e) => setBodyText(e.target.value)}
                       placeholder="Describe your honest experience using this product..."
                       className="w-full px-4 py-3 rounded-xl bg-white border border-[#E8E6DF] text-sm text-[#111111] focus:outline-none focus:border-[#8C9B3E] focus:ring-1 focus:ring-[#8C9B3E] transition-all resize-none"
+                    />
+                  </div>
+
+                  {/* Product Image Upload */}
+                  <div className="space-y-2">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#333333] font-sans">
+                      Add Product Photo <span className="text-xs text-[#777777] font-normal normal-case">(Optional — shows with your review)</span>
+                    </label>
+
+                    {productImagePreview ? (
+                      /* Image Preview */
+                      <div className="relative inline-flex items-start gap-3">
+                        <div className="relative w-24 h-24 rounded-xl overflow-hidden border-2 border-[#8C9B3E] shadow-md">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={productImagePreview}
+                            alt="Product image preview"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handleRemoveImage}
+                          className="mt-1 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-red-50 border border-red-200 text-red-500 text-[11px] font-semibold hover:bg-red-100 transition-colors"
+                        >
+                          <Trash2 className="h-3 w-3" />
+                          <span>Remove</span>
+                        </button>
+                      </div>
+                    ) : (
+                      /* Upload Dropzone */
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        className="w-full flex flex-col items-center justify-center gap-2 py-6 px-4 rounded-xl border-2 border-dashed border-[#D8DDB5] bg-[#F7F8EE] hover:border-[#8C9B3E] hover:bg-[#F2F4E6] transition-all duration-300 group cursor-pointer"
+                      >
+                        <div className="h-10 w-10 rounded-full bg-[#E8ECC8] flex items-center justify-center group-hover:bg-[#D4DAAC] transition-colors">
+                          <ImagePlus className="h-5 w-5 text-[#8C9B3E]" />
+                        </div>
+                        <div className="text-center">
+                          <span className="text-xs font-semibold text-[#8C9B3E]">Click to upload product photo</span>
+                          <p className="text-[10px] text-[#999999] mt-0.5">JPG, PNG or WEBP · Max 4MB</p>
+                        </div>
+                      </button>
+                    )}
+
+                    {/* Hidden file input */}
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif"
+                      onChange={handleImageChange}
+                      className="hidden"
                     />
                   </div>
 

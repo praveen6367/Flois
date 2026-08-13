@@ -169,7 +169,6 @@ export function MobileNavigation({
                   >
                     <span
                       className="font-serif text-[1.1rem] font-normal text-[#FAF9F5] group-hover:text-[#ACB041] transition-colors"
-                      style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
                     >
                       {item.title}
                     </span>

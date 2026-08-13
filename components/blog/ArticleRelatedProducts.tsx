@@ -91,7 +91,6 @@ export function ArticleRelatedProducts({ article, products }: ArticleRelatedProd
                     {product.productType || 'FLOIS BOTANICAL'}
                   </span>
                   <h3 className="font-serif text-lg font-normal text-[#121412] leading-snug group-hover:text-[#4B644C] transition-colors"
-                    style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
                   >
                     {product.title}
                   </h3>

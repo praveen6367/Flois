@@ -11,7 +11,6 @@ export function EmptyJournalState() {
         </div>
         <h2
           className="font-serif text-3xl text-[#121412] mb-4"
-          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
           The Journal is Coming Soon
         </h2>

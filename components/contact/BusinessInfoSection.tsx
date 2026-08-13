@@ -11,18 +11,6 @@ export function BusinessInfoSection() {
     <section className="relative w-full bg-[#FFFFFF] py-20 sm:py-28 border-b border-[#E8E6DF]">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 text-left">
         
-        {/* Section Header */}
-        <div className="max-w-[700px] mb-14 space-y-3">
-          <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-[#4B644C] block">
-            AUTHENTIC INDIAN WELLNESS COMPANY
-          </span>
-          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#121412] tracking-tight">
-            Visit Our Office
-          </h2>
-          <p className="text-base font-sans text-[#787E78] font-light leading-relaxed">
-            Registered business entity details and physical headquarters information.
-          </p>
-        </div>
 
         {/* Editorial Information Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

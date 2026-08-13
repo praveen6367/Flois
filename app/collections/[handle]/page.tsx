@@ -4,14 +4,16 @@ import { notFound } from 'next/navigation';
 import { Header } from '@/components/header/Header';
 import { CollectionNav } from '@/components/shop/CollectionNav';
 import { SmartProductGrid } from '@/components/shop/SmartProductGrid';
+import { CollectionNavigation } from '@/components/collections/CollectionNavigation';
 import { ShopEditorialStory } from '@/components/shop/ShopEditorialStory';
 import { ShopBenefits } from '@/components/shop/ShopBenefits';
 import { ProductFAQs } from '@/components/pdp/ProductFAQs';
 import { Footer } from '@/components/Footer';
 import { getHeaderMenu } from '@/lib/shopify/menus';
 import { getShopBrand } from '@/lib/shopify/shop';
-import { getCollectionByHandle, getCollectionProducts } from '@/lib/shopify/collections';
+import { getCollectionByHandle, getCollectionProducts, getCollections } from '@/lib/shopify/collections';
 import { getProducts } from '@/lib/shopify/products';
+import { Collection } from '@/types/collection';
 
 interface CollectionPageProps {
   params: Promise<{ handle: string }>;
@@ -37,6 +39,22 @@ export default async function DynamicCollectionPage({ params }: CollectionPagePr
   const menuItems = await getHeaderMenu('main-menu');
   const collection = await getCollectionByHandle(handle);
 
+  let collections: Collection[] = [];
+  try {
+    const res = await getCollections(25);
+    const rawCollections = res.collections || [];
+    const EXCLUDED_HANDLES = ['frontpage', 'home-page', 'uncategorized'];
+    const EXCLUDED_TITLES = ['home page', 'uncategorized'];
+
+    collections = rawCollections.filter((c) => {
+      const handleLower = c.handle.toLowerCase();
+      const titleLower = c.title.toLowerCase();
+      return !EXCLUDED_HANDLES.includes(handleLower) && !EXCLUDED_TITLES.includes(titleLower);
+    });
+  } catch (err) {
+    console.warn('[DynamicCollectionPage] Failed to fetch Shopify collections:', err);
+  }
+
   if (!collection) {
     // Fallback to all products if collection not found in Shopify
     const { products } = await getProducts({ first: 20 });
@@ -45,6 +63,7 @@ export default async function DynamicCollectionPage({ params }: CollectionPagePr
         <Header menu={menuItems} logoImage={shopBrand?.logo} />
         <CollectionNav activeHandle={handle} totalProductCount={products.length} />
         <SmartProductGrid products={products} />
+        <CollectionNavigation collections={collections} activeHandle={handle} />
         <Footer />
       </div>
     );
@@ -76,6 +95,9 @@ export default async function DynamicCollectionPage({ params }: CollectionPagePr
 
       {/* Filtered Product Grid */}
       <SmartProductGrid products={collectionProducts.length > 0 ? collectionProducts : (await getProducts()).products} />
+
+      {/* Collection Navigation Scroller */}
+      <CollectionNavigation collections={collections} activeHandle={handle} />
 
       {/* Editorial Collection Story */}
       <ShopEditorialStory />

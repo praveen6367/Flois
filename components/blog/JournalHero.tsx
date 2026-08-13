@@ -17,7 +17,6 @@ export function JournalHero() {
         {/* Main heading */}
         <h1
           className="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal text-[#121412] leading-[1.02] tracking-tight mb-6"
-          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
         >
           The FLOIS Journal
         </h1>

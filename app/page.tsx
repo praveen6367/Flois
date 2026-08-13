@@ -15,6 +15,7 @@ import { VideoStoriesSection } from '@/components/VideoStories';
 import { ReelStoriesSection } from '@/components/video/ReelStoriesSection';
 import { ShopByConcernSection } from '@/components/concerns/ShopByConcernSection';
 import { CustomerReviewsSection } from '@/components/testimonials/CustomerReviewsSection';
+import { InstagramFeedSection } from '@/components/social/InstagramFeedSection';
 import { Footer } from '@/components/Footer';
 import { MenuItem } from '@/types/menu';
 import { Collection } from '@/types/collection';
@@ -110,10 +111,7 @@ export default async function HomePage() {
       {/* Section 1: Dynamic Luxury Header & Announcement Bar */}
       <Header menu={menuItems} announcements={announcements.length > 0 ? announcements : undefined} logoImage={shopBrand?.logo} />
 
-      {/* Section 2: Dynamic Luxury Collection Navigation Scroller */}
-      <CollectionNavigation collections={collections} />
-
-      {/* Section 3: Luxury Hero Banner Slider */}
+      {/* Section 2: Luxury Hero Banner Slider */}
       <HeroSlider />
 
       {/* Section 4: Botanical Trust Pillars */}
@@ -129,7 +127,7 @@ export default async function HomePage() {
       <RetailPartnersSection partners={retailPartners} />
 
       {/* Promo Banner Section 2 (bannerpromo2.png) */}
-      <PromoBannerSection imageSrc="/placeholders/bannerpromo2.png" altText="FLOIS Botanical Luxury Promo Banner 2" />
+      <PromoBannerSection imageSrc="/placeholders/bannerpromo2.png" altText="FLOIS Promo Banner 2" />
 
       {/* Section 7: Clinical Results & Transformations Masonry */}
       <ClinicalResultsSection results={clinicalResults} />
@@ -149,7 +147,10 @@ export default async function HomePage() {
       {/* Section 11: Customer Reviews Showcase */}
       <CustomerReviewsSection />
 
-      {/* Section 12: Final Luxury Editorial Footer */}
+      {/* Section 12: Instagram Community Feed Showcase */}
+      <InstagramFeedSection />
+
+      {/* Section 13: Final Luxury Editorial Footer */}
       <Footer />
     </div>
   );

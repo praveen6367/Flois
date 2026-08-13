@@ -159,10 +159,10 @@ export function HeroSlide({ slide, isActive }: HeroSlideProps) {
         </div>
 
         {/* Soft white gradient at bottom so CTA is always readable */}
-        <div className="absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-t from-white/90 via-white/60 to-transparent z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-white/95 via-white/70 to-transparent z-10" />
 
-        {/* CTA — centered, bottom section */}
-        <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col items-center pb-8 px-6">
+        {/* CTA — centered, bottom section above pagination controls */}
+        <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col items-center pb-14 px-6">
           <motion.div
             variants={contentVariants}
             initial="hidden"

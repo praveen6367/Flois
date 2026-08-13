@@ -93,7 +93,7 @@ export function FooterNavigation() {
           <div className="flex items-center gap-3 pt-2">
             {/* Instagram */}
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/getflois"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-[#E8E6DF] text-[#111111] hover:bg-[#8C9B3E] hover:text-white hover:border-[#8C9B3E] transition-all shadow-xs"
