@@ -43,7 +43,7 @@ export function ClinicalResultsSection({
   const displayResults = results && results.length > 0 ? results : [];
 
   const heroResult = displayResults[0];
-  const supportingResults = displayResults.slice(1, 5);
+  const supportingResults = displayResults.slice(1);
 
   return (
     <section className="relative w-full bg-[#FFFFFF] text-[#121412] py-20 sm:py-28 lg:py-32 overflow-hidden border-b border-[#E8E6DF]">
@@ -109,7 +109,7 @@ export function ClinicalResultsSection({
             </motion.div>
           )}
 
-          {/* Bottom 4 Supporting Transformation Cards Grid */}
+          {/* All Supporting Transformation Cards Grid — 4 cols, wraps across rows */}
           {supportingResults.length > 0 && (
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {supportingResults.map((res, idx) => (
