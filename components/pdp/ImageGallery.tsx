@@ -11,12 +11,44 @@ interface ImageGalleryProps {
   title: string;
 }
 
-export function ImageGallery({ images, title }: ImageGalleryProps) {
-  const galleryImages = images && images.length > 0 ? images : [
-    { url: '/products/rootherb_product.png', altText: title },
-    { url: '/products/rootherb_ingredients_map.png', altText: `${title} Ingredients` },
-    { url: '/products/editorial_story.jpg', altText: `${title} Lifestyle` },
+function getDefaultImages(title: string): { url: string; altText: string }[] {
+  const t = title.toLowerCase();
+
+  if (t.includes('sunscreen') || t.includes('tan') || t.includes('spf')) {
+    return [
+      { url: '/products/sunscreen_product.png', altText: `${title} Product Tube` },
+      { url: '/products/editorial_sunscreen.jpg', altText: `${title} Formulation` },
+      { url: '/products/texture_sunscreen.jpg', altText: `${title} Texture` },
+    ];
+  }
+
+  if (t.includes('neem') || t.includes('comb')) {
+    return [
+      { url: '/products/neem_comb_product.png', altText: `${title} Product` },
+      { url: '/products/editorial_neem_comb.jpg', altText: `${title} Artisan Craft` },
+      { url: '/products/texture_neem_comb.jpg', altText: `${title} Wood Texture` },
+    ];
+  }
+
+  if (t.includes('body') || t.includes('skin') || t.includes('care')) {
+    return [
+      { url: '/products/botanical_ingredients.jpg', altText: `${title} Botanical Ingredients` },
+      { url: '/products/editorial_story.jpg', altText: `${title} Lifestyle` },
+      { url: '/products/texture_macro.jpg', altText: `${title} Texture` },
+    ];
+  }
+
+  // Default: Hair Growth Oil
+  return [
+    { url: '/products/rootherb_product.png', altText: `${title} Product Bottle` },
+    { url: '/products/rootherb_ingredients_map.png', altText: `${title} Formulation Map` },
+    { url: '/products/editorial_rootherb.jpg', altText: `${title} Lifestyle` },
   ];
+}
+
+export function ImageGallery({ images, title }: ImageGalleryProps) {
+  const fallbackImages = getDefaultImages(title);
+  const galleryImages = images && images.length > 0 ? images : fallbackImages;
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -70,183 +102,191 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               suppressHydrationWarning
               key={idx}
               onClick={() => setSelectedIndex(idx)}
-              aria-label={`View image ${idx + 1} of ${galleryImages.length}`}
-              className={`relative h-[72px] w-[72px] lg:h-20 lg:w-20 rounded-xl overflow-hidden bg-[#F5F4EF] border-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4B644C] focus-visible:ring-offset-1 ${
-                idx === selectedIndex
-                  ? 'border-[#4B644C] shadow-sm'
-                  : 'border-transparent hover:border-[#4B644C]/40 opacity-70 hover:opacity-100'
+              className={`relative h-20 w-20 sm:h-22 sm:w-22 rounded-2xl overflow-hidden bg-[#FAF9F5] border-2 transition-all duration-300 ${
+                selectedIndex === idx
+                  ? 'border-[#8C9B3E] shadow-md scale-105'
+                  : 'border-[#E8E6DF] opacity-70 hover:opacity-100 hover:border-[#8C9B3E]/50'
               }`}
             >
               <Image
                 src={img.url}
-                alt={img.altText || `${title} view ${idx + 1}`}
+                alt={img.altText || title}
                 fill
-                sizes="80px"
-                className="object-cover object-center"
+                sizes="88px"
+                className="object-contain p-1.5"
               />
-              {idx === selectedIndex && (
-                <div className="absolute inset-0 ring-2 ring-inset ring-[#4B644C]/30 rounded-xl" />
-              )}
             </button>
           ))}
         </div>
 
-        {/* Main Image Stage */}
+        {/* Main Display Image */}
         <div
-          className="relative flex-1 aspect-square sm:aspect-[4/4.5] rounded-2xl overflow-hidden bg-[#F5F4EF] group cursor-zoom-in"
+          className="relative flex-1 aspect-[4/5] sm:aspect-[1/1] rounded-3xl overflow-hidden bg-[#FAF9F5] border border-[#E8E6DF] shadow-md group cursor-zoom-in"
+          onClick={() => setIsFullscreen(true)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          onClick={() => setIsFullscreen(true)}
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedIndex}
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={currentImage.url}
-                alt={currentImage.altText || title}
-                fill
-                priority={selectedIndex === 0}
-                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 55vw, 680px"
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-              />
-            </motion.div>
-          </AnimatePresence>
+          <Image
+            src={currentImage.url}
+            alt={currentImage.altText || title}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+            className={`object-contain p-4 sm:p-6 transition-transform duration-700 ${
+              isZoomed ? 'scale-150' : 'group-hover:scale-105'
+            }`}
+          />
 
-          {/* Zoom hint — top right */}
-          <div className="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 rounded-full bg-white/80 backdrop-blur-sm px-2.5 py-1 text-[10px] font-medium text-[#4A4E4A] opacity-0 group-hover:opacity-100 transition-opacity shadow-sm pointer-events-none">
-            <ZoomIn className="h-3 w-3" />
-            <span>Zoom</span>
+          {/* Top-Right Action Controls */}
+          <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+            <button
+              suppressHydrationWarning
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsZoomed(!isZoomed);
+              }}
+              aria-label={isZoomed ? 'Zoom Out' : 'Zoom In'}
+              className="h-10 w-10 rounded-full bg-white/80 backdrop-blur-md border border-[#E8E6DF] flex items-center justify-center text-[#111111] hover:bg-[#111111] hover:text-white transition-all shadow-sm"
+            >
+              <ZoomIn className="h-4 w-4" />
+            </button>
+            <button
+              suppressHydrationWarning
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFullscreen(true);
+              }}
+              aria-label="Expand Fullscreen Gallery"
+              className="h-10 w-10 rounded-full bg-white/80 backdrop-blur-md border border-[#E8E6DF] flex items-center justify-center text-[#111111] hover:bg-[#111111] hover:text-white transition-all shadow-sm"
+            >
+              <Maximize2 className="h-4 w-4" />
+            </button>
           </div>
 
-          {/* Nav arrows — desktop hover */}
+          {/* Bottom-Left Image Counter */}
+          <div className="absolute bottom-4 left-4 z-10">
+            <span className="inline-block text-[10px] font-sans font-semibold tracking-widest text-[#111111] bg-white/80 backdrop-blur-md px-3 py-1 rounded-full border border-[#E8E6DF] shadow-xs">
+              {selectedIndex + 1} / {galleryImages.length}
+            </span>
+          </div>
+
+          {/* Mobile Arrows Overlay */}
           {galleryImages.length > 1 && (
-            <>
+            <div className="md:hidden">
               <button
                 suppressHydrationWarning
-                onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-                aria-label="Previous image"
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white/90 backdrop-blur-sm text-[#121412] flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-white transition-all shadow-md focus:outline-none focus-visible:opacity-100"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev();
+                }}
+                aria-label="Previous Image"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white/80 backdrop-blur-md border border-[#E8E6DF] flex items-center justify-center text-[#111111] shadow-md"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
               <button
                 suppressHydrationWarning
-                onClick={(e) => { e.stopPropagation(); handleNext(); }}
-                aria-label="Next image"
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white/90 backdrop-blur-sm text-[#121412] flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-white transition-all shadow-md focus:outline-none focus-visible:opacity-100"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNext();
+                }}
+                aria-label="Next Image"
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white/80 backdrop-blur-md border border-[#E8E6DF] flex items-center justify-center text-[#111111] shadow-md"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
-            </>
+            </div>
           )}
         </div>
       </div>
 
-      {/* Mobile: dot pagination */}
-      {galleryImages.length > 1 && (
-        <div className="flex md:hidden items-center justify-center gap-2 mt-4">
-          {galleryImages.map((_, idx) => (
-            <button
-              suppressHydrationWarning
-              key={idx}
-              onClick={() => setSelectedIndex(idx)}
-              aria-label={`Go to image ${idx + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                idx === selectedIndex
-                  ? 'w-5 h-2 bg-[#4B644C]'
-                  : 'w-2 h-2 bg-[#4B644C]/30 hover:bg-[#4B644C]/60'
-              }`}
+      {/* Mobile Horizontal Thumbnail Row */}
+      <div className="flex md:hidden items-center justify-center gap-2 mt-3 overflow-x-auto pb-1">
+        {galleryImages.map((img, idx) => (
+          <button
+            suppressHydrationWarning
+            key={idx}
+            onClick={() => setSelectedIndex(idx)}
+            className={`relative h-16 w-16 rounded-xl overflow-hidden bg-[#FAF9F5] border-2 transition-all shrink-0 ${
+              selectedIndex === idx ? 'border-[#8C9B3E] shadow-sm' : 'border-[#E8E6DF] opacity-60'
+            }`}
+          >
+            <Image
+              src={img.url}
+              alt={img.altText || title}
+              fill
+              sizes="64px"
+              className="object-contain p-1"
             />
-          ))}
-        </div>
-      )}
+          </button>
+        ))}
+      </div>
 
-      {/* Fullscreen Lightbox */}
+      {/* Fullscreen Lightbox Overlay */}
       <AnimatePresence>
         {isFullscreen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 bg-[#0A0A0A]/96 backdrop-blur-xl flex items-center justify-center"
+            className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-lg flex items-center justify-center p-4 sm:p-8"
             onClick={() => setIsFullscreen(false)}
           >
-            {/* Close */}
+            {/* Close Button */}
             <button
               suppressHydrationWarning
               onClick={() => setIsFullscreen(false)}
-              aria-label="Close fullscreen"
-              className="absolute top-5 right-5 z-10 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors focus:outline-none"
+              aria-label="Close Lightbox"
+              className="absolute top-6 right-6 z-20 h-11 w-11 rounded-full bg-white/20 hover:bg-white text-white hover:text-black transition-all flex items-center justify-center border border-white/30"
             >
               <X className="h-5 w-5" />
             </button>
 
-            {/* Counter */}
-            <span className="absolute top-5 left-5 z-10 text-xs font-sans text-white/60 tracking-widest">
-              {selectedIndex + 1} / {galleryImages.length}
-            </span>
-
-            {/* Main image */}
+            {/* Lightbox Image Container */}
             <motion.div
-              key={selectedIndex}
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="relative w-full max-w-4xl max-h-[85vh] aspect-square sm:aspect-[4/3]"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
               onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl h-[75vh] sm:h-[85vh] flex items-center justify-center"
             >
               <Image
                 src={currentImage.url}
                 alt={currentImage.altText || title}
                 fill
-                sizes="100vw"
+                priority
                 className="object-contain"
               />
             </motion.div>
 
-            {/* Lightbox arrows */}
+            {/* Lightbox Controls */}
             {galleryImages.length > 1 && (
               <>
                 <button
                   suppressHydrationWarning
-                  onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-                  aria-label="Previous image"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 h-11 w-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors focus:outline-none"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrev();
+                  }}
+                  className="absolute left-6 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/20 hover:bg-white text-white hover:text-black transition-all flex items-center justify-center border border-white/30"
                 >
-                  <ChevronLeft className="h-5 w-5" />
+                  <ChevronLeft className="h-6 w-6" />
                 </button>
                 <button
                   suppressHydrationWarning
-                  onClick={(e) => { e.stopPropagation(); handleNext(); }}
-                  aria-label="Next image"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 h-11 w-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors focus:outline-none"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                  className="absolute right-6 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/20 hover:bg-white text-white hover:text-black transition-all flex items-center justify-center border border-white/30"
                 >
-                  <ChevronRight className="h-5 w-5" />
+                  <ChevronRight className="h-6 w-6" />
                 </button>
               </>
             )}
 
-            {/* Dot nav in lightbox */}
-            <div className="absolute bottom-6 flex items-center gap-2">
-              {galleryImages.map((_, idx) => (
-                <button
-                  suppressHydrationWarning
-                  key={idx}
-                  onClick={(e) => { e.stopPropagation(); setSelectedIndex(idx); }}
-                  aria-label={`Image ${idx + 1}`}
-                  className={`rounded-full transition-all ${
-                    idx === selectedIndex ? 'w-5 h-2 bg-white' : 'w-2 h-2 bg-white/30'
-                  }`}
-                />
-              ))}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/80 font-mono text-xs">
+              {selectedIndex + 1} / {galleryImages.length}
             </div>
           </motion.div>
         )}

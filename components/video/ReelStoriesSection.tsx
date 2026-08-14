@@ -49,7 +49,7 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     id: 'Dba2I21tVNV',
     instagramPostUrl: 'https://www.instagram.com/p/Dba2I21tVNV/',
     thumbnailUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/2d86176c7fa246dcab2d58a9dec57970.thumbnail.0000000000.jpg?v=1785968756',
-    videoUrl: '/reels/reel2_hairoil.mp4',
+    videoUrl: '/hairoil-reel.mp4',
     product: {
       name: 'RootHerb Hair Growth Oil',
       price: '₹599',

@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Star, ShoppingBag, Zap, Heart, Share2, ShieldCheck, Truck,
-  RotateCcw, Check, Plus, Minus, CheckCircle2, Package, Lock
+  RotateCcw, Check, Plus, Minus, CheckCircle2, Package, Lock,
+  ChevronDown, FileText
 } from 'lucide-react';
 import { Product, ProductVariant } from '@/types/product';
 import { useCart } from '@/context/CartContext';
@@ -34,6 +35,8 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
   const [addedSuccess, setAddedSuccess] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(isInWishlist(product.handle));
   const [copiedShare, setCopiedShare] = useState(false);
+
+  const [showDesc, setShowDesc] = useState(true);
 
   const price = selectedVariant.price?.amount || product.priceRange?.minVariantPrice?.amount || '699';
   const comparePrice = selectedVariant.compareAtPrice?.amount || product.compareAtPriceRange?.maxVariantPrice?.amount;
@@ -274,6 +277,7 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
           <span>Estimated delivery within <strong className="text-[#111111] font-semibold">3–5 business days</strong></span>
         </div>
       </div>
+
 
       {/* ── 3. Integrated Luxury Assurance & Trust Card ──────────────── */}
       <div className="rounded-2xl bg-[#F8F6F3] border border-[#E8E6DF] p-5 space-y-4 shadow-xs">

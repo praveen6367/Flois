@@ -21,7 +21,7 @@ const REELS_BY_HANDLE: Record<string, FloatingReel[]> = {
   'rootherb-hair-growth-oil': [
     {
       id: 'ho-1',
-      videoUrl: '/reels/reel2_hairoil.mp4',
+      videoUrl: '/hairoil-reel.mp4',
       posterUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/2d86176c7fa246dcab2d58a9dec57970.thumbnail.0000000000.jpg?v=1785968756',
       title: 'Real Hair Growth Results — 4 Weeks',
       author: '@ananya_haircare',
@@ -187,7 +187,7 @@ export function ProductStoryFloatingWidget({ productHandle }: Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 30 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-5 left-5 sm:bottom-7 sm:left-7 z-40 select-none cursor-pointer group"
+            className="fixed bottom-20 left-4 sm:bottom-7 sm:left-7 z-40 select-none cursor-pointer group"
           >
             {/* Close button on widget */}
             <button

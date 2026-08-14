@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header/Header';
 import { ProductHero } from '@/components/pdp/ProductHero';
+import { ProductDescriptionMasonry } from '@/components/pdp/ProductDescriptionMasonry';
 import { StickyMobileCTA } from '@/components/pdp/StickyMobileCTA';
 import { EditorialStory } from '@/components/pdp/EditorialStory';
 import { Benefits } from '@/components/pdp/Benefits';
@@ -82,6 +83,11 @@ export default async function ProductPage({ params }: Props) {
         title: 'RootHerb Botanical Hair Growth Oil',
         handle: handle,
         description: 'Clinically formulated with 18 pure herbs for accelerated hair growth, scalp nourishment, and natural shine.',
+        descriptionHtml: `
+          <p>Clinically formulated with 18 pure herbs for accelerated hair growth, scalp nourishment, and natural shine.</p>
+          <p><img src="/products/desc_flois_marketplace.png" alt="FLOIS Hair Care Infographic Banner" /></p>
+          <p><img src="/products/rootherb_ingredients_map.png" alt="FLOIS Botanical Ingredients Map" /></p>
+        `,
         priceRange: { minVariantPrice: { amount: '699', currencyCode: 'INR' } },
         compareAtPriceRange: { maxVariantPrice: { amount: '899', currencyCode: 'INR' } },
         images: {
@@ -103,6 +109,10 @@ export default async function ProductPage({ params }: Props) {
         title: 'Handcrafted Neem Wood Comb',
         handle: handle,
         description: 'Medicinal neem wood comb that distributes natural scalp oils, prevents static, and reduces hair breakage.',
+        descriptionHtml: `
+          <p>Medicinal neem wood comb that distributes natural scalp oils, prevents static, and reduces hair breakage.</p>
+          <p><img src="/products/desc_neem_comb.jpg" alt="FLOIS Neem Wood Comb Infographic Banner" /></p>
+        `,
         priceRange: { minVariantPrice: { amount: '349', currencyCode: 'INR' } },
         compareAtPriceRange: { maxVariantPrice: { amount: '499', currencyCode: 'INR' } },
         images: {
@@ -122,6 +132,10 @@ export default async function ProductPage({ params }: Props) {
         title: 'Advanced De-Tan Sunscreen Gel SPF 50+',
         handle: handle,
         description: 'Ultra-lightweight PA++++ solar defense gel with zero white cast and deep hydration.',
+        descriptionHtml: `
+          <p>Ultra-lightweight PA++++ solar defense gel with zero white cast and deep hydration.</p>
+          <p><img src="/products/desc_sunscreen_slide.png" alt="FLOIS Sunscreen Infographic Banner" /></p>
+        `,
         priceRange: { minVariantPrice: { amount: '599', currencyCode: 'INR' } },
         compareAtPriceRange: { maxVariantPrice: { amount: '799', currencyCode: 'INR' } },
         images: {
@@ -137,6 +151,40 @@ export default async function ProductPage({ params }: Props) {
         }
       } as unknown as Product;
     }
+  }
+
+  // Ensure product.images.nodes has a rich 3-image gallery combining Shopify images with relevant local assets
+  const searchKey = `${handle} ${product.title}`.toLowerCase();
+  let defaultImages: { url: string; altText: string }[] = [];
+  if (searchKey.includes('sunscreen') || searchKey.includes('tan') || searchKey.includes('spf')) {
+    defaultImages = [
+      { url: '/products/sunscreen_product.png', altText: `${product.title} Packaging` },
+      { url: '/products/editorial_sunscreen.jpg', altText: `${product.title} Formulation Breakdown` },
+      { url: '/products/texture_sunscreen.jpg', altText: `${product.title} Gel Texture` }
+    ];
+  } else if (searchKey.includes('neem') || searchKey.includes('comb')) {
+    defaultImages = [
+      { url: '/products/neem_comb_product.png', altText: `${product.title} Packaging` },
+      { url: '/products/editorial_neem_comb.jpg', altText: `${product.title} Artisan Craftsmanship` },
+      { url: '/products/texture_neem_comb.jpg', altText: `${product.title} Wood Texture` }
+    ];
+  } else {
+    defaultImages = [
+      { url: '/products/rootherb_product.png', altText: `${product.title} Packaging` },
+      { url: '/products/rootherb_ingredients_map.png', altText: `${product.title} Formulation Map` },
+      { url: '/products/editorial_rootherb.jpg', altText: `${product.title} Lifestyle` }
+    ];
+  }
+
+  const existingNodes = product.images?.nodes || [];
+  if (existingNodes.length < 3) {
+    product = {
+      ...product,
+      images: {
+        ...product.images,
+        nodes: [...existingNodes, ...defaultImages.slice(existingNodes.length)]
+      }
+    };
   }
 
   const shopBrand = await getShopBrand();
@@ -226,7 +274,10 @@ export default async function ProductPage({ params }: Props) {
       {/* Section 1: Hero — Gallery + Sticky Purchase Panel */}
       <ProductHero product={product} />
 
-      {/* Section 2: Editorial Story */}
+      {/* Section 2: Direct Product Description Banners & Infographics Masonry Grid */}
+      <ProductDescriptionMasonry product={product} />
+
+      {/* Section 3: Editorial Story */}
       <EditorialStory product={product} />
 
       {/* Section 3: Key Formula Benefits */}

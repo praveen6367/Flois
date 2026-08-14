@@ -247,6 +247,54 @@ export async function getClinicalResults(): Promise<ClinicalResultMetaobject[]> 
       rating: 5.0,
       durationMonths: 3,
       isVerified: true
+    },
+    {
+      id: 'result-7',
+      customerName: 'Urvashi Patel',
+      age: 21,
+      category: 'Crown Volume & Hair Thinning Control',
+      beforeImage: '/placeholders/7a.png',
+      afterImage: '/placeholders/7b.png',
+      testimonial: 'My crown visibility reduced significantly and hair felt much fuller after consistent use.',
+      rating: 5.0,
+      durationMonths: 3,
+      isVerified: true
+    },
+    {
+      id: 'result-8',
+      customerName: 'Madhvi Sharma',
+      age: 29,
+      category: 'Hair Density & Partition Thickness',
+      beforeImage: '/placeholders/8a.png',
+      afterImage: '/placeholders/8b.png',
+      testimonial: 'My hair partition is now barely visible. The density improvement is something I can see and feel.',
+      rating: 5.0,
+      durationMonths: 3,
+      isVerified: true
+    },
+    {
+      id: 'result-9',
+      customerName: 'Neelam Jadav',
+      age: 31,
+      category: 'Skin Tone & Pigmentation Correction',
+      beforeImage: '/placeholders/9a.png',
+      afterImage: '/placeholders/9b.png',
+      testimonial: 'Uneven skin tone and pigmentation corrected noticeably. My skin looks bright and healthy.',
+      rating: 5.0,
+      durationMonths: 2,
+      isVerified: true
+    },
+    {
+      id: 'result-10',
+      customerName: 'Khushbu Soni',
+      age: 28,
+      category: 'De-Tan & Skin Radiance Restoration',
+      beforeImage: '/placeholders/10a.png',
+      afterImage: '/placeholders/10b.png',
+      testimonial: 'Tan and dullness removed in under 2 months. Skin feels softer and looks radiant every day.',
+      rating: 5.0,
+      durationMonths: 2,
+      isVerified: true
     }
   ];
 }
