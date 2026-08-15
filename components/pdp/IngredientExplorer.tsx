@@ -243,7 +243,7 @@ export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' 
 
   return (
     <section
-      className="relative w-full bg-[#FAF9F5] py-24 sm:py-32 lg:py-36 overflow-hidden border-b border-[#E8E6DF]"
+      className="relative w-full bg-[#FAF9F5] py-14 sm:py-20 overflow-hidden border-b border-[#E8E6DF]"
       aria-label="Editorial Botanical Ingredient Story"
     >
       {/* Faded Background Watermark Illustration at 3.5% Opacity */}
@@ -265,16 +265,16 @@ export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' 
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 relative z-10">
         
         {/* Editorial Section Header */}
-        <div className="max-w-[1440px] mb-16 sm:mb-20 text-left space-y-3">
-          <div className="inline-flex items-center gap-2.5">
-            <span className="h-[1px] w-6 bg-[#4B644C]" />
-            <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#4B644C]">
+        <div className="max-w-[1440px] mb-10 sm:mb-12 text-left space-y-2">
+          <div className="inline-flex items-center gap-2">
+            <span className="h-[1px] w-5 bg-[#4B644C]" />
+            <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-[#4B644C]">
               BOTANICAL CONSCIOUSNESS
             </span>
-            <Sparkles className="h-3.5 w-3.5 text-[#4B644C]" />
+            <Sparkles className="h-3 w-3 text-[#4B644C]" />
           </div>
 
-          <h2 className="font-serif text-4xl sm:text-6xl lg:text-6xl font-normal leading-[1.08] tracking-tight text-[#121412]">
+          <h2 className="font-serif text-2xl sm:text-4xl font-normal leading-[1.08] tracking-tight text-[#121412]">
             {getSectionTitle(productHandle)}
           </h2>
         </div>
@@ -286,7 +286,7 @@ export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' 
           <div
             role="tablist"
             aria-label="Botanical Ingredients"
-            className="lg:col-span-4 space-y-8 sm:space-y-10"
+            className="lg:col-span-4 space-y-5"
           >
             {INGREDIENTS.map((item) => {
               const isSelected = item.id === selectedId;
@@ -303,11 +303,11 @@ export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' 
                     isSelected ? 'translate-x-3' : 'hover:translate-x-1 opacity-70 hover:opacity-100'
                   }`}
                 >
-                  {/* 96px Large Botanical Circular Photograph */}
+                  {/* Botanical Circular Photograph */}
                   <div
-                    className={`relative h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden shrink-0 transition-all duration-500 ${
+                    className={`relative h-12 w-12 sm:h-14 sm:w-14 rounded-full overflow-hidden shrink-0 transition-all duration-500 ${
                       isSelected
-                        ? 'scale-105 shadow-xl ring-2 ring-[#4B644C]/40 border-2 border-white'
+                        ? 'scale-105 shadow-lg ring-2 ring-[#4B644C]/40 border-2 border-white'
                         : 'scale-95 grayscale-[20%]'
                     }`}
                   >
@@ -315,7 +315,7 @@ export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' 
                       src={item.imageSrc}
                       alt={item.name}
                       fill
-                      sizes="96px"
+                      sizes="56px"
                       className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
@@ -336,7 +336,7 @@ export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' 
                     </div>
 
                     <h3
-                      className={`font-serif text-2xl sm:text-3xl font-normal leading-snug transition-colors ${
+                      className={`font-serif text-base sm:text-lg font-normal leading-snug transition-colors ${
                         isSelected ? 'text-[#121412]' : 'text-[#4A4E4A]'
                       }`}
                     >
@@ -370,7 +370,7 @@ export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' 
               >
                 
                 {/* 1. LARGE EDITORIAL PHOTOGRAPH (Hero Showcase) */}
-                <div className="relative w-full h-[360px] sm:h-[460px] lg:h-[500px] max-w-[780px] rounded-3xl overflow-hidden shadow-2xl group/hero">
+                <div className="relative w-full h-[220px] sm:h-[300px] lg:h-[340px] max-w-[780px] rounded-2xl overflow-hidden shadow-xl group/hero">
                   <Image
                     src={activeIngredient.imageSrc}
                     alt={`${activeIngredient.name} luxury botanical photography`}
@@ -387,11 +387,11 @@ export function IngredientExplorer({ productHandle = 'rootherb-hair-growth-oil' 
                     {activeIngredient.sanskritName}
                   </span>
 
-                  <h3 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#121412] leading-[1.08] tracking-tight">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#121412] leading-[1.08] tracking-tight">
                     {activeIngredient.name}
                   </h3>
 
-                  <p className="font-sans text-base sm:text-lg text-[#4A4E4A] font-light leading-relaxed max-w-2xl pt-1">
+                  <p className="font-sans text-sm text-[#4A4E4A] font-light leading-relaxed max-w-2xl pt-1">
                     {activeIngredient.editorialQuote}
                   </p>
                 </div>

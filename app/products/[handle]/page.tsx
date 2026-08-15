@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header/Header';
 import { ProductHero } from '@/components/pdp/ProductHero';
-import { ProductDescriptionMasonry } from '@/components/pdp/ProductDescriptionMasonry';
+
 import { StickyMobileCTA } from '@/components/pdp/StickyMobileCTA';
 import { EditorialStory } from '@/components/pdp/EditorialStory';
 import { Benefits } from '@/components/pdp/Benefits';
@@ -276,8 +276,6 @@ export default async function ProductPage({ params }: Props) {
       {/* Section 1: Hero — Gallery + Sticky Purchase Panel */}
       <ProductHero product={product} />
 
-      {/* Section 2: Direct Product Description Banners & Infographics Masonry Grid */}
-      <ProductDescriptionMasonry product={product} />
 
       {/* Section 3: Editorial Story */}
       <EditorialStory product={product} />

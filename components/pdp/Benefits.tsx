@@ -143,12 +143,9 @@ export function Benefits({ product }: { product?: Product }) {
                   transition={{ duration: 0.4, delay: idx * 0.07 }}
                   className="group flex items-center gap-5 sm:gap-6 p-6 sm:p-7 rounded-2xl bg-white border border-[#E8E6DF] shadow-2xs hover:border-[#4B644C]/50 hover:shadow-md transition-all duration-300"
                 >
-                  {/* Left: Icon + Stat only (no label) */}
-                  <div className="shrink-0 flex flex-col items-center space-y-2">
+                  {/* Left: Icon only */}
+                  <div className="shrink-0">
                     <IconBadge type={item.iconType} />
-                    <span className="font-serif text-xl sm:text-2xl leading-none text-[#121412] font-normal block text-center pt-1">
-                      {item.stat}
-                    </span>
                   </div>
 
                   {/* Right: Title heading + Description */}

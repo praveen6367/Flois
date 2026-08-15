@@ -52,6 +52,30 @@ function getComparisonData(handle: string): ProductComparisonData {
           customerAge: '43',
         },
         {
+          beforeImg: '/placeholders/4a.png',
+          afterImg: '/placeholders/4b.png',
+          beforeLabel: 'Day 1 — Before',
+          afterLabel: 'Week 4 — After',
+          customerName: 'Amrita Gupta',
+          customerAge: '37',
+        },
+        {
+          beforeImg: '/placeholders/5a.png',
+          afterImg: '/placeholders/5b.png',
+          beforeLabel: 'Day 1 — Before',
+          afterLabel: 'Week 6 — After',
+          customerName: 'Rakesh Mishra',
+          customerAge: '43',
+        },
+        {
+          beforeImg: '/placeholders/6a.png',
+          afterImg: '/placeholders/6b.png',
+          beforeLabel: 'Day 1 — Before',
+          afterLabel: 'Week 6 — After',
+          customerName: 'Urvashi Patel',
+          customerAge: '21',
+        },
+        {
           beforeImg: '/placeholders/7a.png',
           afterImg: '/placeholders/7b.png',
           beforeLabel: 'Day 1 — Before',
@@ -177,6 +201,14 @@ function getComparisonData(handle: string): ProductComparisonData {
     headline: 'Hair Density Before & After',
     sub: 'Real results from customers using RootHerb Hair Growth Oil for 4–10 weeks.',
     pairs: [
+      {
+        beforeImg: '/placeholders/3a.png',
+        afterImg: '/placeholders/3b.png',
+        beforeLabel: 'Day 1 — Before',
+        afterLabel: 'Week 8 — After',
+        customerName: 'Pawan Tiwari',
+        customerAge: '43',
+      },
       {
         beforeImg: '/placeholders/4a.png',
         afterImg: '/placeholders/4b.png',
