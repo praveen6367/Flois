@@ -173,33 +173,8 @@ export async function getClinicalResults(): Promise<ClinicalResultMetaobject[]> 
     console.warn('[Metaobjects] getClinicalResults error:', e);
   }
 
-  // Official client transformation pairs using 1a.png - 6b.png
+  // Hair growth results first (featured hero = Pawan Tiwari), then skin results
   return [
-    {
-      id: 'result-hero',
-      customerName: 'Deepti Shukla',
-      age: 32,
-      category: 'Skin Brightening & Pigmentation Therapy',
-      beforeImage: '/placeholders/1a.png',
-      afterImage: '/placeholders/1b.png',
-      testimonial: 'My skin pigmentation and dark spots faded dramatically within 90 days. The glow feels completely natural.',
-      rating: 5.0,
-      durationMonths: 3,
-      isVerified: true,
-      isFeatured: true
-    },
-    {
-      id: 'result-2',
-      customerName: 'Akash Gaur',
-      age: 29,
-      category: 'Skin Tone & Tan Removal',
-      beforeImage: '/placeholders/2a.png',
-      afterImage: '/placeholders/2b.png',
-      testimonial: 'The De-Tan gel removed years of sun pigmentation without drying out my skin or causing breakouts.',
-      rating: 5.0,
-      durationMonths: 2,
-      isVerified: true
-    },
     {
       id: 'result-3',
       customerName: 'Pawan Tiwari',
@@ -210,7 +185,8 @@ export async function getClinicalResults(): Promise<ClinicalResultMetaobject[]> 
       testimonial: 'Noticeable hair regrowth and scalp coverage within 3 months of consistent RootHerb oil therapy.',
       rating: 5.0,
       durationMonths: 3,
-      isVerified: true
+      isVerified: true,
+      isFeatured: true
     },
     {
       id: 'result-4',
@@ -270,6 +246,30 @@ export async function getClinicalResults(): Promise<ClinicalResultMetaobject[]> 
       testimonial: 'My hair partition is now barely visible. The density improvement is something I can see and feel.',
       rating: 5.0,
       durationMonths: 3,
+      isVerified: true
+    },
+    {
+      id: 'result-hero',
+      customerName: 'Deepti Shukla',
+      age: 32,
+      category: 'Skin Brightening & Pigmentation Therapy',
+      beforeImage: '/placeholders/1a.png',
+      afterImage: '/placeholders/1b.png',
+      testimonial: 'My skin pigmentation and dark spots faded dramatically within 90 days. The glow feels completely natural.',
+      rating: 5.0,
+      durationMonths: 3,
+      isVerified: true
+    },
+    {
+      id: 'result-2',
+      customerName: 'Akash Gaur',
+      age: 29,
+      category: 'Skin Tone & Tan Removal',
+      beforeImage: '/placeholders/2a.png',
+      afterImage: '/placeholders/2b.png',
+      testimonial: 'The De-Tan gel removed years of sun pigmentation without drying out my skin or causing breakouts.',
+      rating: 5.0,
+      durationMonths: 2,
       isVerified: true
     },
     {
