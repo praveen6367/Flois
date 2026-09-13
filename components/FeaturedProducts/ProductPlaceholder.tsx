@@ -8,32 +8,32 @@ import { ArrowRight } from 'lucide-react';
 const FALLBACK_PRODUCTS = [
   {
     handle: 'rootherb-hair-growth-oil',
-    title: 'RootHerb Cold-Pressed Hair Growth Oil',
-    category: 'Scalp & Follicle Therapy',
-    description: 'Infused with 18 pure herbs and cold-pressed sesame oil to deeply nourish hair follicles.',
-    price: '₹1,250',
-    compareAtPrice: '₹1,850',
-    image: '/placeholders/banner1background.png',
+    title: 'RootHerb™ Botanical Hair & Scalp Oil',
+    category: 'Powered by OleoKare®',
+    description: '5 cold-pressed oils + 12 herbs formulated with OleoKare® for scalp and hair vitality.',
+    price: '₹699',
+    compareAtPrice: '₹899',
+    image: '/products/rootherb_product.png',
     badge: 'BEST SELLER'
   },
   {
     handle: 'advanced-de-tan-sunscreen-gel',
     title: 'Advanced De-Tan Sunscreen Gel SPF 50+',
-    category: 'Solar Protection',
-    description: 'Non-greasy, zero white-cast formula enriched with green tea and sandalwood.',
-    price: '₹890',
-    compareAtPrice: '₹1,200',
-    image: '/placeholders/banner2background.png',
-    badge: 'CLINICALLY TESTED'
+    category: 'Solar Science',
+    description: 'Ultra-lightweight water-gel with zero visible white cast and broad-spectrum daily UV defense.',
+    price: '₹369',
+    compareAtPrice: '₹699',
+    image: '/products/sunscreen_product.png',
+    badge: 'ZERO WHITE CAST'
   },
   {
     handle: 'neem-wood-comb',
     title: 'Handcrafted Neem Wood Comb',
-    category: 'Botanical Tool',
-    description: 'Pure medicinal neem wood comb handcrafted to stimulate scalp micro-circulation.',
-    price: '₹450',
-    compareAtPrice: '₹650',
-    image: '/placeholders/comb.svg',
+    category: 'Ayurvedic Accessory',
+    description: 'Natural seasoned neem wood hand-carved to minimise static friction and massage the scalp.',
+    price: '₹119',
+    compareAtPrice: '₹229',
+    image: '/products/neem_comb_product.png',
     badge: '100% NATURAL'
   }
 ];

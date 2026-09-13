@@ -36,24 +36,86 @@ const itemVariants: Variants = {
 
 export function ClinicalResultsSection({
   results = [],
-  eyebrow = 'CLINICAL RESULTS',
+  eyebrow = 'REAL CUSTOMER TRANSFORMATIONS',
   title = 'Real Transformations. Backed by Botanical Science.',
-  subtitle = 'Every transformation shared here comes from real customers following consistent product usage.'
+  subtitle = 'Every transformation shared here comes from verified customers following consistent daily routines.'
 }: ClinicalResultsSectionProps) {
-  const displayResults = results && results.length > 0 ? results : [];
+  // Deduplicate results by customerName + category
+  const seenKeys = new Set<string>();
+  const uniqueResults = results.filter((r) => {
+    const key = `${r.customerName.toLowerCase()}-${r.beforeImage}`;
+    if (seenKeys.has(key)) return false;
+    seenKeys.add(key);
+    return true;
+  });
 
+  // Check if multiple product categories exist
+  const hasHair = uniqueResults.some((r) => {
+    const h = (r.productHandle || r.category || '').toLowerCase();
+    return h.includes('hair') || h.includes('root') || h.includes('follicle') || h.includes('scalp');
+  });
+  const hasSun = uniqueResults.some((r) => {
+    const h = (r.productHandle || r.category || '').toLowerCase();
+    return h.includes('sun') || h.includes('tan') || h.includes('skin') || h.includes('pigment');
+  });
+  const hasComb = uniqueResults.some((r) => {
+    const h = (r.productHandle || r.category || '').toLowerCase();
+    return h.includes('comb') || h.includes('neem');
+  });
+
+  const isMultiProduct = [hasHair, hasSun, hasComb].filter(Boolean).length > 1;
+
+  const [activeTab, setActiveTab] = React.useState<string>('all');
+
+  const filteredResults = React.useMemo(() => {
+    if (activeTab === 'all') return uniqueResults;
+    if (activeTab === 'rootherb') {
+      return uniqueResults.filter((r) => {
+        const h = (r.productHandle || r.category || '').toLowerCase();
+        return (h.includes('hair') || h.includes('root') || h.includes('follicle') || h.includes('scalp')) && !h.includes('comb');
+      });
+    }
+    if (activeTab === 'sunscreen') {
+      return uniqueResults.filter((r) => {
+        const h = (r.productHandle || r.category || '').toLowerCase();
+        return h.includes('sun') || h.includes('tan') || h.includes('skin') || h.includes('pigment');
+      });
+    }
+    if (activeTab === 'comb') {
+      return uniqueResults.filter((r) => {
+        const h = (r.productHandle || r.category || '').toLowerCase();
+        return h.includes('comb') || h.includes('neem');
+      });
+    }
+    return uniqueResults;
+  }, [activeTab, uniqueResults]);
+
+  const displayResults = filteredResults.length > 0 ? filteredResults : uniqueResults;
   const heroResult = displayResults[0];
   const supportingResults = displayResults.slice(1);
 
+  // Derive productType for StatisticCard
+  const detectedProductType: 'hair' | 'sunscreen' | 'comb' = React.useMemo(() => {
+    if (activeTab === 'sunscreen') return 'sunscreen';
+    if (activeTab === 'comb') return 'comb';
+    if (activeTab === 'rootherb') return 'hair';
+    if (heroResult) {
+      const h = (heroResult.productHandle || heroResult.category || '').toLowerCase();
+      if (h.includes('sun') || h.includes('tan') || h.includes('skin') || h.includes('pigment')) return 'sunscreen';
+      if (h.includes('comb') || h.includes('neem')) return 'comb';
+    }
+    return 'hair';
+  }, [activeTab, heroResult]);
+
   return (
-    <section className="relative w-full bg-[#FFFFFF] text-[#121412] py-20 sm:py-28 lg:py-32 overflow-hidden border-b border-[#E8E6DF]">
+    <section id="results" className="relative w-full bg-[#FFFFFF] text-[#121412] py-20 sm:py-28 lg:py-32 overflow-hidden border-b border-[#E8E6DF]">
       {/* Soft Ambient Radial Atmosphere Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-[#FAF9F5] rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16">
         
         {/* Section Header */}
-        <div className="max-w-[750px] mx-auto text-center space-y-4 mb-16 sm:mb-20">
+        <div className="max-w-[750px] mx-auto text-center space-y-4 mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2.5">
             <span className="h-[1px] w-6 bg-[#4B644C]" />
             <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#4B644C]">
@@ -71,21 +133,45 @@ export function ClinicalResultsSection({
             {subtitle}
           </p>
 
-          {/* Clinical Highlights Bar */}
-          <div className="pt-3 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-[#4B644C] font-medium font-sans">
-            <span className="inline-flex items-center gap-1.5 bg-[#F4F6F4] border border-[#C5D1C5] px-3 py-1 rounded-full">
+          {/* Clinical Highlights Bar (Updated per client requirement) */}
+          <div className="pt-3 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs text-[#4B644C] font-medium font-sans">
+            <span className="inline-flex items-center gap-1.5 bg-[#F4F6F4] border border-[#C5D1C5] px-3.5 py-1.5 rounded-full">
               <Check className="h-3.5 w-3.5 stroke-[2.5]" />
-              <span>100% Natural Botanicals</span>
+              <span>Real Customer Transformations</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-[#F4F6F4] border border-[#C5D1C5] px-3 py-1 rounded-full">
+            <span className="inline-flex items-center gap-1.5 bg-[#F4F6F4] border border-[#C5D1C5] px-3.5 py-1.5 rounded-full">
               <ShieldCheck className="h-3.5 w-3.5 stroke-[2]" />
-              <span>90-Day Clinical Trial</span>
+              <span>Dermatologically Tested</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-[#F4F6F4] border border-[#C5D1C5] px-3 py-1 rounded-full">
+            <span className="inline-flex items-center gap-1.5 bg-[#F4F6F4] border border-[#C5D1C5] px-3.5 py-1.5 rounded-full">
               <Check className="h-3.5 w-3.5 stroke-[2.5]" />
-              <span>Dermatologist Approved</span>
+              <span>Verified Real Results</span>
             </span>
           </div>
+
+          {/* Product Filtering Tabs (Homepage Product-Wise Separation) */}
+          {isMultiProduct && (
+            <div className="pt-6 flex flex-wrap items-center justify-center gap-2">
+              {[
+                { id: 'all', label: 'All Results' },
+                { id: 'rootherb', label: 'RootHerb Hair Growth Oil' },
+                { id: 'sunscreen', label: 'De-Tan Sunscreen Gel' },
+                { id: 'comb', label: 'Handcrafted Neem Comb' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-2 rounded-full text-xs font-sans font-semibold transition-all ${
+                    activeTab === tab.id
+                      ? 'bg-[#4B644C] text-white shadow-sm'
+                      : 'bg-[#F4F6F4] text-[#4A4E4A] hover:bg-[#E8EDE8] border border-[#D5E2D5]'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Editorial Masonry Layout */}
@@ -104,7 +190,7 @@ export function ClinicalResultsSection({
               </div>
 
               <div className="lg:col-span-5">
-                <StatisticCard />
+                <StatisticCard productType={detectedProductType} />
               </div>
             </motion.div>
           )}

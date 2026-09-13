@@ -8,6 +8,7 @@ import { StickyMobileCTA } from '@/components/pdp/StickyMobileCTA';
 import { EditorialStory } from '@/components/pdp/EditorialStory';
 import { Benefits } from '@/components/pdp/Benefits';
 import { IngredientExplorer } from '@/components/pdp/IngredientExplorer';
+import { OleoKareScienceSection } from '@/components/pdp/OleoKareScienceSection';
 import { ClinicalResultsSection } from '@/components/ClinicalResults';
 import { HowToUse } from '@/components/pdp/HowToUse';
 import { TextureShowcase } from '@/components/pdp/TextureShowcase';
@@ -80,11 +81,11 @@ export default async function ProductPage({ params }: Props) {
     if (handle.includes('rootherb') || handle.includes('hair-growth-oil')) {
       product = {
         id: 'gid://shopify/Product/1',
-        title: 'RootHerb Botanical Hair Growth Oil',
+        title: 'RootHerb™ Botanical Hair & Scalp Oil',
         handle: handle,
-        description: 'Clinically formulated with 18 pure herbs for accelerated hair growth, scalp nourishment, and natural shine.',
+        description: 'Clinically formulated with 18 pure herbs and OleoKare® for accelerated hair growth, scalp nourishment, and natural shine.',
         descriptionHtml: `
-          <p>Clinically formulated with 18 pure herbs for accelerated hair growth, scalp nourishment, and natural shine.</p>
+          <p>RootHerb™ brings together 18 Ayurvedic botanicals, cold-pressed oils and OleoKare® in a modern hair-care formula designed for consistent scalp and hair nourishment.</p>
           <p><img src="/products/desc_flois_marketplace.png" alt="FLOIS Hair Care Infographic Banner" /></p>
           <p><img src="/products/rootherb_ingredients_map.png" alt="FLOIS Botanical Ingredients Map" /></p>
         `,
@@ -98,8 +99,8 @@ export default async function ProductPage({ params }: Props) {
         },
         variants: {
           nodes: [
-            { id: 'v1', title: '100ml Bottle', price: { amount: '699', currencyCode: 'INR' }, availableForSale: true },
-            { id: 'v2', title: '200ml Family Bottle', price: { amount: '1199', currencyCode: 'INR' }, availableForSale: true }
+            { id: 'v1', title: '100ml Bottle + Free Comb', price: { amount: '699', currencyCode: 'INR' }, availableForSale: true },
+            { id: 'v2', title: '200ml Family Bottle + Free Comb', price: { amount: '1199', currencyCode: 'INR' }, availableForSale: true }
           ]
         }
       } as unknown as Product;
@@ -108,21 +109,21 @@ export default async function ProductPage({ params }: Props) {
         id: 'gid://shopify/Product/2',
         title: 'Handcrafted Neem Wood Comb',
         handle: handle,
-        description: 'Medicinal neem wood comb that distributes natural scalp oils, prevents static, and reduces hair breakage.',
+        description: 'Hand-carved seasoned neem wood comb that distributes natural scalp oils, prevents static, and reduces hair breakage.',
         descriptionHtml: `
-          <p>Medicinal neem wood comb that distributes natural scalp oils, prevents static, and reduces hair breakage.</p>
+          <p>Handcrafted seasoned neem wood comb that distributes natural scalp oils, prevents static, and reduces hair breakage.</p>
           <p><img src="/products/desc_neem_comb.jpg" alt="FLOIS Neem Wood Comb Infographic Banner" /></p>
         `,
-        priceRange: { minVariantPrice: { amount: '349', currencyCode: 'INR' } },
-        compareAtPriceRange: { maxVariantPrice: { amount: '499', currencyCode: 'INR' } },
+        priceRange: { minVariantPrice: { amount: '119', currencyCode: 'INR' } },
+        compareAtPriceRange: { maxVariantPrice: { amount: '229', currencyCode: 'INR' } },
         images: {
           nodes: [
-            { url: '/products/neem_comb_product.png', altText: 'FLOIS Handcrafted Neem Wood Comb — Anti-Static Anti-Dandruff' }
+            { url: '/products/neem_comb_product.png', altText: 'FLOIS Handcrafted Neem Wood Comb — Low-Static Detangling' }
           ]
         },
         variants: {
           nodes: [
-            { id: 'v3', title: 'Wide Tooth Comb', price: { amount: '349', currencyCode: 'INR' }, availableForSale: true }
+            { id: 'v3', title: 'Standard Comb', price: { amount: '119', currencyCode: 'INR' }, availableForSale: true }
           ]
         }
       } as unknown as Product;
@@ -136,8 +137,8 @@ export default async function ProductPage({ params }: Props) {
           <p>Ultra-lightweight PA++++ solar defense gel with zero white cast and deep hydration.</p>
           <p><img src="/products/desc_sunscreen_slide.png" alt="FLOIS Sunscreen Infographic Banner" /></p>
         `,
-        priceRange: { minVariantPrice: { amount: '599', currencyCode: 'INR' } },
-        compareAtPriceRange: { maxVariantPrice: { amount: '799', currencyCode: 'INR' } },
+        priceRange: { minVariantPrice: { amount: '369', currencyCode: 'INR' } },
+        compareAtPriceRange: { maxVariantPrice: { amount: '699', currencyCode: 'INR' } },
         images: {
           nodes: [
             { url: '/products/sunscreen_product.png', altText: 'FLOIS Advanced De-Tan Sunscreen Gel SPF 50+ PA++++' },
@@ -146,7 +147,7 @@ export default async function ProductPage({ params }: Props) {
         },
         variants: {
           nodes: [
-            { id: 'v4', title: '50g Tube', price: { amount: '599', currencyCode: 'INR' }, availableForSale: true }
+            { id: 'v4', title: '50g Tube', price: { amount: '369', currencyCode: 'INR' }, availableForSale: true }
           ]
         }
       } as unknown as Product;
@@ -211,8 +212,8 @@ export default async function ProductPage({ params }: Props) {
     : h.includes('neem') || h.includes('comb')
     ? [
         { id: 'comb-1', customerName: 'Pawan Tiwari', age: 43, category: 'Crown Follicle Strengthening', beforeImage: '/placeholders/3a.png', afterImage: '/placeholders/3b.png', testimonial: 'Noticeable hair regrowth and scalp coverage within 3 months of consistent RootHerb oil therapy.', rating: 5, durationMonths: 3, isVerified: true, isFeatured: true },
-        { id: 'comb-2', customerName: 'Urvashi Patel', age: 21, category: 'Crown Volume & Hair Thinning Control', beforeImage: '/placeholders/7a.png', afterImage: '/placeholders/7b.png', testimonial: 'My crown visibility reduced significantly and hair felt much fuller after consistent use.', rating: 5, durationMonths: 3, isVerified: true },
-        { id: 'comb-3', customerName: 'Madhvi Sharma', age: 29, category: 'Hair Density & Partition Thickness', beforeImage: '/placeholders/8a.png', afterImage: '/placeholders/8b.png', testimonial: 'My hair partition is now barely visible. The density improvement is something I can see and feel.', rating: 5, durationMonths: 3, isVerified: true },
+        { id: 'comb-2', customerName: 'Vinay Sehgal', age: 41, category: 'Scalp Gentle Combing & Follicle Care', beforeImage: '/placeholders/7a.png', afterImage: '/placeholders/7b.png', testimonial: 'The rounded neem teeth give a very soothing scalp massage. Hair feels much less stressed after washing.', rating: 5, durationMonths: 3, isVerified: true },
+        { id: 'comb-3', customerName: 'Sunita Verma', age: 34, category: 'Crown Volume & Low-Friction Detangling', beforeImage: '/placeholders/6a.png', afterImage: '/placeholders/6b.png', testimonial: 'Switched from plastic combs to this handcrafted neem comb. Hair breakage and flyaways reduced drastically.', rating: 5, durationMonths: 2, isVerified: true },
       ]
     : [
         { id: 'hair-1', customerName: 'Amrita Gupta', age: 37, category: 'Scalp & Hair Partition Density', beforeImage: '/placeholders/4a.png', afterImage: '/placeholders/4b.png', testimonial: 'My hair partition line became noticeably thicker and hair fall reduced by over 80%.', rating: 5, durationMonths: 4, isVerified: true, isFeatured: true },
@@ -234,7 +235,7 @@ export default async function ProductPage({ params }: Props) {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
-      reviewCount: '128',
+      reviewCount: '24',
       bestRating: '5'
     },
     offers: {
@@ -282,6 +283,11 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Section 3: Key Formula Benefits */}
       <Benefits product={product} />
+
+      {/* Creative Section: The Science Behind FLOIS RootHerb (Powered by OleoKare®) */}
+      {(handle.includes('rootherb') || (!handle.includes('sunscreen') && !handle.includes('comb'))) && (
+        <OleoKareScienceSection />
+      )}
 
       {/* Section 4: Ingredient Explorer */}
       <IngredientExplorer productHandle={handle} />

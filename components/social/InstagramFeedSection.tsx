@@ -21,8 +21,6 @@ interface InstagramPost {
   posterUrl?: string;
   permalink: string;
   caption: string;
-  likes: number;
-  comments: number;
 }
 
 const INSTAGRAM_POSTS: InstagramPost[] = [
@@ -32,9 +30,7 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
     mediaUrl: '/reels/reel1_sunscreen.mp4',
     posterUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/d7d8e4aad201423fa2567756ca61011f.thumbnail.0000000000.jpg?v=1785968750',
     permalink: 'https://www.instagram.com/p/DblH9bqzJqS/',
-    caption: 'Zero white cast SPF 50+ De-Tan Sunscreen Gel in action! Lightweight solar protection for daily Indian climate. 🌿☀️ #FLOIS #SunscreenGel #DeTan',
-    likes: 1420,
-    comments: 89,
+    caption: 'Zero visible white cast SPF 50+ De-Tan Sunscreen Gel in action. Lightweight solar defense for Indian skin. 🌿☀️ #FLOIS #SunscreenGel #DeTan',
   },
   {
     id: 'ig-2',
@@ -42,18 +38,14 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
     mediaUrl: '/reels/reel2_hairoil.mp4',
     posterUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/2d86176c7fa246dcab2d58a9dec57970.thumbnail.0000000000.jpg?v=1785968756',
     permalink: 'https://www.instagram.com/p/Dba2I21tVNV/',
-    caption: '18 Ayurvedic herbs cold-pressed into 1 bottle. Watch hair fall drop in 2 weeks with RootHerb Hair Growth Oil. 💆‍♀️✨ #FLOIS #HairGrowthOil #Ayurveda',
-    likes: 2310,
-    comments: 144,
+    caption: '18 Ayurvedic botanicals powered by OleoKare® active. RootHerb Botanical Hair & Scalp Oil for daily nourishment and hair vitality. 💆‍♀️✨ #FLOIS #RootHerb #Ayurveda',
   },
   {
     id: 'ig-3',
     type: 'image',
     mediaUrl: '/products/editorial_rootherb.jpg',
     permalink: 'https://www.instagram.com/getflois',
-    caption: 'Cold-pressed virgin sesame oil meets 18 traditional hair herbs. Pure botanical luxury crafted for scalp wellness.',
-    likes: 980,
-    comments: 42,
+    caption: 'Cold-pressed virgin botanical base meets 18 traditional herbs and OleoKare®. Pure botanical ritual crafted for scalp wellness.',
   },
   {
     id: 'ig-4',
@@ -61,18 +53,14 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
     mediaUrl: '/reels/reel3_sunscreen.mp4',
     posterUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/8aec48cb7e284311b5f96ae09a1f7fb0.thumbnail.0000000000.jpg?v=1785968745',
     permalink: 'https://www.instagram.com/p/DbX7f1avKva/',
-    caption: 'Non-comedogenic, de-tanning formula enriched with green tea & rice water. Perfect under makeup!',
-    likes: 1850,
-    comments: 112,
+    caption: 'Lightweight gel texture enriched with Niacinamide and botanical extracts. Seamless daily wear under any climate.',
   },
   {
     id: 'ig-5',
     type: 'image',
     mediaUrl: '/products/editorial_neem_comb.jpg',
     permalink: 'https://www.instagram.com/getflois',
-    caption: 'Handcrafted medicinal neem wood comb. Say goodbye to static friction & hair breakage. 🌿🪮',
-    likes: 1120,
-    comments: 67,
+    caption: 'Handcrafted artisan neem wood comb. Say goodbye to static friction & hair breakage with gentle rounded teeth. 🌿🪮',
   },
   {
     id: 'ig-6',
@@ -80,9 +68,7 @@ const INSTAGRAM_POSTS: InstagramPost[] = [
     mediaUrl: '/reels/reel5_hairoil.mp4',
     posterUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/af3026e37bb642faa0b7b50152970040.thumbnail.0000000000.jpg?v=1785968747',
     permalink: 'https://www.instagram.com/p/DbN3KlepFQP/',
-    caption: 'Nighttime scalp massage routine using RootHerb Hair Growth Oil. Deep nourishment from follicle to tip.',
-    likes: 3100,
-    comments: 205,
+    caption: 'Nighttime scalp massage ritual using RootHerb Botanical Hair & Scalp Oil. Nourishment from root to tip.',
   },
 ];
 
@@ -161,15 +147,9 @@ export function InstagramFeedSection() {
                 </div>
 
                 <div className="space-y-1">
-                  <div className="flex items-center gap-4 text-xs font-sans font-bold">
-                    <span className="flex items-center gap-1">
-                      <Heart className="h-3.5 w-3.5 fill-white" />
-                      {post.likes.toLocaleString()}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MessageCircle className="h-3.5 w-3.5 fill-white" />
-                      {post.comments}
-                    </span>
+                  <div className="flex items-center gap-2 text-[11px] font-sans font-medium text-[#8C9B3E]">
+                    <InstagramIcon className="h-3 w-3 text-[#E1306C]" />
+                    <span>@getflois</span>
                   </div>
                   <p className="text-[10px] font-sans opacity-90 line-clamp-2 leading-tight">
                     {post.caption}
@@ -267,14 +247,10 @@ export function InstagramFeedSection() {
               {/* Caption & Actions */}
               <div className="p-4 space-y-3 bg-[#111111]">
                 <div className="flex items-center justify-between text-white text-xs font-sans">
-                  <div className="flex items-center gap-4 font-bold">
-                    <span className="flex items-center gap-1.5">
-                      <Heart className="h-4 w-4 fill-red-500 text-red-500" />
-                      {activeMedia.likes.toLocaleString()} likes
-                    </span>
-                    <span className="flex items-center gap-1.5 text-white/70">
-                      <MessageCircle className="h-4 w-4" />
-                      {activeMedia.comments} comments
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-sans font-medium text-[#8C9B3E] flex items-center gap-1.5">
+                      <ShieldCheck className="h-4 w-4" />
+                      Official FLOIS Post
                     </span>
                   </div>
 

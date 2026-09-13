@@ -56,7 +56,7 @@ export function TestimonialCard({ result, index = 0, isFeatured = false }: Testi
             {result.customerName}
           </h3>
           <p className="text-xs font-sans text-[#787E78] font-normal">
-            Age {result.age} • {result.durationMonths ? `${result.durationMonths} Months Consistent Use` : 'Verified Transformation'}
+            {result.age ? `Age ${result.age} • ` : ''}{result.durationMonths ? `${result.durationMonths} ${result.durationMonths === 1 ? 'Month' : 'Months'} Consistent Use` : 'Transformation'}
           </p>
         </div>
 

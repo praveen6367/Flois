@@ -16,9 +16,9 @@ interface FeaturedProductsSectionProps {
 
 export function FeaturedProductsSection({
   products = [],
-  eyebrow = 'Flagship Collection',
-  title = 'Discover Our Signature Essentials',
-  subtitle = 'Clinically crafted botanical essentials designed for healthier hair and skin.'
+  eyebrow = 'OUR THREE FLAGSHIP FORMULATIONS',
+  title = 'Botanical Care Refined by Clinical Science',
+  subtitle = 'Discover our three targeted essentials: RootHerb™ Hair & Scalp Oil (Powered by OleoKare®), SPF 50+ PA++++ De-Tan Sunscreen Gel, and Handcrafted Seasoned Neem Wood Comb.'
 }: FeaturedProductsSectionProps) {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const [selectedQuickViewProduct, setSelectedQuickViewProduct] = useState<Product | null>(null);

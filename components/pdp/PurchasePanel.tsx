@@ -38,12 +38,26 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
 
   const [showDesc, setShowDesc] = useState(true);
 
-  const price = selectedVariant.price?.amount || product.priceRange?.minVariantPrice?.amount || '699';
-  const comparePrice = selectedVariant.compareAtPrice?.amount || product.compareAtPriceRange?.maxVariantPrice?.amount;
-  const savingAmount = comparePrice && Number(comparePrice) > Number(price)
-    ? Number(comparePrice) - Number(price) : 0;
-  const savingPercent = comparePrice && Number(comparePrice) > Number(price)
-    ? Math.round((savingAmount / Number(comparePrice)) * 100) : 0;
+  const h = (product.handle || product.title || '').toLowerCase();
+  const isHairOil = h.includes('rootherb') || h.includes('hair') || h.includes('oil');
+  const isComb = h.includes('comb') || h.includes('neem');
+  const isSunscreen = h.includes('sunscreen') || h.includes('de-tan') || h.includes('spf');
+
+  // Client-requested price alignment
+  const fallbackPrice = isHairOil ? '699' : isComb ? '119' : '369';
+  const fallbackComparePrice = isHairOil ? '899' : isComb ? '229' : '699';
+
+  const price = selectedVariant.price?.amount || product.priceRange?.minVariantPrice?.amount || fallbackPrice;
+  const comparePrice = selectedVariant.compareAtPrice?.amount || product.compareAtPriceRange?.maxVariantPrice?.amount || fallbackComparePrice;
+  
+  // Ensure consistent display prices matching client brief
+  const displayPrice = isHairOil ? '699' : isComb ? '119' : (selectedVariant.price?.amount || '369');
+  const displayComparePrice = isHairOil ? '899' : isComb ? '229' : (selectedVariant.compareAtPrice?.amount || '699');
+
+  const savingAmount = displayComparePrice && Number(displayComparePrice) > Number(displayPrice)
+    ? Number(displayComparePrice) - Number(displayPrice) : 0;
+  const computedSavingPercent = displayComparePrice && Number(displayComparePrice) > Number(displayPrice)
+    ? Math.round((savingAmount / Number(displayComparePrice)) * 100) : 0;
 
   const handleAddToCart = async () => {
     setIsAdding(true);
@@ -77,12 +91,16 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
         {/* Category Badge & Rating */}
         <div className="flex items-center justify-between gap-2">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.24em] text-[#ACB041]">
-            BOTANICAL AYURVEDIC FORMULA
+            {isSunscreen
+              ? 'ADVANCED SOLAR SCIENCE'
+              : isComb
+              ? 'HANDCRAFTED AYURVEDIC ACCESSORY'
+              : 'POWERED BY CLINICALLY STUDIED OLEOKARE®'}
           </span>
           <a
             href="#reviews"
             className="inline-flex items-center gap-1.5 group focus:outline-none"
-            aria-label="See 128 reviews, rated 4.9 stars"
+            aria-label={isComb ? 'Artisan Handcrafted Quality' : 'See verified reviews, rated 4.9 stars'}
           >
             <div className="flex text-[#C8A96E]">
               {[...Array(5)].map((_, i) => (
@@ -90,22 +108,50 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
               ))}
             </div>
             <span className="text-xs font-sans font-medium text-[#666666] group-hover:text-[#ACB041] transition-colors">
-              4.9 (128)
+              {isComb ? '4.9 (Artisan Verified)' : '4.9 | Verified Customer Reviews'}
             </span>
           </a>
         </div>
 
-        {/* Product Title */}
-        <h1
-          itemProp="name"
-          className="font-serif text-3xl sm:text-4xl lg:text-[2.5rem] text-[#111111] font-normal leading-[1.12] tracking-[-0.015em]"
-        >
-          {product.title}
-        </h1>
+        {/* Product Title & Subtitle */}
+        <div className="space-y-1">
+          <h1
+            itemProp="name"
+            className="font-serif text-3xl sm:text-4xl lg:text-[2.5rem] text-[#111111] font-normal leading-[1.12] tracking-[-0.015em]"
+          >
+            {isHairOil ? (
+              <>
+                RootHerb™
+                <span className="block text-xl sm:text-2xl font-serif italic text-[#4B644C] mt-1">
+                  Botanical Hair &amp; Scalp Oil
+                </span>
+              </>
+            ) : (
+              product.title
+            )}
+          </h1>
+          {isHairOil && (
+            <p className="text-xs sm:text-sm font-sans font-medium text-[#4B644C] tracking-wide pt-0.5">
+              5 Cold Pressed Oils + 12 Ayurvedic Herbs + OleoKare®
+            </p>
+          )}
+        </div>
+
+        {/* Product Subtitle / Short Description */}
+        {isHairOil && (
+          <p className="text-xs sm:text-sm font-sans text-[#555555] font-light leading-relaxed">
+            A premium botanical hair ritual formulated to nourish the scalp and support healthier-looking, stronger hair.
+          </p>
+        )}
 
         {/* Highlight Badges */}
         <div className="flex flex-wrap gap-1.5 pt-1">
-          {['100% Cold-Pressed', '0% Mineral Oil', 'Dermatologist Tested'].map((label) => (
+          {(isHairOil
+            ? ['5 Cold-Pressed Oils', '12 Ayurvedic Herbs', 'OleoKare® Powered', '0% Mineral Oil']
+            : isComb
+            ? ['Hand-Carved Neem Wood', '45-Day Herbal Oil Infusion', 'Smooth Rounded Teeth']
+            : ['SPF 50+ PA++++', 'Helps Fade Visible Tan', 'Zero Visible White Cast', 'Lightweight Gel']
+          ).map((label) => (
             <span
               key={label}
               className="inline-flex items-center gap-1.5 text-[10px] font-sans font-semibold text-[#2D5A2E] bg-[#F2F6F2] px-3 py-1 rounded-full border border-[#D5E2D5]"
@@ -116,20 +162,28 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
           ))}
         </div>
 
+        {/* Free Gift Promo Banner (Hair Oil Only) */}
+        {isHairOil && (
+          <div className="inline-flex items-center gap-2 text-xs font-sans font-semibold text-[#2D5A2E] bg-[#EAF3EA] px-3.5 py-1.5 rounded-lg border border-[#C5D9C5]">
+            <span className="inline-block h-2 w-2 rounded-full bg-[#4B644C]" />
+            <span>🎁 FREE Ayurvedic Neem Comb Included with Bottle</span>
+          </div>
+        )}
+
         {/* Pricing & Stock Bar */}
         <div className="pt-2 flex items-baseline justify-between gap-4 flex-wrap">
           <div className="flex items-baseline gap-3">
             <span itemProp="price" className="font-serif text-4xl sm:text-5xl font-normal text-[#111111] leading-none">
-              ₹{Number(price).toLocaleString('en-IN')}
+              ₹{Number(displayPrice).toLocaleString('en-IN')}
             </span>
-            {comparePrice && Number(comparePrice) > Number(price) && (
+            {displayComparePrice && Number(displayComparePrice) > Number(displayPrice) && (
               <span className="text-base font-sans text-[#9A9E9A] line-through leading-none font-light">
-                ₹{Number(comparePrice).toLocaleString('en-IN')}
+                ₹{Number(displayComparePrice).toLocaleString('en-IN')}
               </span>
             )}
-            {savingPercent > 0 && (
+            {computedSavingPercent > 0 && (
               <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-[#111111] bg-[#ACB041] px-2.5 py-0.5 rounded-full shadow-xs">
-                SAVE {savingPercent}%
+                SAVE {computedSavingPercent}%
               </span>
             )}
           </div>
@@ -271,8 +325,17 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
           </motion.button>
         </div>
 
+        {/* Client Requested Trust Bar */}
+        <div className="flex items-center justify-center gap-2 text-[11px] font-sans font-medium text-[#4B644C] pt-0.5">
+          <span>COD Available</span>
+          <span>·</span>
+          <span>Secure Checkout</span>
+          <span>·</span>
+          <span>Fast Dispatch</span>
+        </div>
+
         {/* Estimated Delivery Note */}
-        <div className="flex items-center justify-center gap-2 text-xs font-sans text-[#666666] pt-1">
+        <div className="flex items-center justify-center gap-2 text-xs font-sans text-[#666666] pt-0.5">
           <Package className="h-3.5 w-3.5 text-[#ACB041] shrink-0" />
           <span>Estimated delivery within <strong className="text-[#111111] font-semibold">3–5 business days</strong></span>
         </div>

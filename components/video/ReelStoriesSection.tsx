@@ -38,7 +38,7 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     videoUrl: '/reels/reel1_sunscreen.mp4',
     product: {
       name: 'Advanced De-Tan Sunscreen Gel',
-      price: '₹499',
+      price: '₹369',
       compareAtPrice: '₹699',
       href: '/products/advanced-de-tan-sunscreen-gel',
       image: '/products/sunscreen_product.png',
@@ -51,9 +51,9 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     thumbnailUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/2d86176c7fa246dcab2d58a9dec57970.thumbnail.0000000000.jpg?v=1785968756',
     videoUrl: '/hairoil-reel.mp4',
     product: {
-      name: 'RootHerb Hair Growth Oil',
-      price: '₹599',
-      compareAtPrice: '₹799',
+      name: 'RootHerb Botanical Hair & Scalp Oil',
+      price: '₹699',
+      compareAtPrice: '₹899',
       href: '/products/rootherb-hair-growth-oil',
       image: '/products/rootherb_product.png',
       handle: 'rootherb-hair-growth-oil'
@@ -66,7 +66,7 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     videoUrl: '/reels/reel3_sunscreen.mp4',
     product: {
       name: 'Advanced De-Tan Sunscreen Gel',
-      price: '₹499',
+      price: '₹369',
       compareAtPrice: '₹699',
       href: '/products/advanced-de-tan-sunscreen-gel',
       image: '/products/sunscreen_product.png',
@@ -80,7 +80,7 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     videoUrl: '/reels/reel4_sunscreen.mp4',
     product: {
       name: 'Advanced De-Tan Sunscreen Gel',
-      price: '₹499',
+      price: '₹369',
       compareAtPrice: '₹699',
       href: '/products/advanced-de-tan-sunscreen-gel',
       image: '/products/sunscreen_product.png',
@@ -93,9 +93,9 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     thumbnailUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/af3026e37bb642faa0b7b50152970040.thumbnail.0000000000.jpg?v=1785968747',
     videoUrl: '/reels/reel5_hairoil.mp4',
     product: {
-      name: 'RootHerb Hair Growth Oil',
-      price: '₹599',
-      compareAtPrice: '₹799',
+      name: 'RootHerb Botanical Hair & Scalp Oil',
+      price: '₹699',
+      compareAtPrice: '₹899',
       href: '/products/rootherb-hair-growth-oil',
       image: '/products/rootherb_product.png',
       handle: 'rootherb-hair-growth-oil'
@@ -108,7 +108,7 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     videoUrl: '/reels/reel6_sunscreen.mp4',
     product: {
       name: 'Advanced De-Tan Sunscreen Gel',
-      price: '₹499',
+      price: '₹369',
       compareAtPrice: '₹699',
       href: '/products/advanced-de-tan-sunscreen-gel',
       image: '/products/sunscreen_product.png',
@@ -121,9 +121,9 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     thumbnailUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/5d822e92f47f43aa806db808ee384902.thumbnail.0000000000.jpg?v=1785968755',
     videoUrl: '/reels/reel7_hairoil.mp4',
     product: {
-      name: 'RootHerb Hair Growth Oil',
-      price: '₹599',
-      compareAtPrice: '₹799',
+      name: 'RootHerb Botanical Hair & Scalp Oil',
+      price: '₹699',
+      compareAtPrice: '₹899',
       href: '/products/rootherb-hair-growth-oil',
       image: '/products/rootherb_product.png',
       handle: 'rootherb-hair-growth-oil'
@@ -135,9 +135,9 @@ export const GETFLOIS_REELS_DATA: ReelStory[] = [
     thumbnailUrl: 'https://cdn.shopify.com/s/files/1/0675/1502/3447/files/preview_images/ee9627b4a46b4d1da31edc4323f25117.thumbnail.0000000000.jpg?v=1785968746',
     videoUrl: '/reels/reel8_hairoil.mp4',
     product: {
-      name: 'RootHerb Hair Growth Oil',
-      price: '₹599',
-      compareAtPrice: '₹799',
+      name: 'RootHerb Botanical Hair & Scalp Oil',
+      price: '₹699',
+      compareAtPrice: '₹899',
       href: '/products/rootherb-hair-growth-oil',
       image: '/products/rootherb_product.png',
       handle: 'rootherb-hair-growth-oil'

@@ -8,44 +8,44 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const HERO_SLIDES: SlideData[] = [
   {
     id: 'slide-1',
-    categoryTitle: 'RootHerb Hair Growth Oil',
-    headlineHighlight1: '51% Proven Hair Growth',
-    headlineMiddle: 'in',
-    headlineHighlight2: '90 Days',
-    headlineEnd: 'Clinical Therapy',
-    description: '7 certified Ayurvedic oils. No mineral oil. No parabens. Just pure botanical science.',
+    categoryTitle: 'Powered by Clinically Studied OleoKare®',
+    headlineHighlight1: 'Up to 51%',
+    headlineMiddle: 'Increase in',
+    headlineHighlight2: 'Hair-Growth',
+    headlineEnd: 'Rate*',
+    description: 'Observed in a clinical study of a 2.5% OleoKare® formulation. 5 cold-pressed oils + 12 herbs.',
     bgImage: '/placeholders/banner1background.png',
     mobileBgImage: '/placeholders/mobilebackground1.png',
     isLightTheme: true,
-    giftTitle: 'Neem Wood Comb',
+    giftTitle: 'FREE Neem Wood Comb',
     shopLink: '/products/rootherb-hair-growth-oil',
     ctaText: 'SHOP NOW',
     trustFeatures: [
-      { iconName: 'leaf', label: 'Lightweight' },
+      { iconName: 'leaf', label: 'OleoKare® Active' },
       { iconName: 'toxins', label: 'No Toxins' },
       { iconName: 'oil', label: 'No Mineral Oil' },
-      { iconName: 'chemicals', label: 'No Chemicals' }
+      { iconName: 'chemicals', label: 'Ayurvedic Formula' }
     ]
   },
   {
     id: 'slide-2',
-    categoryTitle: 'De-Tan Sunscreen Gel',
-    headlineHighlight1: 'Advanced Protection,',
-    headlineMiddle: 'Visible',
-    headlineHighlight2: 'Brightness',
-    headlineEnd: '& Defense',
-    description: 'SPF 50+ PA++++. No white cast. Sweat resistant. Formulated for Indian skin.',
+    categoryTitle: 'Advanced De-Tan Sunscreen Gel',
+    headlineHighlight1: 'SPF 50+ PA++++,',
+    headlineMiddle: 'Helps Fade',
+    headlineHighlight2: 'Visible Tan',
+    headlineEnd: '& Defend',
+    description: 'Ultra-lightweight water-gel. Zero visible white cast. Sweat resistant. Formulated for Indian skin.',
     bgImage: '/placeholders/banner2background.png',
     mobileBgImage: '/placeholders/mobilebackground2.png',
     isLightTheme: true,
-    giftTitle: 'Botanical Sun Pouch',
+    giftTitle: 'Complimentary Pouch',
     shopLink: '/products/advanced-de-tan-sunscreen-gel',
     ctaText: 'SHOP SUN CARE',
     trustFeatures: [
-      { iconName: 'sun', label: 'No White Cast' },
-      { iconName: 'uv', label: 'UVA, UVB Protection' },
+      { iconName: 'sun', label: 'Zero White Cast' },
+      { iconName: 'uv', label: 'SPF 50+ PA++++' },
       { iconName: 'water', label: 'Sweat Resistant' },
-      { iconName: 'skin', label: 'All Skin Types' }
+      { iconName: 'skin', label: 'Lightweight Gel' }
     ]
   }
 ];

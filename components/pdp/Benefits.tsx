@@ -74,40 +74,43 @@ function IconBadge({ type }: { type: BenefitItem['iconType'] }) {
 }
 
 const HAIR_OIL_BENEFITS: BenefitItem[] = [
-  { iconType: 'hair-oil-leaf', stat: '96%', statLabel: 'Hair Fall Reduction', title: 'Clinically Tested', desc: 'Proven efficacy in independent dermatology trial over 28 days.' },
-  { iconType: 'pure-botanicals', stat: '100%', statLabel: 'Plant-Based', title: 'Pure Botanicals', desc: 'Cold-pressed herbs with zero synthetic fillers, silicones, or parabens.' },
-  { iconType: 'non-comedogenic', stat: '0%', statLabel: 'Mineral Oil', title: 'Non-Comedogenic', desc: 'Lightweight formula absorbs fully without blocking scalp pores.' },
-  { iconType: 'derm-approved', stat: '✓', statLabel: 'Derm Approved', title: 'Dermatologist Tested', desc: 'Hypoallergenic and safe for all hair types including sensitive scalps.' },
+  { iconType: 'hair-oil-leaf', stat: '2.5%', statLabel: 'OleoKare® Active', title: 'OleoKare® Powered', desc: 'RootHerb contains OleoKare®, a botanical active clinically studied at a 2.5% concentration.' },
+  { iconType: 'pure-botanicals', stat: '5', statLabel: 'Cold-Pressed Oils', title: 'Pure Botanicals', desc: 'Cold-pressed botanical oils selected to retain natural plant characteristics.' },
+  { iconType: 'non-comedogenic', stat: '0%', statLabel: 'Mineral Oil', title: 'Lightweight Scalp Feel', desc: 'Designed to nourish without leaving a heavy, sticky residue.' },
+  { iconType: 'derm-approved', stat: '✓', statLabel: 'Everyday Care', title: 'Made for Everyday Hair Care', desc: 'Suitable for regular scalp and hair-care routines.' },
   { iconType: 'cruelty-free', stat: '✓', statLabel: 'Cruelty Free', title: 'Ethically Crafted', desc: '100% vegan. Ethically sourced. Never tested on animals.' },
-  { iconType: 'ayurvedic-formula', stat: '18', statLabel: 'Active Herbs', title: 'Ayurvedic Formula', desc: 'Slow copper-vessel infusion of 18 botanical actives per batch.' },
+  { iconType: 'ayurvedic-formula', stat: '12', statLabel: 'Herbs Infused', title: 'Ayurvedic Formula', desc: 'Slow traditional infusion of 12 Ayurvedic herbs and botanical actives.' },
 ];
 
 const NEEM_COMB_BENEFITS: BenefitItem[] = [
-  { iconType: 'wooden-comb', stat: '100%', statLabel: 'Anti-Static', title: 'Frizz & Breakage Control', desc: 'Pure medicinal wood teeth eliminate static friction & hair breakage.' },
-  { iconType: 'ayurvedic-formula', stat: '100%', statLabel: 'Neem Wood', title: 'Pure Margosa Wood', desc: 'Hand-carved from seasoned medicinal neem trees rich in nimbidin.' },
-  { iconType: 'derm-approved', stat: '92%', statLabel: 'Flake Relief', title: 'Anti-Dandruff Action', desc: 'Natural antibacterial wood inhibits fungal growth on contact.' },
-  { iconType: 'hair-oil-leaf', stat: '✓', statLabel: 'Derm Approved', title: 'Scalp Safe', desc: 'Smooth hand-polished teeth massage scalp papilla gently.' },
-  { iconType: 'cruelty-free', stat: '✓', statLabel: 'Handmade', title: 'Artisan Crafted', desc: 'Hand-carved and polished without harsh varnishes or lacquers.' },
-  { iconType: 'pure-botanicals', stat: '17', statLabel: 'Herbs Soaked', title: 'Herbal Infused', desc: 'Traditional 45-day herbal oil soaking for continuous scalp nourishment.' },
+  { iconType: 'wooden-comb', stat: '🌿', statLabel: 'Durable Wood', title: 'Natural Neem Wood', desc: 'A naturally durable wood traditionally valued in Indian wellness practices.' },
+  { iconType: 'ayurvedic-formula', stat: '⚡', statLabel: 'Zero Frizz', title: 'Low Static', desc: 'Helps minimise static compared with many plastic combs.' },
+  { iconType: 'hair-oil-leaf', stat: '🪮', statLabel: 'Gentle Glide', title: 'Smooth Rounded Teeth', desc: 'Designed for gentle detangling and comfortable scalp contact.' },
+  { iconType: 'derm-approved', stat: '💆', statLabel: 'Daily Ritual', title: 'Gentle Scalp Massage', desc: 'Use the rounded teeth for a relaxing scalp-combing ritual.' },
+  { iconType: 'pure-botanicals', stat: '🌱', statLabel: '45-Day Soak', title: '17 Botanical Infusion', desc: 'Traditionally soaked in a botanical oil blend for 45 days.' },
+  { iconType: 'cruelty-free', stat: '♻️', statLabel: 'Eco Friendly', title: 'Naturally Biodegradable', desc: 'A wood-based alternative to disposable plastic combs.' },
 ];
 
 const SUNSCREEN_BENEFITS: BenefitItem[] = [
-  { iconType: 'sun-screen', stat: 'SPF 50+', statLabel: 'PA++++', title: 'Broad Spectrum Defense', desc: 'Maximum protection against UVA & UVB rays without synthetic filters.' },
-  { iconType: 'non-comedogenic', stat: '100%', statLabel: 'No White Cast', title: 'Invisible Gel Texture', desc: 'Ultra-lightweight gel absorbs instantly with a luminous natural finish.' },
-  { iconType: 'pure-botanicals', stat: '0%', statLabel: 'Pore Clogging', title: 'Non-Comedogenic', desc: 'Water-light formula ideal for humid climates and acne-prone skin.' },
-  { iconType: 'derm-approved', stat: '✓', statLabel: 'Derm Approved', title: 'Dermatologist Tested', desc: 'Hypoallergenic, sweat-resistant, and safe for sensitive skin.' },
-  { iconType: 'cruelty-free', stat: '✓', statLabel: 'De-Tan Active', title: 'Niacinamide Boost', desc: 'Fades sun spots and hyperpigmentation with clinical botanicals.' },
-  { iconType: 'ayurvedic-formula', stat: '24h', statLabel: 'Hydration', title: 'Aloe Vera Base', desc: 'Infused with cooling organic aloe vera gel to calm UV heat stress.' },
+  { iconType: 'sun-screen', stat: 'SPF 50+', statLabel: 'PA++++', title: 'Broad Spectrum Defense', desc: 'High daily protection against UVA & UVB rays for tropical climates.' },
+  { iconType: 'non-comedogenic', stat: '0%', statLabel: 'White Cast', title: 'Zero Visible White Cast', desc: 'Designed to blend invisibly across Indian skin tones without chalky residue.' },
+  { iconType: 'pure-botanicals', stat: '💧', statLabel: 'Water Gel', title: 'Lightweight Texture', desc: 'Weightless, fast-absorbing gel finish comfortable for all skin types.' },
+  { iconType: 'derm-approved', stat: '✓', statLabel: 'Skin Safe', title: 'Dermatologically Tested', desc: 'Water & sweat resistant, gentle formula designed for everyday sun protection.' },
+  { iconType: 'cruelty-free', stat: '✨', statLabel: 'Even Tone', title: 'Helps Fade Visible Tan', desc: 'Formulated with Kojic Acid, Fermented Rice Water, and Niacinamide.' },
+  { iconType: 'ayurvedic-formula', stat: '🌿', statLabel: 'Botanicals', title: 'Hydrating Botanical Base', desc: 'Enriched with Organic Aloe Vera leaf juice and Sea Buckthorn Berry.' },
 ];
 
 export function Benefits({ product }: { product?: Product }) {
   const handle = product?.handle?.toLowerCase() || '';
   
   let benefits = HAIR_OIL_BENEFITS;
+  let sectionEyebrow = 'WHY FLOIS STANDS APART';
   if (handle.includes('neem') || handle.includes('comb')) {
     benefits = NEEM_COMB_BENEFITS;
+    sectionEyebrow = 'THE NEEM ADVANTAGE';
   } else if (handle.includes('sunscreen') || handle.includes('tan') || handle.includes('skin')) {
     benefits = SUNSCREEN_BENEFITS;
+    sectionEyebrow = 'SOLAR SCIENCE & BOTANICAL DEFENSE';
   }
 
   return (
@@ -120,7 +123,7 @@ export function Benefits({ product }: { product?: Product }) {
           {/* Left: Section Header Column — 4 cols */}
           <div className="lg:col-span-4 space-y-5 lg:sticky lg:top-28 text-left">
             <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.22em] text-[#4B644C] block">
-              WHY FLOIS STANDS APART
+              {sectionEyebrow}
             </span>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-[3rem] font-normal leading-[1.1] tracking-tight text-[#121412]">
               The Formula That<br />

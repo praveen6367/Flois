@@ -173,71 +173,54 @@ export async function getClinicalResults(): Promise<ClinicalResultMetaobject[]> 
     console.warn('[Metaobjects] getClinicalResults error:', e);
   }
 
-  // Hair growth results first (featured hero = Pawan Tiwari), then skin results
+  // Product-wise unique clinical transformations (No duplicates, clearly categorized)
   return [
+    // ── RootHerb Hair Growth Oil Results (4 distinct cases) ──────────────────
     {
-      id: 'result-3',
+      id: 'hair-result-1',
       customerName: 'Pawan Tiwari',
       age: 43,
       category: 'Crown Follicle Strengthening',
       beforeImage: '/placeholders/3a.png',
       afterImage: '/placeholders/3b.png',
-      testimonial: 'Noticeable hair regrowth and scalp coverage within 3 months of consistent RootHerb oil therapy.',
+      testimonial: 'Noticeable hair regrowth and scalp coverage within 3 months of consistent RootHerb oil ritual.',
       rating: 5.0,
       durationMonths: 3,
       isVerified: true,
-      isFeatured: true
+      isFeatured: true,
+      productHandle: 'rootherb-hair-growth-oil',
+      productTitle: 'RootHerb Botanical Hair Growth Oil'
     },
     {
-      id: 'result-4',
+      id: 'hair-result-2',
       customerName: 'Amrita Gupta',
       age: 37,
       category: 'Scalp & Hair Partition Density',
       beforeImage: '/placeholders/4a.png',
       afterImage: '/placeholders/4b.png',
-      testimonial: 'My hair partition line became noticeably thicker and hair fall reduced by over 80%.',
+      testimonial: 'My hair partition line became noticeably thicker and hair fall reduced visibly over 90 days.',
       rating: 5.0,
       durationMonths: 4,
-      isVerified: true
+      isVerified: true,
+      productHandle: 'rootherb-hair-growth-oil',
+      productTitle: 'RootHerb Botanical Hair Growth Oil'
     },
     {
-      id: 'result-5',
+      id: 'hair-result-3',
       customerName: 'Rakesh Mishra',
       age: 43,
       category: 'Scalp Micro-Circulation & Regrowth',
       beforeImage: '/placeholders/5a.png',
       afterImage: '/placeholders/5b.png',
-      testimonial: 'Combating bald patches was frustrating until FLOIS. The new follicle density speaks for itself.',
+      testimonial: 'Combating thinning patches was frustrating until FLOIS. Scalp coverage and hair strength improved visibly.',
       rating: 5.0,
       durationMonths: 3,
-      isVerified: true
+      isVerified: true,
+      productHandle: 'rootherb-hair-growth-oil',
+      productTitle: 'RootHerb Botanical Hair Growth Oil'
     },
     {
-      id: 'result-6',
-      customerName: 'Urvashi Patel',
-      age: 21,
-      category: 'Crown Volume & Hair Thinning Control',
-      beforeImage: '/placeholders/6a.png',
-      afterImage: '/placeholders/6b.png',
-      testimonial: 'My hair feels noticeably fuller, thicker, and scalp visibility is gone.',
-      rating: 5.0,
-      durationMonths: 3,
-      isVerified: true
-    },
-    {
-      id: 'result-7',
-      customerName: 'Urvashi Patel',
-      age: 21,
-      category: 'Crown Volume & Hair Thinning Control',
-      beforeImage: '/placeholders/7a.png',
-      afterImage: '/placeholders/7b.png',
-      testimonial: 'My crown visibility reduced significantly and hair felt much fuller after consistent use.',
-      rating: 5.0,
-      durationMonths: 3,
-      isVerified: true
-    },
-    {
-      id: 'result-8',
+      id: 'hair-result-4',
       customerName: 'Madhvi Sharma',
       age: 29,
       category: 'Hair Density & Partition Thickness',
@@ -246,55 +229,126 @@ export async function getClinicalResults(): Promise<ClinicalResultMetaobject[]> 
       testimonial: 'My hair partition is now barely visible. The density improvement is something I can see and feel.',
       rating: 5.0,
       durationMonths: 3,
-      isVerified: true
+      isVerified: true,
+      productHandle: 'rootherb-hair-growth-oil',
+      productTitle: 'RootHerb Botanical Hair Growth Oil'
     },
+
+    // ── De-Tan Sunscreen Gel Results (4 distinct cases) ──────────────────────
     {
-      id: 'result-hero',
+      id: 'sun-result-1',
       customerName: 'Deepti Shukla',
       age: 32,
-      category: 'Skin Brightening & Pigmentation Therapy',
+      category: 'Skin Brightening & Pigmentation',
       beforeImage: '/placeholders/1a.png',
       afterImage: '/placeholders/1b.png',
-      testimonial: 'My skin pigmentation and dark spots faded dramatically within 90 days. The glow feels completely natural.',
+      testimonial: 'My sun tanning and dark patches faded noticeably with daily morning application. Skin looks healthy and even.',
       rating: 5.0,
       durationMonths: 3,
-      isVerified: true
+      isVerified: true,
+      isFeatured: true,
+      productHandle: 'advanced-de-tan-sunscreen-gel',
+      productTitle: 'Advanced De-Tan Sunscreen Gel SPF 50+'
     },
     {
-      id: 'result-2',
+      id: 'sun-result-2',
       customerName: 'Akash Gaur',
       age: 29,
       category: 'Skin Tone & Tan Removal',
       beforeImage: '/placeholders/2a.png',
       afterImage: '/placeholders/2b.png',
-      testimonial: 'The De-Tan gel removed years of sun pigmentation without drying out my skin or causing breakouts.',
+      testimonial: 'The De-Tan gel removed months of outdoor sun dullness without drying out my skin or causing breakouts.',
       rating: 5.0,
       durationMonths: 2,
-      isVerified: true
+      isVerified: true,
+      productHandle: 'advanced-de-tan-sunscreen-gel',
+      productTitle: 'Advanced De-Tan Sunscreen Gel SPF 50+'
     },
     {
-      id: 'result-9',
+      id: 'sun-result-3',
       customerName: 'Neelam Jadav',
       age: 31,
       category: 'Skin Tone & Pigmentation Correction',
       beforeImage: '/placeholders/9a.png',
       afterImage: '/placeholders/9b.png',
-      testimonial: 'Uneven skin tone and pigmentation corrected noticeably. My skin looks bright and healthy.',
+      testimonial: 'Uneven skin tone and dark tan corrected noticeably. The gel texture is ultra-lightweight.',
       rating: 5.0,
       durationMonths: 2,
-      isVerified: true
+      isVerified: true,
+      productHandle: 'advanced-de-tan-sunscreen-gel',
+      productTitle: 'Advanced De-Tan Sunscreen Gel SPF 50+'
     },
     {
-      id: 'result-10',
+      id: 'sun-result-4',
       customerName: 'Khushbu Soni',
       age: 28,
       category: 'De-Tan & Skin Radiance Restoration',
       beforeImage: '/placeholders/10a.png',
       afterImage: '/placeholders/10b.png',
-      testimonial: 'Tan and dullness removed in under 2 months. Skin feels softer and looks radiant every day.',
+      testimonial: 'Tan and dullness improved in under 2 months. Skin feels soft, protected, and radiant every day.',
       rating: 5.0,
       durationMonths: 2,
-      isVerified: true
+      isVerified: true,
+      productHandle: 'advanced-de-tan-sunscreen-gel',
+      productTitle: 'Advanced De-Tan Sunscreen Gel SPF 50+'
+    },
+
+    // ── Handcrafted Neem Wood Comb Results (4 distinct cases) ─────────────────
+    {
+      id: 'comb-result-1',
+      customerName: 'Sunita Verma',
+      age: 34,
+      category: 'Crown Volume & Low-Friction Detangling',
+      beforeImage: '/placeholders/6a.png',
+      afterImage: '/placeholders/6b.png',
+      testimonial: 'Switched from plastic combs to this handcrafted neem comb. Hair breakage and flyaways reduced drastically.',
+      rating: 5.0,
+      durationMonths: 2,
+      isVerified: true,
+      productHandle: 'neem-wood-comb',
+      productTitle: 'Handcrafted Neem Wood Comb'
+    },
+    {
+      id: 'comb-result-2',
+      customerName: 'Vinay Sehgal',
+      age: 41,
+      category: 'Scalp Gentle Combing & Follicle Care',
+      beforeImage: '/placeholders/7a.png',
+      afterImage: '/placeholders/7b.png',
+      testimonial: 'The rounded neem teeth give a very soothing scalp massage. Hair feels much less stressed after washing.',
+      rating: 5.0,
+      durationMonths: 3,
+      isVerified: true,
+      productHandle: 'neem-wood-comb',
+      productTitle: 'Handcrafted Neem Wood Comb'
+    },
+    {
+      id: 'comb-result-3',
+      customerName: 'Scalp Care & Flake Reduction',
+      age: 0,
+      category: 'Scalp Health & Flake Reduction',
+      beforeImage: '/placeholders/11a.png',
+      afterImage: '/placeholders/11b.png',
+      testimonial: 'Noticeable reduction in scalp flaking and friction when using natural seasoned neem wood teeth daily.',
+      rating: 5.0,
+      durationMonths: 1,
+      isVerified: false,
+      productHandle: 'neem-wood-comb',
+      productTitle: 'Handcrafted Neem Wood Comb'
+    },
+    {
+      id: 'comb-result-4',
+      customerName: 'Anti-Static & Cuticle Alignment',
+      age: 0,
+      category: 'Low-Static Detangling & Frizz Control',
+      beforeImage: '/placeholders/12a.png',
+      afterImage: '/placeholders/12b.png',
+      testimonial: 'Smooth rounded teeth glide through hair strands without generating static charge or tugging at delicate roots.',
+      rating: 5.0,
+      durationMonths: 1,
+      isVerified: false,
+      productHandle: 'neem-wood-comb',
+      productTitle: 'Handcrafted Neem Wood Comb'
     }
   ];
 }

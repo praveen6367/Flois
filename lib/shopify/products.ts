@@ -13,16 +13,56 @@ import { GET_PRODUCT_RECOMMENDATIONS_QUERY } from '@/graphql/products/get-recomm
 function reshapeProduct(product: any): Product {
   if (!product) return null as any;
 
+  const h = (product.handle || product.title || '').toLowerCase();
+  const isRootHerb = h.includes('rootherb') || h.includes('hair-growth-oil');
+
+  let priceRange = product.priceRange;
+  let compareAtPriceRange = product.compareAtPriceRange;
+
+  // RootHerb price normalization fallback (Selling: ₹699, Compare-at: ₹899)
+  if (isRootHerb) {
+    const currency = priceRange?.minVariantPrice?.currencyCode || 'INR';
+    priceRange = {
+      ...priceRange,
+      minVariantPrice: { amount: '699.0', currencyCode: currency },
+      maxVariantPrice: { amount: '699.0', currencyCode: currency }
+    };
+    compareAtPriceRange = {
+      ...compareAtPriceRange,
+      minVariantPrice: { amount: '899.0', currencyCode: currency },
+      maxVariantPrice: { amount: '899.0', currencyCode: currency }
+    };
+  }
+
+  const rawVariantsEdges = product.variants?.edges?.map((e: any) => {
+    const node = e.node;
+    if (isRootHerb && node) {
+      return {
+        ...e,
+        node: {
+          ...node,
+          price: { amount: '699.0', currencyCode: node.price?.currencyCode || 'INR' },
+          compareAtPrice: { amount: '899.0', currencyCode: node.compareAtPrice?.currencyCode || 'INR' }
+        }
+      };
+    }
+    return e;
+  }) || [];
+
+  const rawVariantsNodes = rawVariantsEdges.map((e: any) => e.node);
+
   return {
     ...product,
+    priceRange,
+    compareAtPriceRange,
     images: {
       edges: product.images?.edges || [],
       nodes: product.images?.edges?.map((e: any) => e.node) || [],
       pageInfo: product.images?.pageInfo || { hasNextPage: false, hasPreviousPage: false }
     },
     variants: {
-      edges: product.variants?.edges || [],
-      nodes: product.variants?.edges?.map((e: any) => e.node) || [],
+      edges: rawVariantsEdges,
+      nodes: rawVariantsNodes,
       pageInfo: product.variants?.pageInfo || { hasNextPage: false, hasPreviousPage: false }
     }
   };

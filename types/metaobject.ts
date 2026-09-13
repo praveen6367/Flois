@@ -59,6 +59,8 @@ export interface ClinicalResultMetaobject {
   durationMonths: number;
   isVerified: boolean;
   isFeatured?: boolean;
+  productHandle?: string;
+  productTitle?: string;
 }
 
 export interface VideoStoryMetaobject {

@@ -55,25 +55,25 @@ function getProductDescriptionData(handle: string, title: string): ProductDescri
   // ── Neem Wood Comb ─────────────────────────────────────────────────────────
   if (str.includes('neem') || str.includes('comb') || str.includes('wood')) {
     return {
-      eyebrow: 'ARTISAN CRAFT & SCALP HEALTH',
-      heading: 'Handcrafted Medicinal Neem Wood Tool',
-      subheading: 'Rooted in traditional Vedic scalp rituals to eliminate static and reduce hair breakage.',
+      eyebrow: 'ARTISAN CRAFT & SCALP CARE',
+      heading: 'Handcrafted Seasoned Neem Wood Tool',
+      subheading: 'Rooted in traditional Ayurvedic scalp rituals to eliminate static and care for the scalp.',
       items: [
         {
-          title: 'Seasoned Medicinal Margosa Wood',
-          subtitle: '45-Day Herbal Infused Artisanal Wood',
-          description: 'Hand-carved from mature medicinal neem trees and soaked for 45 days in 17 scalp herbs including Bhringraj and Amla. Transfers anti-bacterial nimbidin bioactives to your scalp.',
+          title: 'Seasoned Natural Neem Wood',
+          subtitle: '45-Day Herbal Oil Infused Artisanal Wood',
+          description: 'Hand-carved from natural neem wood and steeped for 45 days in a curated botanical oil blend. Naturally durable wood traditionally valued in Indian wellness rituals.',
           image: '/products/desc_neem_comb.jpg',
           alt: 'FLOIS Handcrafted Neem Wood Comb official description banner',
-          highlights: ['Pure Medicinal Neem Wood', '45-Day Herbal Infused', 'Naturally Anti-Dandruff'],
+          highlights: ['Natural Neem Wood', '45-Day Herbal Infusion', 'Low Static Friction'],
         },
         {
           title: 'Anti-Static Hand-Polished Teeth',
-          subtitle: 'Zero Breakage & Scalp Massage',
-          description: 'Unlike plastic combs that create static electricity and tear hair cuticles, hand-rounded neem teeth gently glide through knots, stimulating scalp papilla micro-circulation.',
+          subtitle: 'Gentle Detangling & Scalp Massage',
+          description: 'Unlike plastic combs that create static electricity and tug at delicate strands, hand-rounded neem teeth glide smoothly through knots for a soothing scalp-combing ritual.',
           image: '/products/editorial_neem_comb.jpg',
           alt: 'FLOIS Neem Wood Comb smooth teeth detail',
-          highlights: ['100% Anti-Static Friction', 'Prevents Hair Cuticle Tearing', 'Smooth Rounded Massage Teeth'],
+          highlights: ['Low Static Friction', 'Minimises Hair Tug', 'Smooth Rounded Massage Teeth'],
         },
       ],
     };
@@ -84,23 +84,23 @@ function getProductDescriptionData(handle: string, title: string): ProductDescri
     return {
       eyebrow: 'BOTANICAL BODY & SKINCARE',
       heading: 'Ayurvedic Botanical Skin Nourishment',
-      subheading: 'Pure plant bioactives and cold-pressed oils formulated for 24-hour hydration.',
+      subheading: 'Pure plant bioactives and cold-pressed oils formulated for daily hydration.',
       items: [
         {
-          title: '100% Cold-Pressed Plant Bioactives',
+          title: 'Cold-Pressed Plant Bioactives',
           subtitle: 'Pure Botanical Elixir',
-          description: 'Sourced from organic South Indian botanical gardens, our cold-pressed formula delivers concentrated vitamins, essential fatty acids, and antioxidants directly to skin cells.',
+          description: 'Our cold-pressed oil base is selected to retain the natural characteristics of the botanical oils used in the formula, delivering essential nutrients to skin.',
           image: '/products/botanical_ingredients.jpg',
           alt: 'FLOIS Botanical Skin Care ingredients breakdown',
-          highlights: ['100% Cold-Pressed Herbs', '24-Hour Deep Hydration', 'Zero Mineral Oils or Silicones'],
+          highlights: ['Cold-Pressed Botanical Base', 'Deep Daily Hydration', 'Zero Mineral Oils or Silicones'],
         },
         {
           title: 'Silk-Touch Fast Absorption',
           subtitle: 'Soothing Barrier Fortification',
-          description: 'Lightweight, non-greasy formula absorbs rapidly to soothe redness, restore epidermal lipids, and leave a velvety luminous finish.',
+          description: 'Lightweight, non-greasy formula absorbs rapidly to soothe dryness, restore moisture lipids, and leave a velvety luminous finish.',
           image: '/products/texture_macro.jpg',
           alt: 'FLOIS Skin Care sensory texture',
-          highlights: ['Calms Skin Inflammation', 'Restores Moisture Barrier', 'Silk-Touch Luminous Finish'],
+          highlights: ['Calms Dryness', 'Restores Moisture Barrier', 'Silk-Touch Luminous Finish'],
         },
       ],
     };
@@ -108,25 +108,25 @@ function getProductDescriptionData(handle: string, title: string): ProductDescri
 
   // ── Default: RootHerb Hair Growth Oil ──────────────────────────────────────
   return {
-    eyebrow: 'BOTANICAL FORMULATION & DETAILS',
-    heading: 'Oleokare 5-In-1 Hair Care Infusion',
-    subheading: 'Discover the 100% cold-pressed formulation behind 96% hair fall reduction.',
+    eyebrow: 'BOTANICAL FORMULATION & SCIENCE',
+    heading: 'Powered by Clinically Studied OleoKare®',
+    subheading: 'A botanical active clinically studied at a 2.5% concentration for hair vitality and scalp nourishment.',
     items: [
       {
-        title: 'Oleokare 5-In-1 Active Anti-Hair Loss Infusion',
-        subtitle: 'Clinically Proven Hair Care Actives',
-        description: 'Cold-pressed virgin sesame and coconut oil slow-cooked with Bhringraj, Wild Rosemary, Amla, Neem, and Oleokare 5-in-1 bioactives. Clinically shown to extend hair growth by 51% and increase hair thickness by 81%.',
+        title: 'OleoKare® Botanical Active Infusion',
+        subtitle: 'Clinically Studied Botanical Active (2.5%)',
+        description: 'RootHerb™ brings together 18 Ayurvedic botanicals, 5 cold-pressed oils, and OleoKare®—a botanical active clinically studied at a 2.5% concentration to support hair-growth rate, hair fall reduction, and improved hair thickness.',
         image: '/products/desc_flois_marketplace.png',
-        alt: 'FLOIS Hair Growth Oil Oleokare 5-In-1 description infographic banner',
-        highlights: ['51% Increased Hair Growth', '81% Hair Thickness Boost', '57% Hair Fall Reduction'],
+        alt: 'FLOIS Hair Growth Oil OleoKare description infographic banner',
+        highlights: ['Up to +51% Hair-Growth Rate*', 'Up to -57% Hair Fall Reduction*', 'Up to +81% Hair Thickness*'],
       },
       {
-        title: '18 Active Herbs Infusion Map',
+        title: '18 Botanical Herbs Infusion Map',
         subtitle: 'Traditional Ayurvedic Rasayana Formula',
-        description: 'Deeply nourishes scalp tissue 3 layers deep without greasy residue. Carnosic acid from wild Himalayan rosemary invigorates blood flow directly to dormant papilla hair cells.',
+        description: 'Inspired by traditional Ayurvedic preparation methods and adapted for modern formulation standards. Delivers deep nourishment without a heavy, sticky residue.',
         image: '/products/rootherb_ingredients_map.png',
         alt: 'FLOIS RootHerb 18 Botanical Herbs Formulation Map',
-        highlights: ['18 Pure Ayurvedic Botanicals', 'Copper-Vessel Slow Cooked', 'DHT-Blocker Wedelolactone'],
+        highlights: ['18 Ayurvedic Botanicals', '5 Cold-Pressed Oils', 'Botanical Scalp Conditioning'],
       },
     ],
   };

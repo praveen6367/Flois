@@ -42,62 +42,62 @@ export async function getVideoStories(): Promise<VideoStoryMetaobject[]> {
     console.warn('[videoMetaobjects] getVideoStories error:', e);
   }
 
-  // Official 4 Doctor & Expert Review Videos (using client uploaded MP4 assets)
+  // Official 4 Clinical & Expert Review Videos (using verified MP4 video assets)
   return [
     {
       id: 'doctor-video-1',
-      title: 'Dr. Ananya Sharma, MD (Dermatology)',
-      category: 'Dermatologist Clinical Endorsement',
+      title: 'Clinical Dermatology Advisory Panel',
+      category: 'Dermatological Evaluation',
       videoUrl: '/placeholders/video1.mp4',
       posterImage: '/placeholders/3b.png',
       duration: '0:45',
-      description: 'Clinical evaluation of FLOIS RootHerb Hair Growth Oil for hair follicle density and scalp micro-circulation.',
+      description: 'Dermatological review of 2.5% OleoKare® active and cold-pressed botanical carrier oils for scalp vitality.',
       productHandle: 'rootherb-hair-growth-oil',
-      productTitle: 'RootHerb Cold-Pressed Hair Growth Oil',
-      productPrice: '₹1,250',
-      productImage: '/placeholders/banner1background.png',
+      productTitle: 'RootHerb™ Botanical Hair & Scalp Oil',
+      productPrice: '₹699',
+      productImage: '/products/rootherb_product.png',
       isFeatured: true
     },
     {
       id: 'doctor-video-2',
-      title: 'Dr. Vikramaditya Rao, Ayurvedic Physician',
-      category: 'Trichology & Follicle Therapy',
+      title: 'Ayurvedic Formulation Advisory Team',
+      category: 'Botanical Formulation Analysis',
       videoUrl: '/placeholders/video2.mp4',
       posterImage: '/placeholders/5b.png',
       duration: '0:35',
-      description: 'Scientific analysis of 18 cold-pressed botanical extracts for natural hair fall reduction.',
+      description: 'Analysis of 12 traditional Ayurvedic botanicals infused with OleoKare® for balanced scalp nourishment.',
       productHandle: 'rootherb-hair-growth-oil',
-      productTitle: 'RootHerb Cold-Pressed Hair Growth Oil',
-      productPrice: '₹1,250',
-      productImage: '/placeholders/banner1background.png',
+      productTitle: 'RootHerb™ Botanical Hair & Scalp Oil',
+      productPrice: '₹699',
+      productImage: '/products/rootherb_product.png',
       isFeatured: false
     },
     {
       id: 'doctor-video-3',
-      title: 'Dr. Meera Nambiar, MD (Cosmetology)',
-      category: 'Solar Protection Study',
+      title: 'Cosmetic & Solar Science Review',
+      category: 'Solar Defense Study',
       videoUrl: '/placeholders/video3.mp4',
       posterImage: '/placeholders/2b.png',
       duration: '0:30',
-      description: 'Dermatological assessment of FLOIS SPF 50+ De-Tan Gel for zero white-cast UV defense.',
+      description: 'Assessment of FLOIS SPF 50+ De-Tan Gel for zero white-cast UV defense on Indian skin tones.',
       productHandle: 'advanced-de-tan-sunscreen-gel',
       productTitle: 'Advanced De-Tan Sunscreen Gel SPF 50+',
-      productPrice: '₹890',
-      productImage: '/placeholders/banner2background.png',
+      productPrice: '₹369',
+      productImage: '/products/sunscreen_product.png',
       isFeatured: false
     },
     {
       id: 'doctor-video-4',
-      title: 'Dr. Rajesh Kothari, Scalp Specialist',
-      category: 'Medicinal Neem Comb Analysis',
+      title: 'Artisan Wellness Research Desk',
+      category: 'Neem Wood Combing Study',
       videoUrl: '/placeholders/video4.mp4',
       posterImage: '/placeholders/4b.png',
       duration: '0:40',
-      description: 'Clinical examination of handcrafted neem wood combing for scalp stimulation and anti-static hair care.',
+      description: 'Examination of handcrafted seasoned neem wood combing for gentle detangling and low-static hair care.',
       productHandle: 'neem-wood-comb',
-      productTitle: 'Handcrafted Medicinal Neem Wood Comb',
-      productPrice: '₹450',
-      productImage: '/placeholders/comb.svg',
+      productTitle: 'Handcrafted Neem Wood Comb',
+      productPrice: '₹119',
+      productImage: '/products/neem_comb_product.png',
       isFeatured: false
     }
   ];

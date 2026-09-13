@@ -142,7 +142,6 @@ export function LuxuryProductCard({ product, onQuickView }: LuxuryProductCardPro
           <div className="flex items-center gap-1">
             <Star className="h-3.5 w-3.5 fill-[#C8A96E] text-[#C8A96E]" />
             <span className="text-xs font-sans font-semibold text-[#111111]">4.9</span>
-            <span className="text-[11px] font-sans text-[#666666]">(128)</span>
           </div>
 
           <span className="font-serif text-lg font-normal text-[#111111]">

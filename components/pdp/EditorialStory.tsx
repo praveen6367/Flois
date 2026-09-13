@@ -34,49 +34,50 @@ function getStoryData(handle: string, title: string): StoryData {
         </>
       ),
       pullQuote:
-        '"Ancient Vedic texts prescribed medicinal neem wood for its antibacterial properties — not a trend, but a time-tested tool for scalp health."',
+        '"Crafted from naturally durable neem wood, designed for gentle detangling and a mindful daily scalp ritual."',
       paragraphs: [
-        `${title} is hand-carved in small batches by trained artisans from seasoned medicinal neem (Azadirachta indica) trees — a wood that has been prescribed in Ayurvedic medicine for millennia.`,
-        'Each comb is soaked for 45 days in a proprietary blend of 17 scalp herbs — including Bhringraj, Amla, and Jatamansi — before hand-polishing, infusing every tooth with active medicinal oils.',
-        'Unlike synthetic combs that generate static electricity and cause cuticle damage, neem wood naturally distributes scalp oils without friction, breakage, or bacterial contamination.',
+        `${title} is hand-carved in small batches by trained artisans from seasoned neem (Azadirachta indica) wood — a material traditionally valued in Indian wellness practices.`,
+        'Each comb is soaked for 45 days in a traditional blend of 17 botanical herbs — including Bhringraj, Amla, and Jatamansi — before meticulous hand-polishing for smooth, rounded contact.',
+        'Unlike synthetic plastic combs that generate static electricity and cause friction, smooth neem wood naturally glides without snagging, hair breakage, or static flyaways.',
       ],
-      caption: 'Hand-Carved Medicinal Neem Wood',
-      signature: 'Rooted in Vedic Craft. Proven by Dermatology.',
+      caption: 'Artisan Carved Natural Neem Wood',
+      signature: 'Rooted in Ayurvedic Tradition. Crafted for Modern Hair Care.',
       metrics: [
-        { value: '45', label: 'Days Herbal Soak' },
-        { value: '0%', label: 'Synthetic Materials' },
-        { value: '17', label: 'Active Herbs' },
-        { value: '100%', label: 'Anti-Static' },
+        { value: '45', label: 'Days Herbal Infusion' },
+        { value: '0%', label: 'Synthetic Plastic' },
+        { value: '17', label: 'Botanical Herbs' },
+        { value: 'Low', label: 'Static Friction' },
       ],
       image: '/products/editorial_neem_comb.jpg',
-      imageAlt: 'FLOIS Handcrafted Neem Wood Comb — artisan carved from medicinal neem tree',
+      imageAlt: 'FLOIS Handcrafted Neem Wood Comb — artisan carved from natural neem tree',
     };
   }
 
   // ── De-Tan Sunscreen ────────────────────────────────────────────────────────
   if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf')) {
     return {
-      eyebrow: 'ADVANCED SOLAR SCIENCE',
+      eyebrow: "WHY YOU'LL LOVE IT",
       headline: (
         <>
-          Protect,{' '}
-          <span className="font-serif italic text-[#4B644C]">Brighten & Defend</span>
+          Daily Solar Defense,{' '}
+          <span className="font-serif italic text-[#4B644C]">Zero Compromises</span>
         </>
       ),
       pullQuote:
-        '"Indian skin faces aggressive UV-A radiation year-round. We formulated specifically for tropical climates — not repurposed European sunscreens."',
+        '"Formulated specifically for everyday wear in Indian climates — high broad-spectrum protection, weightless gel feel, and zero visible white cast."',
       paragraphs: [
-        `${title} is formulated specifically for Indian skin tones and humid tropical climates — lightweight enough to wear daily under makeup, powerful enough for outdoor exposure.`,
-        'The formula combines SPF 50+ broad-spectrum UV filters with an active Niacinamide complex and Aloe Vera base that simultaneously fades existing tan while preventing new UV damage.',
-        'Zero white cast, zero greasy finish, zero clogged pores. A clinically tested formula that works with your skin — not against it.',
+        '☀️ SPF 50+ PA++++: Broad-spectrum daily UV protection shielding skin from intense solar exposure.',
+        '✨ Helps Fade Visible Tan: Supports more even-looking skin with natural Kojic Acid, Fermented Rice Water, and Niacinamide.',
+        '💧 Lightweight Gel: Breathable water-gel matrix comfortable for everyday wear under makeup or active outdoor days.',
+        '🤍 Zero Visible White Cast: Specially designed to blend invisibly across Indian skin tones without chalky residue.',
       ],
-      caption: 'Clinically Formulated for Indian Skin',
-      signature: 'Science-First. Skin-Safe. Sweat-Resistant.',
+      caption: 'Formulated for Indian Skin Tones',
+      signature: 'Science-First. Skin-Safe. Water & Sweat Resistant.',
       metrics: [
-        { value: 'SPF 50+', label: 'Protection' },
-        { value: 'PA++++', label: 'UVA Defense' },
-        { value: '0%', label: 'White Cast' },
-        { value: '24h', label: 'Hydration' },
+        { value: 'SPF 50+', label: 'PA++++ Shield' },
+        { value: '0%', label: 'Visible White Cast' },
+        { value: 'Gel', label: 'Lightweight Texture' },
+        { value: 'Active', label: 'Tan Defense' },
       ],
       image: '/products/editorial_sunscreen.jpg',
       imageAlt: 'FLOIS Advanced De-Tan Sunscreen Gel SPF 50+ — editorial product photography',
@@ -85,7 +86,7 @@ function getStoryData(handle: string, title: string): StoryData {
 
   // ── RootHerb Hair Growth Oil (default) ──────────────────────────────────────
   return {
-    eyebrow: 'OUR PHILOSOPHY',
+    eyebrow: 'ROOTED IN AYURVEDA. REFINED BY SCIENCE.',
     headline: (
       <>
         Crafted for{' '}
@@ -93,19 +94,19 @@ function getStoryData(handle: string, title: string): StoryData {
       </>
     ),
     pullQuote:
-      '"True hair transformation begins at the roots — not with harsh synthetic chemicals, but with carefully selected cold-pressed botanicals."',
+      '"Traditional botanical wisdom meets modern formulation science — in one daily hair ritual."',
     paragraphs: [
-      `${title} is handcrafted in micro-batches using authentic Ayurvedic copper vessel slow-infusion — a time-tested extraction method unchanged for over five centuries.`,
-      'By avoiding high-heat processing and mineral oils, our cold-pressed extractions preserve 100% of the active phytochemicals, wedelolactone, and essential fatty acids required to stimulate dormant hair papilla.',
-      'Every formulation bridges ancient Vedic scriptural wisdom with modern dermatological science, offering proven root renewal without compromise.',
+      'RootHerb™ brings together 18 Ayurvedic botanicals, cold-pressed oils and OleoKare® in a modern hair-care formula designed for consistent scalp and hair nourishment.',
+      'At the heart of the formula is OleoKare® — a botanical active clinically studied at a 2.5% concentration for hair-growth and hair-care performance.',
+      'Inspired by traditional Ayurvedic preparation methods and adapted for modern formulation standards, our cold-pressed oil base is selected to retain the natural characteristics of the botanical oils used in the formula.',
     ],
-    caption: 'Traditional Ayurvedic Preparation',
+    caption: 'Powered by Clinically Studied OleoKare®',
     signature: 'Rooted in Ayurveda. Refined by Science.',
     metrics: [
-      { value: '18', label: 'Ayurvedic Herbs' },
+      { value: '18', label: 'Ayurvedic Botanicals' },
       { value: '0%', label: 'Mineral Oil' },
-      { value: '4 Wks', label: 'Visible Results' },
-      { value: '100%', label: 'Cold Pressed' },
+      { value: 'OleoKare®', label: 'Clinically Studied Active' },
+      { value: '5', label: 'Cold-Pressed Oils' },
     ],
     image: '/products/editorial_rootherb.jpg',
     imageAlt: 'FLOIS RootHerb botanical hair oil ritual — natural sunlight lifestyle photography',

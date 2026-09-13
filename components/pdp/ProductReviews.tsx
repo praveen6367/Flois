@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, ShieldCheck } from 'lucide-react';
-import { CustomerReviewsGridSlider } from '@/components/testimonials/CustomerReviewsGridSlider';
+import { CustomerReviewsGridSlider, REAL_CUSTOMER_REVIEWS } from '@/components/testimonials/CustomerReviewsGridSlider';
 import { WriteReviewForm } from '@/components/pdp/WriteReviewForm';
 import { CustomerPhotoReview } from '@/components/testimonials/CustomerPhotoReviewCard';
 import { Product } from '@/types/product';
@@ -22,10 +22,24 @@ interface ProductReviewsProps {
 }
 
 export function ProductReviews({ product, productHandle }: ProductReviewsProps) {
-  const totalReviews = 128;
   const avgRating = 4.9;
   const currentHandle = product?.handle || productHandle || 'rootherb-hair-growth-oil';
   const titleName = product?.title || 'This Product';
+
+  const verifiedReviewsCount = REAL_CUSTOMER_REVIEWS.filter((r) => {
+    const h = (r.productHandle || '').toLowerCase();
+    const target = currentHandle.toLowerCase();
+    if (target.includes('rootherb') || target.includes('hair-growth-oil') || target.includes('oil')) {
+      return h.includes('rootherb') || h.includes('hair') || h.includes('oil');
+    }
+    if (target.includes('sunscreen') || target.includes('de-tan') || target.includes('spf')) {
+      return h.includes('sunscreen') || h.includes('de-tan') || h.includes('spf');
+    }
+    if (target.includes('comb') || target.includes('neem')) {
+      return h.includes('comb') || h.includes('neem');
+    }
+    return h === target;
+  }).length;
 
   const [newSubmittedReview, setNewSubmittedReview] = useState<CustomerPhotoReview | undefined>(undefined);
 
@@ -48,7 +62,7 @@ export function ProductReviews({ product, productHandle }: ProductReviewsProps) 
         className="hidden"
       >
         <meta itemProp="ratingValue" content="4.9" />
-        <meta itemProp="reviewCount" content="128" />
+        <meta itemProp="reviewCount" content={String(verifiedReviewsCount || 6)} />
         <meta itemProp="bestRating" content="5" />
       </div>
 
@@ -81,7 +95,7 @@ export function ProductReviews({ product, productHandle }: ProductReviewsProps) 
             </div>
             <div className="flex items-center gap-1.5 pt-1 text-xs font-sans text-[#666666]">
               <ShieldCheck className="h-4 w-4 text-[#8C9B3E]" />
-              <span>Based on {totalReviews}+ Verified Reviews</span>
+              <span>Based on Verified Customer Reviews</span>
             </div>
           </div>
 

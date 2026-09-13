@@ -26,16 +26,16 @@ const SUNSCREEN_ROWS: Row[] = [
   { metric: 'Texture',         icon: '💧', flois: 'Ultra-Lightweight Gel Formula',        ordinary: 'Heavy Cream / Greasy Finish' },
   { metric: 'Active Agents',   icon: '🌿', flois: 'Rice Water, Sea Buckthorn, Kojic Acid', ordinary: 'Chemical UV Filters Only' },
   { metric: 'De-Tanning',      icon: '✨', flois: 'Active De-Tan & Brightening Formula', ordinary: 'Sun Protection Only — No De-Tan' },
-  { metric: 'Sweat Resistant', icon: '🏃', flois: 'Water & Sweat Resistant 4 Hours',     ordinary: 'Washes Off Easily' },
+  { metric: 'Sweat Resistant', icon: '🏃', flois: 'Water & Sweat Resistant',             ordinary: 'Washes Off Easily' },
 ];
 
 const NEEM_COMB_ROWS: Row[] = [
-  { metric: 'Material',        icon: '🌿', flois: 'Pure Medicinal Neem Wood',             ordinary: 'Plastic / Mixed Synthetic' },
-  { metric: 'Anti-Static',     icon: '⚡', flois: 'Naturally Anti-Static Wood',           ordinary: 'Generates Harmful Static' },
-  { metric: 'Scalp Benefits',  icon: '🌱', flois: 'Anti-Fungal Nimbidin Bioactives',      ordinary: 'No Active Scalp Benefits' },
-  { metric: 'Hair Breakage',   icon: '💪', flois: 'Rounded Teeth — Zero Breakage',        ordinary: 'Sharp Edges Cause Breakage' },
-  { metric: 'Dandruff',        icon: '✨', flois: 'Reduces Dandruff with Each Use',        ordinary: 'No Dandruff Action' },
-  { metric: 'Eco-Friendly',    icon: '♻️', flois: '100% Biodegradable Natural Wood',      ordinary: 'Non-Biodegradable Plastic' },
+  { metric: 'Material',        icon: '🌿', flois: 'Natural Seasoned Neem Wood',           ordinary: 'Plastic / Mixed Synthetic' },
+  { metric: 'Anti-Static',     icon: '⚡', flois: 'Naturally Low-Static Wood',            ordinary: 'Generates Harmful Static' },
+  { metric: 'Scalp Contact',   icon: '🌱', flois: 'Smooth Hand-Polished Rounded Teeth',   ordinary: 'Sharp Plastic Mold Seams' },
+  { metric: 'Hair Breakage',   icon: '💪', flois: 'Seamless Glide — Minimal Snagging',    ordinary: 'Sharp Edges Cause Breakage' },
+  { metric: 'Herbal Infusion', icon: '✨', flois: '45-Day 17-Herb Botanical Conditioning', ordinary: 'Untreated Synthetic Material' },
+  { metric: 'Eco-Friendly',    icon: '♻️', flois: 'Naturally Biodegradable Natural Wood',  ordinary: 'Non-Biodegradable Plastic' },
 ];
 
 function getRows(handle: string): { rows: Row[]; title: string; floisLabel: string; ordinaryLabel: string } {
