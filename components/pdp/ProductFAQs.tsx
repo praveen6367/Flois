@@ -60,10 +60,12 @@ const SUNSCREEN_FAQS: FAQ[] = [
   },
 ];
 
+import { getProductType } from '@/lib/productClassifier';
+
 const NEEM_COMB_FAQS: FAQ[] = [
   {
-    question: 'How does a neem wood comb reduce dandruff?',
-    answer: 'Neem wood naturally contains nimbidin and azadirachtin bioactives that have proven anti-fungal properties. Every time you comb, these compounds are gently transferred to your scalp, helping control the Malassezia fungus that causes dandruff.'
+    question: 'How does a neem wood comb support scalp health?',
+    answer: 'Neem wood has been traditionally valued in Ayurvedic hair care for its natural purifying qualities. Combing with natural neem wood helps maintain scalp hygiene, distributes natural scalp oils evenly, and eliminates static-induced frizz.'
   },
   {
     question: 'Can I use this comb on wet hair?',
@@ -88,9 +90,9 @@ const NEEM_COMB_FAQS: FAQ[] = [
 ];
 
 function getFaqs(handle: string): FAQ[] {
-  const h = handle.toLowerCase();
-  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf') || h.includes('de-tan')) return SUNSCREEN_FAQS;
-  if (h.includes('neem') || h.includes('comb')) return NEEM_COMB_FAQS;
+  const type = getProductType(handle);
+  if (type === 'sunscreen') return SUNSCREEN_FAQS;
+  if (type === 'comb') return NEEM_COMB_FAQS;
   return HAIR_OIL_FAQS;
 }
 

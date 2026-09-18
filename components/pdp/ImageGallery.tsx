@@ -11,10 +11,12 @@ interface ImageGalleryProps {
   title: string;
 }
 
-function getDefaultImages(title: string): { url: string; altText: string }[] {
-  const t = title.toLowerCase();
+import { getProductType } from '@/lib/productClassifier';
 
-  if (t.includes('sunscreen') || t.includes('tan') || t.includes('spf')) {
+function getDefaultImages(title: string): { url: string; altText: string }[] {
+  const type = getProductType(title);
+
+  if (type === 'sunscreen') {
     return [
       { url: '/products/sunscreen_product.png', altText: `${title} Product Tube` },
       { url: '/products/editorial_sunscreen.jpg', altText: `${title} Formulation` },
@@ -22,19 +24,11 @@ function getDefaultImages(title: string): { url: string; altText: string }[] {
     ];
   }
 
-  if (t.includes('neem') || t.includes('comb')) {
+  if (type === 'comb') {
     return [
       { url: '/products/neem_comb_product.png', altText: `${title} Product` },
       { url: '/products/editorial_neem_comb.jpg', altText: `${title} Artisan Craft` },
       { url: '/products/texture_neem_comb.jpg', altText: `${title} Wood Texture` },
-    ];
-  }
-
-  if (t.includes('body') || t.includes('skin') || t.includes('care')) {
-    return [
-      { url: '/products/botanical_ingredients.jpg', altText: `${title} Botanical Ingredients` },
-      { url: '/products/editorial_story.jpg', altText: `${title} Lifestyle` },
-      { url: '/products/texture_macro.jpg', altText: `${title} Texture` },
     ];
   }
 

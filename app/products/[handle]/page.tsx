@@ -44,8 +44,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const productType = getProductType(product || handle);
   const title = `${product.title} | FLOIS Modern Botanical Care`;
-  const description = product.description || 'Discover clinically tested Ayurvedic cold-pressed botanical formulations for scalp and skin care.';
+  const description = productType === 'sunscreen'
+    ? 'Advanced De-Tan Sunscreen Gel SPF 50+ PA++++ with Rice Water & Niacinamide. Zero white cast, lightweight and water resistant daily protection.'
+    : productType === 'comb'
+    ? 'Handcrafted Neem Wood Comb soaked in 17 botanical herbs & sesame oil. Naturally anti-static, reduces hair fall and detangles gently.'
+    : 'RootHerb Botanical Hair & Scalp Oil powered by 2.5% OleoKare®, 5 cold-pressed oils, and 12 Ayurvedic herbs. Free handcrafted neem comb included.';
   const image = product.images?.nodes?.[0]?.url || '/placeholders/1b.png';
 
   return {
@@ -65,6 +70,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+import { getProductType } from '@/lib/productClassifier';
+
 export default async function ProductPage({ params }: Props) {
   const { handle } = await params;
   
@@ -76,16 +83,19 @@ export default async function ProductPage({ params }: Props) {
     console.warn(`[ProductPage] Failed to fetch product ${handle}:`, err);
   }
 
+  // Accurately determine product type ('hair-oil' | 'sunscreen' | 'comb')
+  const productType = getProductType(product || handle);
+
   // Fallback for demo products if handle maps to flagship item
   if (!product) {
-    if (handle.includes('rootherb') || handle.includes('hair-growth-oil')) {
+    if (productType === 'hair-oil') {
       product = {
         id: 'gid://shopify/Product/1',
         title: 'RootHerb™ Botanical Hair & Scalp Oil',
         handle: handle,
-        description: 'Clinically formulated with 18 pure herbs and OleoKare® for accelerated hair growth, scalp nourishment, and natural shine.',
+        description: 'Clinically formulated with 12 Ayurvedic herbs and OleoKare® for accelerated hair growth, scalp nourishment, and natural shine.',
         descriptionHtml: `
-          <p>RootHerb™ brings together 18 Ayurvedic botanicals, cold-pressed oils and OleoKare® in a modern hair-care formula designed for consistent scalp and hair nourishment.</p>
+          <p>RootHerb™ brings together 12 Ayurvedic botanicals, cold-pressed oils and OleoKare® in a modern hair-care formula designed for consistent scalp and hair nourishment.</p>
           <p><img src="/products/desc_flois_marketplace.png" alt="FLOIS Hair Care Infographic Banner" /></p>
           <p><img src="/products/rootherb_ingredients_map.png" alt="FLOIS Botanical Ingredients Map" /></p>
         `,
@@ -104,10 +114,10 @@ export default async function ProductPage({ params }: Props) {
           ]
         }
       } as unknown as Product;
-    } else if (handle.includes('neem') || handle.includes('comb')) {
+    } else if (productType === 'comb') {
       product = {
         id: 'gid://shopify/Product/2',
-        title: 'Handcrafted Neem Wood Comb',
+        title: 'Neem Wood Comb for Dandruff & Hair Fall Control',
         handle: handle,
         description: 'Hand-carved seasoned neem wood comb that distributes natural scalp oils, prevents static, and reduces hair breakage.',
         descriptionHtml: `
@@ -154,16 +164,15 @@ export default async function ProductPage({ params }: Props) {
     }
   }
 
-  // Ensure product.images.nodes has a rich 3-image gallery combining Shopify images with relevant local assets
-  const searchKey = `${handle} ${product.title}`.toLowerCase();
+  // Ensure product.images.nodes has a rich 3-image gallery strictly matching the product type
   let defaultImages: { url: string; altText: string }[] = [];
-  if (searchKey.includes('sunscreen') || searchKey.includes('tan') || searchKey.includes('spf')) {
+  if (productType === 'sunscreen') {
     defaultImages = [
       { url: '/products/sunscreen_product.png', altText: `${product.title} Packaging` },
       { url: '/products/editorial_sunscreen.jpg', altText: `${product.title} Formulation Breakdown` },
       { url: '/products/texture_sunscreen.jpg', altText: `${product.title} Gel Texture` }
     ];
-  } else if (searchKey.includes('neem') || searchKey.includes('comb')) {
+  } else if (productType === 'comb') {
     defaultImages = [
       { url: '/products/neem_comb_product.png', altText: `${product.title} Packaging` },
       { url: '/products/editorial_neem_comb.jpg', altText: `${product.title} Artisan Craftsmanship` },
@@ -190,7 +199,7 @@ export default async function ProductPage({ params }: Props) {
 
   const shopBrand = await getShopBrand();
   const menuItems = await getHeaderMenu('main-menu');
-  const productImage = product.images?.nodes?.[0]?.url || '/products/rootherb_product.png';
+  const productImage = product.images?.nodes?.[0]?.url || defaultImages[0].url;
 
   // Fetch Doctor & Expert video reviews dynamically
   let videoStories: VideoStoryMetaobject[] = [];
@@ -200,28 +209,78 @@ export default async function ProductPage({ params }: Props) {
     console.warn('[ProductPage] Failed to fetch video stories:', e);
   }
 
+  // Filter video stories strictly for this product type
+  const relevantVideoStories = videoStories.filter((s) => {
+    const sType = getProductType({ handle: s.productHandle, title: s.productTitle || s.category });
+    return sType === productType;
+  });
+  const defaultStory: VideoStoryMetaobject = productType === 'sunscreen'
+    ? {
+        id: 'doctor-video-3',
+        title: 'Cosmetic & Solar Science Review',
+        category: 'Solar Defense Study',
+        videoUrl: '/placeholders/video3.mp4',
+        posterImage: '/placeholders/2b.png',
+        duration: '0:30',
+        description: 'Assessment of FLOIS SPF 50+ De-Tan Gel for zero white-cast UV defense on Indian skin tones.',
+        productHandle: 'advanced-de-tan-sunscreen-gel',
+        productTitle: 'Advanced De-Tan Sunscreen Gel SPF 50+',
+        productPrice: '₹369',
+        productImage: '/products/sunscreen_product.png',
+        isFeatured: true
+      }
+    : productType === 'comb'
+    ? {
+        id: 'doctor-video-4',
+        title: 'Artisan Wellness Research Desk',
+        category: 'Neem Wood Combing Study',
+        videoUrl: '/placeholders/video4.mp4',
+        posterImage: '/placeholders/4b.png',
+        duration: '0:40',
+        description: 'Examination of handcrafted seasoned neem wood combing for gentle detangling and low-static hair care.',
+        productHandle: 'flois-kacchi-neem-wood-comb-5-5-inch-handmade-herbal-comb-soaked-in-17-herbs-sesame-oil-anti-static-hair-comb-for-unisex-reduces-hair-fall-dandruff-frizz-control',
+        productTitle: 'Handcrafted Neem Wood Comb',
+        productPrice: '₹119',
+        productImage: '/products/neem_comb_product.png',
+        isFeatured: true
+      }
+    : {
+        id: 'doctor-video-1',
+        title: 'Clinical Dermatology Advisory Panel',
+        category: 'Dermatological Evaluation',
+        videoUrl: '/placeholders/video1.mp4',
+        posterImage: '/placeholders/3b.png',
+        duration: '0:45',
+        description: 'Dermatological review of 2.5% OleoKare® active and cold-pressed botanical carrier oils for scalp vitality.',
+        productHandle: 'flois-rootherb-hair-growth-oil-plant-based-ayurvedic-herbal-hair-oil-for-hair-fall-control-5-cold-pressed-oils-12-herbs-no-chemicals-no-mineral-lightweight-unisex-free-wooden-comb-100ml',
+        productTitle: 'RootHerb™ Botanical Hair & Scalp Oil',
+        productPrice: '₹699',
+        productImage: '/products/rootherb_product.png',
+        isFeatured: true
+      };
+  const displayVideoStories = relevantVideoStories.length > 0 ? relevantVideoStories : [defaultStory];
+
   // Build product-specific before/after comparison data for ClinicalResultsSection
-  const h = handle.toLowerCase();
-  const productClinicalResults: ClinicalResultMetaobject[] = h.includes('sunscreen') || h.includes('tan') || h.includes('spf')
+  const productClinicalResults: ClinicalResultMetaobject[] = productType === 'sunscreen'
     ? [
-        { id: 'sun-1', customerName: 'Deepti Shukla', age: 32, category: 'Skin Brightening & Pigmentation', beforeImage: '/placeholders/1a.png', afterImage: '/placeholders/1b.png', testimonial: 'My skin pigmentation and dark spots faded dramatically within 90 days. The glow feels completely natural.', rating: 5, durationMonths: 3, isVerified: true, isFeatured: true },
-        { id: 'sun-2', customerName: 'Akash Gaur', age: 29, category: 'Skin Tone & Tan Removal', beforeImage: '/placeholders/2a.png', afterImage: '/placeholders/2b.png', testimonial: 'The De-Tan gel removed years of sun pigmentation without drying out my skin or causing breakouts.', rating: 5, durationMonths: 2, isVerified: true },
-        { id: 'sun-3', customerName: 'Neelam Jadav', age: 31, category: 'Skin Tone & Pigmentation Correction', beforeImage: '/placeholders/9a.png', afterImage: '/placeholders/9b.png', testimonial: 'Uneven skin tone and pigmentation corrected noticeably. My skin looks bright and healthy.', rating: 5, durationMonths: 2, isVerified: true },
-        { id: 'sun-4', customerName: 'Khushbu Soni', age: 28, category: 'De-Tan & Skin Radiance Restoration', beforeImage: '/placeholders/10a.png', afterImage: '/placeholders/10b.png', testimonial: 'Tan and dullness removed in under 2 months. Skin feels softer and looks radiant every day.', rating: 5, durationMonths: 2, isVerified: true },
+        { id: 'sun-1', customerName: 'Deepti Shukla', age: 32, category: 'Skin Brightening & Pigmentation', beforeImage: '/placeholders/1a.png', afterImage: '/placeholders/1b.png', testimonial: 'My sun tanning and dark patches faded noticeably with daily morning application. Skin looks healthy and even.', rating: 5, durationMonths: 3, isVerified: true, isFeatured: true, productHandle: 'advanced-de-tan-sunscreen-gel' },
+        { id: 'sun-2', customerName: 'Akash Gaur', age: 29, category: 'Skin Tone & Tan Removal', beforeImage: '/placeholders/2a.png', afterImage: '/placeholders/2b.png', testimonial: 'The De-Tan gel removed months of outdoor sun dullness without drying out my skin or causing breakouts.', rating: 5, durationMonths: 2, isVerified: true, productHandle: 'advanced-de-tan-sunscreen-gel' },
+        { id: 'sun-3', customerName: 'Neelam Jadav', age: 31, category: 'Skin Tone & Pigmentation Correction', beforeImage: '/placeholders/9a.png', afterImage: '/placeholders/9b.png', testimonial: 'Uneven skin tone and pigmentation corrected noticeably. My skin looks bright and healthy.', rating: 5, durationMonths: 2, isVerified: true, productHandle: 'advanced-de-tan-sunscreen-gel' },
+        { id: 'sun-4', customerName: 'Khushbu Soni', age: 28, category: 'De-Tan & Skin Radiance Restoration', beforeImage: '/placeholders/10a.png', afterImage: '/placeholders/10b.png', testimonial: 'Tan and dullness removed in under 2 months. Skin feels softer and looks radiant every day.', rating: 5, durationMonths: 2, isVerified: true, productHandle: 'advanced-de-tan-sunscreen-gel' },
       ]
-    : h.includes('neem') || h.includes('comb')
+    : productType === 'comb'
     ? [
-        { id: 'comb-1', customerName: 'Pawan Tiwari', age: 43, category: 'Crown Follicle Strengthening', beforeImage: '/placeholders/3a.png', afterImage: '/placeholders/3b.png', testimonial: 'Noticeable hair regrowth and scalp coverage within 3 months of consistent RootHerb oil therapy.', rating: 5, durationMonths: 3, isVerified: true, isFeatured: true },
-        { id: 'comb-2', customerName: 'Vinay Sehgal', age: 41, category: 'Scalp Gentle Combing & Follicle Care', beforeImage: '/placeholders/7a.png', afterImage: '/placeholders/7b.png', testimonial: 'The rounded neem teeth give a very soothing scalp massage. Hair feels much less stressed after washing.', rating: 5, durationMonths: 3, isVerified: true },
-        { id: 'comb-3', customerName: 'Sunita Verma', age: 34, category: 'Crown Volume & Low-Friction Detangling', beforeImage: '/placeholders/6a.png', afterImage: '/placeholders/6b.png', testimonial: 'Switched from plastic combs to this handcrafted neem comb. Hair breakage and flyaways reduced drastically.', rating: 5, durationMonths: 2, isVerified: true },
+        { id: 'comb-1', customerName: 'Pawan Tiwari', age: 43, category: 'Crown Follicle Strengthening', beforeImage: '/placeholders/3a.png', afterImage: '/placeholders/3b.png', testimonial: 'Noticeable reduction in hair breakage and improved scalp comfort within 3 months of consistent neem wood combing.', rating: 5, durationMonths: 3, isVerified: true, isFeatured: true, productHandle: 'flois-kacchi-neem-wood-comb-5-5-inch-handmade-herbal-comb-soaked-in-17-herbs-sesame-oil-anti-static-hair-comb-for-unisex-reduces-hair-fall-dandruff-frizz-control' },
+        { id: 'comb-2', customerName: 'Vinay Sehgal', age: 41, category: 'Scalp Gentle Combing & Follicle Care', beforeImage: '/placeholders/7a.png', afterImage: '/placeholders/7b.png', testimonial: 'The rounded neem teeth give a very soothing scalp massage. Hair feels much less stressed after washing.', rating: 5, durationMonths: 3, isVerified: true, productHandle: 'flois-kacchi-neem-wood-comb-5-5-inch-handmade-herbal-comb-soaked-in-17-herbs-sesame-oil-anti-static-hair-comb-for-unisex-reduces-hair-fall-dandruff-frizz-control' },
+        { id: 'comb-3', customerName: 'Sunita Verma', age: 34, category: 'Crown Volume & Low-Friction Detangling', beforeImage: '/placeholders/6a.png', afterImage: '/placeholders/6b.png', testimonial: 'Switched from plastic combs to this handcrafted neem comb. Hair breakage and flyaways reduced drastically.', rating: 5, durationMonths: 2, isVerified: true, productHandle: 'flois-kacchi-neem-wood-comb-5-5-inch-handmade-herbal-comb-soaked-in-17-herbs-sesame-oil-anti-static-hair-comb-for-unisex-reduces-hair-fall-dandruff-frizz-control' },
       ]
     : [
-        { id: 'hair-1', customerName: 'Amrita Gupta', age: 37, category: 'Scalp & Hair Partition Density', beforeImage: '/placeholders/4a.png', afterImage: '/placeholders/4b.png', testimonial: 'My hair partition line became noticeably thicker and hair fall reduced by over 80%.', rating: 5, durationMonths: 4, isVerified: true, isFeatured: true },
-        { id: 'hair-2', customerName: 'Rakesh Mishra', age: 43, category: 'Scalp Micro-Circulation & Regrowth', beforeImage: '/placeholders/5a.png', afterImage: '/placeholders/5b.png', testimonial: 'Combating bald patches was frustrating until FLOIS. The new follicle density speaks for itself.', rating: 5, durationMonths: 3, isVerified: true },
-        { id: 'hair-3', customerName: 'Urvashi Patel', age: 21, category: 'Crown Volume & Hair Thinning Control', beforeImage: '/placeholders/6a.png', afterImage: '/placeholders/6b.png', testimonial: 'My hair feels noticeably fuller, thicker, and scalp visibility is gone.', rating: 5, durationMonths: 3, isVerified: true },
-        { id: 'hair-4', customerName: 'Madhvi Sharma', age: 29, category: 'Hair Density & Partition Thickness', beforeImage: '/placeholders/8a.png', afterImage: '/placeholders/8b.png', testimonial: 'My hair partition is now barely visible. The density improvement is something I can see and feel.', rating: 5, durationMonths: 3, isVerified: true },
+        { id: 'hair-1', customerName: 'Amrita Gupta', age: 37, category: 'Scalp & Hair Partition Density', beforeImage: '/placeholders/4a.png', afterImage: '/placeholders/4b.png', testimonial: 'My hair partition line became noticeably thicker and hair fall reduced by over 80%.', rating: 5, durationMonths: 4, isVerified: true, isFeatured: true, productHandle: 'flois-rootherb-hair-growth-oil-plant-based-ayurvedic-herbal-hair-oil-for-hair-fall-control-5-cold-pressed-oils-12-herbs-no-chemicals-no-mineral-lightweight-unisex-free-wooden-comb-100ml' },
+        { id: 'hair-2', customerName: 'Rakesh Mishra', age: 43, category: 'Scalp Micro-Circulation & Regrowth', beforeImage: '/placeholders/5a.png', afterImage: '/placeholders/5b.png', testimonial: 'Combating bald patches was frustrating until FLOIS. The new follicle density speaks for itself.', rating: 5, durationMonths: 3, isVerified: true, productHandle: 'flois-rootherb-hair-growth-oil-plant-based-ayurvedic-herbal-hair-oil-for-hair-fall-control-5-cold-pressed-oils-12-herbs-no-chemicals-no-mineral-lightweight-unisex-free-wooden-comb-100ml' },
+        { id: 'hair-3', customerName: 'Urvashi Patel', age: 21, category: 'Crown Volume & Hair Thinning Control', beforeImage: '/placeholders/6a.png', afterImage: '/placeholders/6b.png', testimonial: 'My hair feels noticeably fuller, thicker, and scalp visibility is gone.', rating: 5, durationMonths: 3, isVerified: true, productHandle: 'flois-rootherb-hair-growth-oil-plant-based-ayurvedic-herbal-hair-oil-for-hair-fall-control-5-cold-pressed-oils-12-herbs-no-chemicals-no-mineral-lightweight-unisex-free-wooden-comb-100ml' },
+        { id: 'hair-4', customerName: 'Madhvi Sharma', age: 29, category: 'Hair Density & Partition Thickness', beforeImage: '/placeholders/8a.png', afterImage: '/placeholders/8b.png', testimonial: 'My hair partition is now barely visible. The density improvement is something I can see and feel.', rating: 5, durationMonths: 3, isVerified: true, productHandle: 'flois-rootherb-hair-growth-oil-plant-based-ayurvedic-herbal-hair-oil-for-hair-fall-control-5-cold-pressed-oils-12-herbs-no-chemicals-no-mineral-lightweight-unisex-free-wooden-comb-100ml' },
       ];
-  const productPrice = product.priceRange?.minVariantPrice?.amount || '699';
+  const productPrice = product.priceRange?.minVariantPrice?.amount || (productType === 'hair-oil' ? '699' : productType === 'comb' ? '119' : '369');
   const productCurrency = product.priceRange?.minVariantPrice?.currencyCode || 'INR';
 
   // JSON-LD: Product Schema
@@ -277,39 +336,39 @@ export default async function ProductPage({ params }: Props) {
       {/* Section 1: Hero — Gallery + Sticky Purchase Panel */}
       <ProductHero product={product} />
 
-
-      {/* Section 3: Editorial Story */}
+      {/* Section 2: Editorial Story */}
       <EditorialStory product={product} />
 
       {/* Section 3: Key Formula Benefits */}
       <Benefits product={product} />
 
-      {/* Creative Section: The Science Behind FLOIS RootHerb (Powered by OleoKare®) */}
-      {(handle.includes('rootherb') || (!handle.includes('sunscreen') && !handle.includes('comb'))) && (
+      {/* Creative Section: The Science Behind FLOIS RootHerb (Powered by OleoKare®) - ONLY for Hair Oil */}
+      {productType === 'hair-oil' && (
         <OleoKareScienceSection />
       )}
 
       {/* Section 4: Ingredient Explorer */}
-      <IngredientExplorer productHandle={handle} />
+      <IngredientExplorer productHandle={productType} />
 
       {/* Section 5: Doctor & Dermatologist Recommendations */}
       <VideoStoriesSection
-        stories={videoStories}
+        stories={displayVideoStories}
         eyebrow="DOCTOR & DERMATOLOGIST REVIEWS"
         title="Recommended by Doctors & Experts"
-        subtitle="Watch leading dermatologists and trichologists review the clinical efficacy of FLOIS formulations."
+        subtitle="Watch leading dermatologists and specialists review the clinical efficacy of FLOIS formulations."
       />
 
       {/* Section 6: Real Customer Before & After */}
       <ClinicalResultsSection
         results={productClinicalResults}
+        productType={productType === 'hair-oil' ? 'hair' : productType}
         eyebrow="Real Customer Transformations"
         title="See The Difference For Yourself"
         subtitle="Real before & after results from verified customers using this product consistently."
       />
 
       {/* Section 7: Vertical Customer Video Reels Carousel */}
-      <ReelStoriesSection />
+      <ReelStoriesSection productType={productType} />
 
       {/* Section 8: How To Use Timeline */}
       <HowToUse product={product} />
@@ -318,16 +377,16 @@ export default async function ProductPage({ params }: Props) {
       <TextureShowcase product={product} />
 
       {/* Section 10: Formula Comparison Table */}
-      <ComparisonTable productHandle={handle} />
+      <ComparisonTable productHandle={productType} />
 
       {/* Section 11: Verified Customer Reviews Filtered for This Product */}
       <ProductReviews product={product} />
 
       {/* Section 12: FAQs Accordion */}
-      <ProductFAQs productHandle={handle} />
+      <ProductFAQs productHandle={productType} />
 
-      {/* Section 13: Recommended Related Products */}
-      <RelatedProductsPDP currentHandle={product.handle} />
+      {/* Section 13: Recommended Related Products (exclusively the OTHER 2 products) */}
+      <RelatedProductsPDP currentHandle={product.handle || handle} />
 
       {/* Section 14: Official Instagram Community Feed Showcase */}
       <InstagramFeedSection />
@@ -336,7 +395,7 @@ export default async function ProductPage({ params }: Props) {
       <Footer />
 
       {/* Floating Instagram Story / 9:16 Video Player Widget (Bottom-Left Corner) */}
-      <ProductStoryFloatingWidget productHandle={handle} />
+      <ProductStoryFloatingWidget productHandle={productType} />
 
       {/* Sticky Mobile Add to Cart CTA (mobile only) */}
       <StickyMobileCTA product={product} />

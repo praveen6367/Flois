@@ -38,12 +38,14 @@ const NEEM_COMB_ROWS: Row[] = [
   { metric: 'Eco-Friendly',    icon: '♻️', flois: 'Naturally Biodegradable Natural Wood',  ordinary: 'Non-Biodegradable Plastic' },
 ];
 
+import { getProductType } from '@/lib/productClassifier';
+
 function getRows(handle: string): { rows: Row[]; title: string; floisLabel: string; ordinaryLabel: string } {
-  const h = handle.toLowerCase();
-  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf') || h.includes('de-tan')) {
+  const type = getProductType(handle);
+  if (type === 'sunscreen') {
     return { rows: SUNSCREEN_ROWS, title: 'FLOIS vs Ordinary Sunscreens', floisLabel: 'FLOIS De-Tan Gel', ordinaryLabel: 'Ordinary Sunscreens' };
   }
-  if (h.includes('neem') || h.includes('comb')) {
+  if (type === 'comb') {
     return { rows: NEEM_COMB_ROWS, title: 'FLOIS Neem Comb vs Plastic Combs', floisLabel: 'FLOIS Neem Comb', ordinaryLabel: 'Plastic Combs' };
   }
   return { rows: HAIR_OIL_ROWS, title: 'FLOIS vs Ordinary Hair Oils', floisLabel: 'FLOIS Formula', ordinaryLabel: 'Ordinary Oils' };

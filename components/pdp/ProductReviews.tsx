@@ -21,24 +21,16 @@ interface ProductReviewsProps {
   productHandle?: string;
 }
 
+import { getProductType } from '@/lib/productClassifier';
+
 export function ProductReviews({ product, productHandle }: ProductReviewsProps) {
   const avgRating = 4.9;
   const currentHandle = product?.handle || productHandle || 'rootherb-hair-growth-oil';
-  const titleName = product?.title || 'This Product';
+  const productType = getProductType(product || currentHandle);
+  const titleName = productType === 'hair-oil' ? 'RootHerb Hair Growth Oil' : productType === 'comb' ? 'Neem Wood Comb' : 'Advanced De-Tan Sunscreen Gel';
 
   const verifiedReviewsCount = REAL_CUSTOMER_REVIEWS.filter((r) => {
-    const h = (r.productHandle || '').toLowerCase();
-    const target = currentHandle.toLowerCase();
-    if (target.includes('rootherb') || target.includes('hair-growth-oil') || target.includes('oil')) {
-      return h.includes('rootherb') || h.includes('hair') || h.includes('oil');
-    }
-    if (target.includes('sunscreen') || target.includes('de-tan') || target.includes('spf')) {
-      return h.includes('sunscreen') || h.includes('de-tan') || h.includes('spf');
-    }
-    if (target.includes('comb') || target.includes('neem')) {
-      return h.includes('comb') || h.includes('neem');
-    }
-    return h === target;
+    return getProductType(r.productHandle) === productType;
   }).length;
 
   const [newSubmittedReview, setNewSubmittedReview] = useState<CustomerPhotoReview | undefined>(undefined);

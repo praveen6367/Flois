@@ -16,10 +16,12 @@ interface TextureData {
   alt: string;
 }
 
-function getTextureData(handle: string, title: string): TextureData {
-  const h = handle.toLowerCase();
+import { getProductType } from '@/lib/productClassifier';
 
-  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf')) {
+function getTextureData(handle: string, title: string): TextureData {
+  const type = getProductType({ handle, title });
+
+  if (type === 'sunscreen') {
     return {
       headline: 'Ultra-Lightweight, Cooling Gel Finish',
       desc: `Formulated with zero mineral oils, silicones, or heavy waxes, ${title} glides onto skin like water, absorbing in seconds with zero white cast and a weightless natural glow.`,
@@ -32,16 +34,16 @@ function getTextureData(handle: string, title: string): TextureData {
     };
   }
 
-  if (h.includes('neem') || h.includes('comb')) {
+  if (type === 'comb') {
     return {
-      headline: 'Hand-Polished Medicinal Neem Wood',
-      desc: `Carved from seasoned margosa wood and herbal-infused for 45 days, ${title} features rounded, non-scratching teeth that glide effortlessly through wet or dry hair without static friction.`,
+      headline: 'Hand-Polished Natural Neem Wood',
+      desc: `Carved from seasoned neem wood and herbal-infused for 45 days, ${title} features rounded, non-scratching teeth that glide effortlessly through wet or dry hair without static friction.`,
       aromaTitle: 'Wood Aroma',
-      aromaValue: 'Subtle Earthy Medicinal Neem & Herbal Oils',
+      aromaValue: 'Subtle Earthy Natural Neem & Botanical Oils',
       feelTitle: 'Scalp Feel',
-      feelValue: 'Anti-Static, Soothing & Micro-Circulating',
+      feelValue: 'Anti-Static, Soothing & Gentle Scalp Contact',
       image: '/products/texture_neem_comb.jpg',
-      alt: 'FLOIS Handcrafted Neem Comb — smooth polished medicinal wood grain macro',
+      alt: 'FLOIS Handcrafted Neem Comb — smooth polished natural neem wood grain macro',
     };
   }
 

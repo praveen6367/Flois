@@ -208,48 +208,70 @@ function AddToCartButton({ product }: { product: ProductBadgeInfo }) {
   );
 }
 
+interface ReelStoriesSectionProps {
+  productType?: 'hair-oil' | 'sunscreen' | 'comb';
+}
+
 /* ─── Main Section ────────────────────────────────────────────── */
-export function ReelStoriesSection() {
+export function ReelStoriesSection({ productType }: ReelStoriesSectionProps = {}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [selectedReel, setSelectedReel] = useState<ReelStory | null>(null);
   const [visibleCards, setVisibleCards] = useState(4);
   const [isMuted, setIsMuted] = useState(true);
 
-  const totalReels = GETFLOIS_REELS_DATA.length;
+  const displayReels = React.useMemo(() => {
+    if (!productType) return GETFLOIS_REELS_DATA;
+    if (productType === 'sunscreen') {
+      return GETFLOIS_REELS_DATA.filter((r) => r.product.handle.includes('sunscreen'));
+    }
+    if (productType === 'comb') {
+      return GETFLOIS_REELS_DATA.filter((r) => r.product.handle.includes('comb'));
+    }
+    return GETFLOIS_REELS_DATA.filter((r) => r.product.handle.includes('rootherb') || r.product.handle.includes('hair'));
+  }, [productType]);
+
+  const totalReels = displayReels.length;
 
   // Responsive visible cards count
   useEffect(() => {
+    if (totalReels === 0) return;
     const handleResize = () => {
       if (window.innerWidth < 640) setVisibleCards(1.2);
       else if (window.innerWidth < 1024) setVisibleCards(2.4);
-      else setVisibleCards(4);
+      else setVisibleCards(Math.min(4, totalReels));
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [totalReels]);
 
   const handleNext = useCallback(() => {
+    if (totalReels === 0) return;
     setCurrentIndex((prev) => (prev + 1) % totalReels);
   }, [totalReels]);
 
   const handlePrev = useCallback(() => {
+    if (totalReels === 0) return;
     setCurrentIndex((prev) => (prev - 1 + totalReels) % totalReels);
   }, [totalReels]);
 
   // Autoplay every 4 s — pauses when modal is open
   useEffect(() => {
-    if (!isPlaying || selectedReel !== null) return;
+    if (!isPlaying || selectedReel !== null || totalReels === 0) return;
     const interval = setInterval(handleNext, 4000);
     return () => clearInterval(interval);
-  }, [isPlaying, selectedReel, handleNext]);
+  }, [isPlaying, selectedReel, handleNext, totalReels]);
+
+  if (totalReels === 0) {
+    return null;
+  }
 
   const getVisibleReels = () => {
     const numCards = Math.ceil(visibleCards);
     return Array.from({ length: numCards }).map((_, i) => {
       const idx = (currentIndex + i) % totalReels;
-      return { reel: GETFLOIS_REELS_DATA[idx], idx };
+      return { reel: displayReels[idx], idx };
     });
   };
 

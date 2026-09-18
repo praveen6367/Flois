@@ -100,15 +100,17 @@ const SUNSCREEN_BENEFITS: BenefitItem[] = [
   { iconType: 'ayurvedic-formula', stat: '🌿', statLabel: 'Botanicals', title: 'Hydrating Botanical Base', desc: 'Enriched with Organic Aloe Vera leaf juice and Sea Buckthorn Berry.' },
 ];
 
+import { getProductType } from '@/lib/productClassifier';
+
 export function Benefits({ product }: { product?: Product }) {
-  const handle = product?.handle?.toLowerCase() || '';
+  const type = getProductType(product);
   
   let benefits = HAIR_OIL_BENEFITS;
   let sectionEyebrow = 'WHY FLOIS STANDS APART';
-  if (handle.includes('neem') || handle.includes('comb')) {
+  if (type === 'comb') {
     benefits = NEEM_COMB_BENEFITS;
     sectionEyebrow = 'THE NEEM ADVANTAGE';
-  } else if (handle.includes('sunscreen') || handle.includes('tan') || handle.includes('skin')) {
+  } else if (type === 'sunscreen') {
     benefits = SUNSCREEN_BENEFITS;
     sectionEyebrow = 'SOLAR SCIENCE & BOTANICAL DEFENSE';
   }

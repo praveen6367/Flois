@@ -213,21 +213,23 @@ const NEEM_COMB_INGREDIENTS: Ingredient[] = [
   }
 ];
 
+import { getProductType } from '@/lib/productClassifier';
+
 function getIngredients(productHandle: string): Ingredient[] {
-  const h = productHandle.toLowerCase();
-  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf') || h.includes('de-tan')) {
+  const type = getProductType(productHandle);
+  if (type === 'sunscreen') {
     return SUNSCREEN_INGREDIENTS;
   }
-  if (h.includes('neem') || h.includes('comb')) {
+  if (type === 'comb') {
     return NEEM_COMB_INGREDIENTS;
   }
   return HAIR_OIL_INGREDIENTS;
 }
 
 function getSectionTitle(productHandle: string): string {
-  const h = productHandle.toLowerCase();
-  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf')) return 'Key Active Ingredients';
-  if (h.includes('neem') || h.includes('comb')) return 'The Neem Advantage';
+  const type = getProductType(productHandle);
+  if (type === 'sunscreen') return 'Key Active Ingredients';
+  if (type === 'comb') return 'The Neem Advantage';
   return 'Key Botanical Ingredients';
 }
 

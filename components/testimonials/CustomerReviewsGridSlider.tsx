@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CustomerPhotoReviewCard, CustomerPhotoReview, ReviewLightbox } from './CustomerPhotoReviewCard';
+import { getProductType } from '@/lib/productClassifier';
 
 // ─── Actual FLOIS product images mapped by product handle ──────────────────────
 // Only clean product/editorial/texture shots — NO clinical before/after face images
@@ -416,15 +417,13 @@ export function CustomerReviewsGridSlider({ filterHandle, newSubmittedReview }: 
   // Filter by productHandle or selected category tab
   const filteredReviews = useMemo(() => {
     if (filterHandle) {
-      const match = allCombinedReviews.filter(
-        (r) =>
-          r.productHandle?.toLowerCase().includes(filterHandle.toLowerCase()) ||
-          filterHandle.toLowerCase().includes(r.productHandle?.toLowerCase() || '___')
-      );
+      const targetType = getProductType(filterHandle);
+      const match = allCombinedReviews.filter((r) => getProductType(r.productHandle) === targetType);
       return match.length > 0 ? match : allCombinedReviews;
     }
     if (selectedCategory === 'all') return allCombinedReviews;
-    return allCombinedReviews.filter((r) => r.productHandle === selectedCategory);
+    const tabType = getProductType(selectedCategory);
+    return allCombinedReviews.filter((r) => getProductType(r.productHandle) === tabType);
   }, [filterHandle, selectedCategory, allCombinedReviews]);
 
   const totalReviews = filteredReviews.length;

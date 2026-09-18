@@ -114,12 +114,14 @@ const REELS_BY_HANDLE: Record<string, FloatingReel[]> = {
   ],
 };
 
+import { getProductType } from '@/lib/productClassifier';
+
 function getReelsForHandle(handle: string): FloatingReel[] {
-  const h = handle.toLowerCase();
-  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf')) {
+  const type = getProductType(handle);
+  if (type === 'sunscreen') {
     return REELS_BY_HANDLE['advanced-de-tan-sunscreen-gel'];
   }
-  if (h.includes('neem') || h.includes('comb')) {
+  if (type === 'comb') {
     return REELS_BY_HANDLE['neem-wood-comb'];
   }
   return REELS_BY_HANDLE['rootherb-hair-growth-oil'];

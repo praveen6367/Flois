@@ -6,31 +6,36 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { Product } from '@/types/product';
+import { getProductType } from '@/lib/productClassifier';
 
 export function RelatedProductsPDP({ currentHandle }: { currentHandle: string }) {
-  const RELATED_ITEMS = [
+  const currentType = getProductType(currentHandle);
+
+  const ALL_ITEMS = [
     {
       handle: 'rootherb-hair-growth-oil',
       title: 'RootHerb Hair Growth Oil',
-      subtitle: '18 Pure Ayurvedic Herbs • 100ml',
+      subtitle: '12 Ayurvedic Herbs + OleoKare® • 100ml',
       price: '₹699',
       imageSrc: '/products/rootherb_product.png'
     },
     {
       handle: 'neem-wood-comb',
       title: 'Handcrafted Neem Wood Comb',
-      subtitle: 'Medicinal Neem Wood • Anti-Static',
-      price: '₹349',
+      subtitle: 'Natural Neem Wood • Anti-Static Detangling',
+      price: '₹119',
       imageSrc: '/products/neem_comb_product.png'
     },
     {
       handle: 'advanced-de-tan-sunscreen-gel',
       title: 'Advanced De-Tan Sunscreen Gel',
-      subtitle: 'SPF 50+ PA++++ • Zero White Cast',
-      price: '₹599',
+      subtitle: 'SPF 50+ PA++++ • Zero Visible White Cast',
+      price: '₹369',
       imageSrc: '/products/sunscreen_product.png'
     }
-  ].filter((item) => item.handle !== currentHandle);
+  ];
+
+  const RELATED_ITEMS = ALL_ITEMS.filter((item) => getProductType(item.handle) !== currentType);
 
   return (
     <section className="relative w-full bg-[#FAF9F5] py-20 sm:py-28 overflow-hidden border-b border-[#E8E6DF]">

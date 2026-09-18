@@ -1,0 +1,452 @@
+=== PAGE 1 ===
+ 
+1. Sabse bada issue — page par bahut saare 
+conflicting/dummy claims hain 
+Top par: ₹369 ₹699 
+lekin neeche Reels section me same product: ₹499 ₹699 
+aur RootHerb kahin ₹599 ₹799 dikh raha hai. 
+ 
+ 
+2. De-Tan Sunscreen page par (Product page par): 
+51% Hair Density & Growth Improvement Measured in 90-Day 
+Clinical Trial 
+dikh raha hai, Ye clearly RootHerb ka data lag raha hai jo sunscreen page me aa gaya hai. 
+ 
+ 
+3. Recommended by Doctors & Experts 
+Recommended by Doctors & Experts wale section me dr. ke dummy 
+name hei. 
+ 
+ 
+ 
+ 
+ 
+
+=== PAGE 2 ===
+4. “100% Cold-Pressed” sunscreen ke context me 
+confusing hai 
+Top par: 
+100% Cold-Pressed 
+aur page repeatedly botanical/cold-pressed formulation position kar raha hai. 
+ 
+Product page par clearly dikhna chahiye: 
+UV Filters:​
+ [actual INCI ingredients] 
+Actives:​
+ Niacinamide X%​
+ Kojic Acid X%​
+ etc. 
+Botanical ingredients:​
+ Rice Water​
+ Sea Buckthorn​
+ Aloe Vera​
+ 
+5. Comparison section: 4 Hours Water & Sweat Resistant likha hei isme 4 hours wala part 
+hatana hei…​
+Sirf Water & Sweat Resistant​
+​
+ 
+ 
+5. Hero ke neeche sabse important section 
+Abhi page: 
+ADVANCED SOLAR SCIENCE​
+ Protect, Brighten & Defend 
+Concept good hai. 
+
+=== PAGE 3 ===
+But main isko much shorter karta. 
+Why you'll love it 
+☀️ SPF 50+ PA++++​
+ Broad-spectrum daily UV protection 
+✨ Helps Fade Visible Tan​
+ Supports more even-looking skin 
+💧 Lightweight Gel​
+ Comfortable for everyday wear 
+🤍 Zero Visible White Cast​
+ Designed for Indian skin tones 
+ 
+ 
+Actually hum RootHerb Hair Growth Oil me ek botanical active ingredient add kar rahe hei 
+Oleokare ke name se aur uska study data hei ki 90 days me 51% hair growth ho sakta hei..​
+OleoKare® study data ≠ RootHerb clinical study data.  
+​
+Home Page aur baki sabhi jagah par ye likhna hei ki - ​
+Powered by OleoKare® 
+Our signature botanical active, clinically studied at a 2.5% concentration. 
++51% 
+Hair-growth rate 
+−57% 
+Hair fall 
++81% 
+Hair thickness 
++30% 
+Hair density 
+
+=== PAGE 4 ===
+1. HERO SECTION — sabse pehla 
+replacement 
+❌ Abhi 
+Current page par: 
+RootHerb Botanical Hair Growth Oil​
+ 100% Cold-Pressed 0% Mineral Oil Dermatologist Tested​
+ ₹699 ₹899 SAVE 22% 
+Isme OleoKare ka strongest differentiator missing hai. 
+✅ Replace with: 
+RootHerb™ 
+Botanical Hair & Scalp Oil 
+5 Cold Pressed Oil + 12 Ayurvedic Herbs + OleoKare® 
+A premium botanical hair ritual formulated to nourish the scalp and support healthier-looking, 
+stronger hair. 
+★★★★★ 4.9 | 128+ Verified Reviews 
+₹899 ₹699 
+FREE Ayurvedic Neem Comb 
+[ BUY NOW ] [ ADD TO BAG ] 
+COD Available · Secure Checkout · Fast Dispatch 
+ 
+ 
+ 
+
+=== PAGE 5 ===
+2. “4 Wks Visible Results” — REMOVE 
+Current page me: 
+4 Wks Visible Results 
+❌ Remove completely. 
+Because OleoKare study ka result ≠ guarantee that every RootHerb customer sees visible 
+results in 4 weeks. 
+Instead: 
+✅ Put: 
+Powered by Clinically Studied OleoKare® 
+ 
+ 
+We can add some where ​
+​
+Rooted in Ayurveda. Refined by Science. 
+RootHerb™ brings together 18 Ayurvedic botanicals, cold-pressed oils and OleoKare® in a 
+modern hair-care formula designed for consistent scalp and hair nourishment. 
+At the heart of the formula is OleoKare® — a botanical active clinically studied at a 2.5% 
+concentration for hair-growth and hair-care performance. 
+Traditional botanical wisdom meets modern formulation science — in one daily hair ritual. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== PAGE 6 ===
+4. Current “five centuries” claim — CHANGE 
+Current: 
+“time-tested extraction method unchanged for over five centuries.” 
+❌ Don't say “unchanged for five centuries”  
+Replace: 
+Inspired by traditional Ayurvedic preparation methods and adapted for 
+modern formulation standards. 
+ 
+5. Current “100% active phytochemicals” 
+claim — REMOVE 
+Current: 
+“preserve 100% of the active phytochemicals...” 
+❌ Remove “100%”. 
+You cannot realistically communicate that all active phytochemicals are preserved unless you 
+have very specific analytical evidence. 
+Replace with: 
+Our cold-pressed oil base is selected to retain the natural characteristics of 
+the botanical oils used in the formula. 
+ 
+6. Current “WHY FLOIS STANDS APART” 
+Current page says: 
+Clinically Tested — Proven efficacy in independent dermatology trial over 28 days. 
+
+=== PAGE 7 ===
+🚨 This needs to change immediately. 
+delete it. 
+Replace the card with: 
+OleoKare® Powered 
+RootHerb contains OleoKare®, a botanical active clinically studied at a 2.5% 
+concentration. 
+ 
+ 
+8. “Non-Comedogenic” 
+Current: Lightweight formula absorbs fully without blocking scalp pores. 
+Replace with: 
+Lightweight Scalp Feel 
+Designed to nourish without leaving a heavy, sticky residue. 
+ 
+9. “Hypoallergenic / safe for sensitive scalp” 
+Current: 
+Hypoallergenic and safe for all hair types including sensitive scalps. 
+Replace: 
+Made for Everyday Hair Care 
+Suitable for regular scalp and hair-care routines. 
+ 
+ 
+ 
+ 
+ 
+
+=== PAGE 8 ===
+13. Bhringraj section me jo “51%” hai — 
+DELETE 
+Current: 
+“extend the anagen growth phase by 51% while inhibiting DHT-induced hair loss.” 
+Isko Bhringraj ke naam par mat lagao. 
+Replace with: 
+ 
+Bhringraj 
+Traditionally Used for Hair & Scalp Care 
+Bhringraj has a long history of use in Ayurvedic hair-care practices and is valued for scalp and 
+hair nourishment. 
+Role in RootHerb:​
+Botanical scalp and hair conditioning. 
+ 
+ 
+ 
+Before/After section 
+Current: 
+“100% Natural Botanicals 90-Day Clinical Trial Dermatologist Approved” 
+❌ Remove this line. 
+Especially “90-Day Clinical Trial” and “Dermatologist Approved” unless specifically 
+applicable to those customer results. 
+Replace with: 
+Real Customer Transformations 
+
+=== PAGE 9 ===
+ 
+ 
+“Dermatologist Approved” 
+Replace with: 
+Dermatologically Tested 
+ 
+ 
+Ingredient section: No random percentage claims. 
+ 
+ 
+ 
+ 
+Homepage par bhi change karna hai 
+Agar homepage par: 
+51% Proven Hair Growth in 90 Days Clinical Therapy 
+hai, isko bhi change karo. 
+Replace with: 
+Powered by Clinically Studied OleoKare® 
+Up to 51% increase in hair-growth rate* 
+Observed in a clinical study of a 2.5% OleoKare® formulation. 
+ 
+ 
+ 
+ 
+ 
+
+=== PAGE 10 ===
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Niche jo section hei usko thoda creative tarike se 
+design karke dal do produc page par…  
+The Science Behind FLOIS RootHerb Hair 
+Growth Oil 
+Powered by OleoKare® 
+OleoKare® is a botanical active at the heart of the RootHerb™ formula. 
+It has been clinically studied at a 2.5% concentration, with the study observing improvements 
+across key hair-growth and hair-care parameters. 
+CLINICALLY STUDIED RESULTS 
+Up to 51%​
+Increase in hair-growth rate 
+Up to 57%​
+Reduction in hair fall 
+Up to 81%​
+Improvement in hair thickness 
+Up to 30%​
+Increase in hair density 
+Up to 63%​
+Reduction in premature greying* 
+
+=== PAGE 11 ===
+*Results shown are from the OleoKare® clinical study at a 2.5% concentration. They should not 
+be interpreted as guaranteed results from RootHerb™. Individual results may vary. 
+ 
+ 
+ 
+ 
+ 
+Home Page par ye Before after section me sabhi mixed hei to isme product wise alag alag 
+rakho.. Atleast upar product ka name ho fir niche 4 before after ​
+Aur repeat (duplicate) me koi na ho…  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== PAGE 12 ===
+ 
+ 
+ 
+ 
+ 
+Ye insta feed yaha dikh rahi hei wo updated nahi dikh rahi … 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-​
+Home Page par products samjh nahi aa raha ki konse konse hei humare paas..  
+-​
+https://flois.vercel.app/pages/track-order Track order wale page me error hei 
+-​
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Neem comb ke page me bhi  
+1. “100% Cold-Pressed” yahan bilkul galat 
+hai 
+Current product hero: 
+
+=== PAGE 13 ===
+100% Cold-Pressed 0% Mineral Oil Dermatologist Tested 
+Ye comb hai. 
+Cold-pressed ka concept oil ke liye hai, comb ke liye nahi. 
+❌ Immediately remove: 
+100% Cold-Pressed 
+0% Mineral Oil 
+Replace: 
+Hand-Carved Neem Wood​
+ 45-Day Herbal Oil Infusion​
+ Smooth Rounded Teeth 
+ 
+3. “Active medicinal oils” — remove 
+ 
+4. “Proven by Dermatology” — replace​
+Rooted in Ayurvedic Tradition. Crafted for Modern Hair Care. 
+​
+ 
+ 
+14. “The Neem Advantage” section is 
+currently too medical 
+Current: 
+Anti-Microbial Wood​
+ Root Circulation Boost​
+ Stimulates Follicle Blood Flow​
+ Anti-Grey & Strengthening​
+ Preserves Natural Hair Color​
+ Micro-Circulation​
+ Scalp Blood Flow Booster​
+
+=== PAGE 14 ===
+​
+Replace with: 
+THE NEEM ADVANTAGE 
+🌿 Natural Neem Wood 
+A naturally durable wood traditionally valued in Indian wellness practices. 
+⚡ Low Static 
+Helps minimise static compared with many plastic combs. 
+🪮 Smooth Rounded Teeth 
+Designed for gentle detangling and comfortable scalp contact. 
+💆 Gentle Scalp Massage 
+Use the rounded teeth for a relaxing scalp-combing ritual. 
+🌱 17 Botanical Infusion 
+Traditionally soaked in a botanical oil blend for 45 days. 
+♻️ Naturally Biodegradable 
+A wood-based alternative to disposable plastic combs. 
+ 
+ 
+ 
+ 
+Nimbidin and Azadirachtin eliminate scalp fungus” 
+Delete 
+ 
+ 
+
+=== PAGE 15 ===
+Vedic texts prescribed daily combing 
+​
+​
+​
+​
+Before/after section - yaha hume neem comb wale ka 
+dalna hei result…​
+​
+ 
+ 
+19. Current review count “128” is suspicious 
+The comb currently shows: 
+4.9 (128)​
+ Based on 128+ Verified Reviews 
+If these are dummy, remove immediately. 
+Especially because a ₹119 comb page with 128 verified 
+reviews while other products have the same 128-ish numbers 
+feels manufactured. 
+ 
+ 
+ 
+ 
+
+=== PAGE 16 ===
+20. Instagram section is dummy-looking 
+here too 
+Current page has: 
+1,420 / 89​
+ 2,310 / 144​
+ etc. 
+And some posts have claims like: 
+“Watch hair fall drop in 2 weeks...” 
+Before launch: 
+Remove all dummy social stats/posts. 
+Only show actual Instagram content. 
+ 
+

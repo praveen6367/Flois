@@ -6,12 +6,14 @@ import { ClinicalResultMetaobject } from '@/types/metaobject';
 import { TestimonialCard } from './TestimonialCard';
 import { StatisticCard } from './StatisticCard';
 import { Sparkles, ShieldCheck, Check } from 'lucide-react';
+import { getProductType } from '@/lib/productClassifier';
 
 interface ClinicalResultsSectionProps {
   results?: ClinicalResultMetaobject[];
   eyebrow?: string;
   title?: string;
   subtitle?: string;
+  productType?: 'hair' | 'sunscreen' | 'comb';
 }
 
 const containerVariants: Variants = {
@@ -38,7 +40,8 @@ export function ClinicalResultsSection({
   results = [],
   eyebrow = 'REAL CUSTOMER TRANSFORMATIONS',
   title = 'Real Transformations. Backed by Botanical Science.',
-  subtitle = 'Every transformation shared here comes from verified customers following consistent daily routines.'
+  subtitle = 'Every transformation shared here comes from verified customers following consistent daily routines.',
+  productType: propProductType
 }: ClinicalResultsSectionProps) {
   // Deduplicate results by customerName + category
   const seenKeys = new Set<string>();
@@ -50,18 +53,9 @@ export function ClinicalResultsSection({
   });
 
   // Check if multiple product categories exist
-  const hasHair = uniqueResults.some((r) => {
-    const h = (r.productHandle || r.category || '').toLowerCase();
-    return h.includes('hair') || h.includes('root') || h.includes('follicle') || h.includes('scalp');
-  });
-  const hasSun = uniqueResults.some((r) => {
-    const h = (r.productHandle || r.category || '').toLowerCase();
-    return h.includes('sun') || h.includes('tan') || h.includes('skin') || h.includes('pigment');
-  });
-  const hasComb = uniqueResults.some((r) => {
-    const h = (r.productHandle || r.category || '').toLowerCase();
-    return h.includes('comb') || h.includes('neem');
-  });
+  const hasHair = uniqueResults.some((r) => getProductType({ handle: r.productHandle, title: r.category }) === 'hair-oil');
+  const hasSun = uniqueResults.some((r) => getProductType({ handle: r.productHandle, title: r.category }) === 'sunscreen');
+  const hasComb = uniqueResults.some((r) => getProductType({ handle: r.productHandle, title: r.category }) === 'comb');
 
   const isMultiProduct = [hasHair, hasSun, hasComb].filter(Boolean).length > 1;
 
@@ -70,22 +64,13 @@ export function ClinicalResultsSection({
   const filteredResults = React.useMemo(() => {
     if (activeTab === 'all') return uniqueResults;
     if (activeTab === 'rootherb') {
-      return uniqueResults.filter((r) => {
-        const h = (r.productHandle || r.category || '').toLowerCase();
-        return (h.includes('hair') || h.includes('root') || h.includes('follicle') || h.includes('scalp')) && !h.includes('comb');
-      });
+      return uniqueResults.filter((r) => getProductType({ handle: r.productHandle, title: r.category }) === 'hair-oil');
     }
     if (activeTab === 'sunscreen') {
-      return uniqueResults.filter((r) => {
-        const h = (r.productHandle || r.category || '').toLowerCase();
-        return h.includes('sun') || h.includes('tan') || h.includes('skin') || h.includes('pigment');
-      });
+      return uniqueResults.filter((r) => getProductType({ handle: r.productHandle, title: r.category }) === 'sunscreen');
     }
     if (activeTab === 'comb') {
-      return uniqueResults.filter((r) => {
-        const h = (r.productHandle || r.category || '').toLowerCase();
-        return h.includes('comb') || h.includes('neem');
-      });
+      return uniqueResults.filter((r) => getProductType({ handle: r.productHandle, title: r.category }) === 'comb');
     }
     return uniqueResults;
   }, [activeTab, uniqueResults]);
@@ -96,16 +81,18 @@ export function ClinicalResultsSection({
 
   // Derive productType for StatisticCard
   const detectedProductType: 'hair' | 'sunscreen' | 'comb' = React.useMemo(() => {
+    if (propProductType) return propProductType;
     if (activeTab === 'sunscreen') return 'sunscreen';
     if (activeTab === 'comb') return 'comb';
     if (activeTab === 'rootherb') return 'hair';
     if (heroResult) {
-      const h = (heroResult.productHandle || heroResult.category || '').toLowerCase();
-      if (h.includes('sun') || h.includes('tan') || h.includes('skin') || h.includes('pigment')) return 'sunscreen';
-      if (h.includes('comb') || h.includes('neem')) return 'comb';
+      const type = getProductType({ handle: heroResult.productHandle, title: heroResult.category });
+      if (type === 'sunscreen') return 'sunscreen';
+      if (type === 'comb') return 'comb';
+      return 'hair';
     }
     return 'hair';
-  }, [activeTab, heroResult]);
+  }, [propProductType, activeTab, heroResult]);
 
   return (
     <section id="results" className="relative w-full bg-[#FFFFFF] text-[#121412] py-20 sm:py-28 lg:py-32 overflow-hidden border-b border-[#E8E6DF]">

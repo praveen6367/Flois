@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import { Product } from '@/types/product';
+import { getProductType } from '@/lib/productClassifier';
 
 // ─── Per-product editorial data ───────────────────────────────────────────────
 
@@ -21,10 +22,10 @@ interface StoryData {
 }
 
 function getStoryData(handle: string, title: string): StoryData {
-  const h = handle.toLowerCase();
+  const type = getProductType({ handle, title });
 
   // ── Neem Wood Comb ──────────────────────────────────────────────────────────
-  if (h.includes('neem') || h.includes('comb')) {
+  if (type === 'comb') {
     return {
       eyebrow: 'ANCIENT ARTISAN CRAFT',
       headline: (
@@ -54,7 +55,7 @@ function getStoryData(handle: string, title: string): StoryData {
   }
 
   // ── De-Tan Sunscreen ────────────────────────────────────────────────────────
-  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf')) {
+  if (type === 'sunscreen') {
     return {
       eyebrow: "WHY YOU'LL LOVE IT",
       headline: (

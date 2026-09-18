@@ -10,18 +10,23 @@ import { GET_PRODUCTS_QUERY } from '@/graphql/products/get-products';
 import { GET_FEATURED_PRODUCTS_QUERY } from '@/graphql/products/get-featured-products';
 import { GET_PRODUCT_RECOMMENDATIONS_QUERY } from '@/graphql/products/get-recommendations';
 
+import { getProductType, resolveShopifyHandle } from '@/lib/productClassifier';
+
 function reshapeProduct(product: any): Product {
   if (!product) return null as any;
 
-  const h = (product.handle || product.title || '').toLowerCase();
-  const isRootHerb = h.includes('rootherb') || h.includes('hair-growth-oil');
+  const productType = getProductType({ handle: product.handle, title: product.title });
+  const isRootHerb = productType === 'hair-oil';
+  const isComb = productType === 'comb';
+  const isSunscreen = productType === 'sunscreen';
 
   let priceRange = product.priceRange;
   let compareAtPriceRange = product.compareAtPriceRange;
 
-  // RootHerb price normalization fallback (Selling: ₹699, Compare-at: ₹899)
+  const currency = priceRange?.minVariantPrice?.currencyCode || 'INR';
+
+  // Strict price normalization per client brief
   if (isRootHerb) {
-    const currency = priceRange?.minVariantPrice?.currencyCode || 'INR';
     priceRange = {
       ...priceRange,
       minVariantPrice: { amount: '699.0', currencyCode: currency },
@@ -32,17 +37,42 @@ function reshapeProduct(product: any): Product {
       minVariantPrice: { amount: '899.0', currencyCode: currency },
       maxVariantPrice: { amount: '899.0', currencyCode: currency }
     };
+  } else if (isComb) {
+    priceRange = {
+      ...priceRange,
+      minVariantPrice: { amount: '119.0', currencyCode: currency },
+      maxVariantPrice: { amount: '119.0', currencyCode: currency }
+    };
+    compareAtPriceRange = {
+      ...compareAtPriceRange,
+      minVariantPrice: { amount: '229.0', currencyCode: currency },
+      maxVariantPrice: { amount: '229.0', currencyCode: currency }
+    };
+  } else if (isSunscreen) {
+    priceRange = {
+      ...priceRange,
+      minVariantPrice: { amount: '369.0', currencyCode: currency },
+      maxVariantPrice: { amount: '369.0', currencyCode: currency }
+    };
+    compareAtPriceRange = {
+      ...compareAtPriceRange,
+      minVariantPrice: { amount: '699.0', currencyCode: currency },
+      maxVariantPrice: { amount: '699.0', currencyCode: currency }
+    };
   }
+
+  const targetPrice = isRootHerb ? '699.0' : isComb ? '119.0' : '369.0';
+  const targetComparePrice = isRootHerb ? '899.0' : isComb ? '229.0' : '699.0';
 
   const rawVariantsEdges = product.variants?.edges?.map((e: any) => {
     const node = e.node;
-    if (isRootHerb && node) {
+    if (node) {
       return {
         ...e,
         node: {
           ...node,
-          price: { amount: '699.0', currencyCode: node.price?.currencyCode || 'INR' },
-          compareAtPrice: { amount: '899.0', currencyCode: node.compareAtPrice?.currencyCode || 'INR' }
+          price: { amount: targetPrice, currencyCode: node.price?.currencyCode || currency },
+          compareAtPrice: { amount: targetComparePrice, currencyCode: node.compareAtPrice?.currencyCode || currency }
         }
       };
     }
@@ -51,8 +81,37 @@ function reshapeProduct(product: any): Product {
 
   const rawVariantsNodes = rawVariantsEdges.map((e: any) => e.node);
 
+  let description = product.description || '';
+  let descriptionHtml = product.descriptionHtml || '';
+
+  if (isComb) {
+    // Strip accidental hair-oil copy if product was cloned in Shopify
+    const cutoffKeywords = ["What's inside the Bottle", "What&#39;s inside the Bottle", "The 120-Day Growth Journey", "Your Free Scalp Stimulating Neem Comb", "TESTIN", "OLEOKARE", "Hair Growth Oil"];
+    for (const kw of cutoffKeywords) {
+      if (description.includes(kw)) {
+        description = description.split(kw)[0].trim();
+      }
+      if (descriptionHtml.includes(kw)) {
+        descriptionHtml = descriptionHtml.split(kw)[0].trim();
+      }
+    }
+  } else if (isSunscreen) {
+    // Ensure no hair oil or comb references exist in sunscreen description
+    const cutoffKeywords = ["What's inside the Bottle", "What&#39;s inside the Bottle", "The 120-Day Growth Journey", "Neem Comb", "OleoKare", "hair fall", "Hair Growth Oil"];
+    for (const kw of cutoffKeywords) {
+      if (description.includes(kw)) {
+        description = description.split(kw)[0].trim();
+      }
+      if (descriptionHtml.includes(kw)) {
+        descriptionHtml = descriptionHtml.split(kw)[0].trim();
+      }
+    }
+  }
+
   return {
     ...product,
+    description,
+    descriptionHtml,
     priceRange,
     compareAtPriceRange,
     images: {
@@ -82,7 +141,7 @@ export async function getProduct(id: string): Promise<Product | null> {
 }
 
 /**
- * Fetch a single product by Handle.
+ * Fetch a single product by Handle (with fallback to canonical handle).
  */
 export async function getProductByHandle(handle: string): Promise<Product | null> {
   const data = await shopifyFetch<{ product: any }>({
@@ -91,7 +150,24 @@ export async function getProductByHandle(handle: string): Promise<Product | null
     tags: [SHOPIFY_CACHE_TAGS.product(handle), SHOPIFY_CACHE_TAGS.products]
   });
 
-  return data.product ? reshapeProduct(data.product) : null;
+  if (data.product) {
+    return reshapeProduct(data.product);
+  }
+
+  // If not found with input handle, try canonical handle
+  const canonicalHandle = resolveShopifyHandle(handle);
+  if (canonicalHandle !== handle) {
+    const data2 = await shopifyFetch<{ product: any }>({
+      query: GET_PRODUCT_BY_HANDLE_QUERY,
+      variables: { handle: canonicalHandle },
+      tags: [SHOPIFY_CACHE_TAGS.product(canonicalHandle), SHOPIFY_CACHE_TAGS.products]
+    });
+    if (data2.product) {
+      return reshapeProduct(data2.product);
+    }
+  }
+
+  return null;
 }
 
 /**

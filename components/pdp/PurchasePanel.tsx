@@ -11,6 +11,8 @@ import { Product, ProductVariant } from '@/types/product';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 
+import { getProductType } from '@/lib/productClassifier';
+
 interface PurchasePanelProps {
   product: Product;
 }
@@ -26,9 +28,14 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
   const { addItem, openCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
 
+  const productType = getProductType(product);
+  const isHairOil = productType === 'hair-oil';
+  const isComb = productType === 'comb';
+  const isSunscreen = productType === 'sunscreen';
+
   const variants = product.variants?.nodes || [];
   const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(
-    variants[0] || { id: product.id, title: 'Default', price: product.priceRange?.minVariantPrice || { amount: '699', currencyCode: 'INR' }, availableForSale: true }
+    variants[0] || { id: product.id, title: 'Default', price: product.priceRange?.minVariantPrice || { amount: isHairOil ? '699' : isComb ? '119' : '369', currencyCode: 'INR' }, availableForSale: true }
   );
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
@@ -38,21 +45,9 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
 
   const [showDesc, setShowDesc] = useState(true);
 
-  const h = (product.handle || product.title || '').toLowerCase();
-  const isHairOil = h.includes('rootherb') || h.includes('hair') || h.includes('oil');
-  const isComb = h.includes('comb') || h.includes('neem');
-  const isSunscreen = h.includes('sunscreen') || h.includes('de-tan') || h.includes('spf');
-
-  // Client-requested price alignment
-  const fallbackPrice = isHairOil ? '699' : isComb ? '119' : '369';
-  const fallbackComparePrice = isHairOil ? '899' : isComb ? '229' : '699';
-
-  const price = selectedVariant.price?.amount || product.priceRange?.minVariantPrice?.amount || fallbackPrice;
-  const comparePrice = selectedVariant.compareAtPrice?.amount || product.compareAtPriceRange?.maxVariantPrice?.amount || fallbackComparePrice;
-  
-  // Ensure consistent display prices matching client brief
-  const displayPrice = isHairOil ? '699' : isComb ? '119' : (selectedVariant.price?.amount || '369');
-  const displayComparePrice = isHairOil ? '899' : isComb ? '229' : (selectedVariant.compareAtPrice?.amount || '699');
+  // Client-mandated exact pricing per product
+  const displayPrice = isHairOil ? '699' : isComb ? '119' : '369';
+  const displayComparePrice = isHairOil ? '899' : isComb ? '229' : '699';
 
   const savingAmount = displayComparePrice && Number(displayComparePrice) > Number(displayPrice)
     ? Number(displayComparePrice) - Number(displayPrice) : 0;
@@ -126,8 +121,20 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
                   Botanical Hair &amp; Scalp Oil
                 </span>
               </>
+            ) : isComb ? (
+              <>
+                Neem Wood Comb
+                <span className="block text-xl sm:text-2xl font-serif italic text-[#4B644C] mt-1">
+                  for Dandruff &amp; Hair Fall Control
+                </span>
+              </>
             ) : (
-              product.title
+              <>
+                Advanced De-Tan
+                <span className="block text-xl sm:text-2xl font-serif italic text-[#4B644C] mt-1">
+                  Sunscreen Gel SPF 50+ PA++++
+                </span>
+              </>
             )}
           </h1>
           {isHairOil && (
@@ -135,14 +142,26 @@ export function PurchasePanel({ product }: PurchasePanelProps) {
               5 Cold Pressed Oils + 12 Ayurvedic Herbs + OleoKare®
             </p>
           )}
+          {isComb && (
+            <p className="text-xs sm:text-sm font-sans font-medium text-[#4B644C] tracking-wide pt-0.5">
+              Handcrafted Seasoned Neem Wood • Soaked in 17 Ayurvedic Herbs
+            </p>
+          )}
+          {isSunscreen && (
+            <p className="text-xs sm:text-sm font-sans font-medium text-[#4B644C] tracking-wide pt-0.5">
+              With Rice Water &amp; Brightening Actives • Zero Visible White Cast
+            </p>
+          )}
         </div>
 
         {/* Product Subtitle / Short Description */}
-        {isHairOil && (
-          <p className="text-xs sm:text-sm font-sans text-[#555555] font-light leading-relaxed">
-            A premium botanical hair ritual formulated to nourish the scalp and support healthier-looking, stronger hair.
-          </p>
-        )}
+        <p className="text-xs sm:text-sm font-sans text-[#555555] font-light leading-relaxed">
+          {isHairOil
+            ? 'A premium botanical hair ritual formulated to nourish the scalp and support healthier-looking, stronger hair.'
+            : isComb
+            ? 'Hand-carved from seasoned neem wood and soaked for 45 days in 17 botanical herbs. Minimises static friction, detangles pain-free, and gently stimulates scalp micro-circulation.'
+            : 'Ultra-lightweight solar defense gel with SPF 50+ PA++++. Infused with Kojic Acid, Niacinamide, Fermented Rice Water, and Sea Buckthorn to protect against UV damage and visibly fade tanning.'}
+        </p>
 
         {/* Highlight Badges */}
         <div className="flex flex-wrap gap-1.5 pt-1">

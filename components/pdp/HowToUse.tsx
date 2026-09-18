@@ -24,10 +24,12 @@ interface HowToData {
   routine: { icon: React.ReactNode; label: string }[];
 }
 
-function getHowToData(handle: string): HowToData {
-  const h = handle.toLowerCase();
+import { getProductType } from '@/lib/productClassifier';
 
-  if (h.includes('neem') || h.includes('comb')) {
+function getHowToData(handle: string): HowToData {
+  const type = getProductType(handle);
+
+  if (type === 'comb') {
     return {
       eyebrow: 'DAILY SCALP RITUAL',
       headline: 'How To Use For Best Results',
@@ -44,23 +46,23 @@ function getHowToData(handle: string): HowToData {
         {
           step: '02',
           title: 'Scalp Massage',
-          desc: 'Once detangled, make 5-minute passes from nape to crown applying light pressure. This stimulates scalp papilla micro-circulation.',
+          desc: 'Once detangled, make 5-minute passes from nape to crown applying light pressure. This stimulates scalp micro-circulation.',
         },
         {
           step: '03',
           title: 'Oil Distribution',
-          desc: 'Apply 2-3 drops of RootHerb Oil to roots, then comb through to evenly distribute natural scalp oils to every strand.',
+          desc: 'Pair with your favourite herbal oil or use dry to evenly distribute natural scalp oils to every strand.',
         },
       ],
       routine: [
         { icon: <Sun className="h-4 w-4 text-[#4B644C]" />, label: 'Morning: Scalp Stimulation' },
-        { icon: <Moon className="h-4 w-4 text-[#4B644C]" />, label: 'Night: Oil Distribution' },
+        { icon: <Moon className="h-4 w-4 text-[#4B644C]" />, label: 'Night: Relaxing Combing' },
         { icon: <Calendar className="h-4 w-4 text-[#4B644C]" />, label: 'Recommended: Daily' },
       ],
     };
   }
 
-  if (h.includes('sunscreen') || h.includes('tan') || h.includes('spf')) {
+  if (type === 'sunscreen') {
     return {
       eyebrow: 'DAILY SUN PROTECTION RITUAL',
       headline: 'How To Apply For Full Protection',
